@@ -4,7 +4,9 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.is2t.widgets.ideas;
+package com.is2t.widgets.decorator;
+
+import com.is2t.widgets.laf.ColorProfile;
 
 import ej.microui.io.DisplayFont;
 import ej.microui.io.GraphicsContext;
@@ -30,8 +32,10 @@ public class PictoDecorator extends AbstractDecorator implements Decorator {
 	}
 
 	@Override
-	public void draw(GraphicsContext g) {
+	public void draw(GraphicsContext g, ColorProfile colorProfile) {
+		// TODO manage alignment?
 		g.setFont(this.font);
+		g.setColor(colorProfile.getForegroundColor());
 		g.drawChar(this.picto, 0, 0, GraphicsContext.LEFT | GraphicsContext.TOP);
 	}
 

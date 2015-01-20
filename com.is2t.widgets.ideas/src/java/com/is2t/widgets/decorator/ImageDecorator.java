@@ -4,7 +4,9 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.is2t.widgets.ideas;
+package com.is2t.widgets.decorator;
+
+import com.is2t.widgets.laf.ColorProfile;
 
 import ej.microui.io.GraphicsContext;
 import ej.microui.io.Image;
@@ -28,8 +30,10 @@ public class ImageDecorator extends AbstractDecorator implements Decorator {
 	}
 
 	@Override
-	public void draw(GraphicsContext g) {
-		g.drawImage(this.image, 0, 0, GraphicsContext.LEFT | GraphicsContext.TOP);
+	public void draw(GraphicsContext g, ColorProfile colorProfile) {
+		// TODO manage alignment?
+		g.drawImage(this.image, 0, 0, GraphicsContext.LEFT
+				| GraphicsContext.TOP);
 	}
 
 }

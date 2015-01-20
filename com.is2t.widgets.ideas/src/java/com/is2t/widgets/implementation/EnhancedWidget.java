@@ -4,14 +4,17 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.is2t.widgets.ideas;
+package com.is2t.widgets.implementation;
+
+import com.is2t.widgets.decorator.Decorator;
+import com.is2t.widgets.laf.ColorProfile;
 
 import ej.mwt.Widget;
 
-public class WidgetIdea extends Widget {
+public class EnhancedWidget extends Widget {
 
 	private ColorProfile colorProfile;
-	private Alignment alignment;
+	private int alignment;
 	private Decorator decorator;
 
 	/**
@@ -39,7 +42,7 @@ public class WidgetIdea extends Widget {
 	 * @param alignment
 	 *            the alignment to set.
 	 */
-	public void setAlignment(Alignment alignment) {
+	public void setAlignment(int alignment) {
 		this.alignment = alignment;
 	}
 
@@ -48,13 +51,13 @@ public class WidgetIdea extends Widget {
 	 *
 	 * @return the alignment.
 	 */
-	public Alignment getAlignment() {
+	public int getAlignment() {
 		return this.alignment;
 	}
 
 	/**
 	 * Sets the decorator.
-	 * 
+	 *
 	 * @param decorator
 	 *            the decorator to set.
 	 */
@@ -64,7 +67,7 @@ public class WidgetIdea extends Widget {
 
 	/**
 	 * Gets the decorator.
-	 * 
+	 *
 	 * @return the decorator.
 	 */
 	public Decorator getDecorator() {

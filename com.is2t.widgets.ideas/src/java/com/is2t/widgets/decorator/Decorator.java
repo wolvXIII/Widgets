@@ -4,20 +4,22 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.is2t.widgets.ideas;
+package com.is2t.widgets.decorator;
+
+import com.is2t.widgets.laf.ColorProfile;
 
 import ej.microui.io.GraphicsContext;
 
 public interface Decorator {
 
-	void setAlignment(Alignment alignment);
+	void setAlignment(int alignment);
 
-	Alignment getAlignment();
+	int getAlignment();
 
 	int getWidth();
 
 	int getHeight();
 
-	void draw(GraphicsContext g);
+	void draw(GraphicsContext g, ColorProfile colorProfile);
 
 }
