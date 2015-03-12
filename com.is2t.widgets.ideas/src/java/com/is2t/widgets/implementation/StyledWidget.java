@@ -6,16 +6,18 @@
  */
 package com.is2t.widgets.implementation;
 
+import com.is2t.widgets.background.Background;
 import com.is2t.widgets.decorator.Decorator;
 import com.is2t.widgets.laf.ColorProfile;
 
 import ej.mwt.Widget;
 
-public class EnhancedWidget extends Widget {
+public class StyledWidget extends Widget {
 
 	private ColorProfile colorProfile;
 	private int alignment;
 	private Decorator decorator;
+	private Background background;
 
 	/**
 	 * Sets the color profile.
@@ -72,6 +74,25 @@ public class EnhancedWidget extends Widget {
 	 */
 	public Decorator getDecorator() {
 		return this.decorator;
+	}
+
+	/**
+	 * Sets the background.
+	 * 
+	 * @param background
+	 *            the background to set.
+	 */
+	public void setBackground(Background background) {
+		this.background = background;
+	}
+
+	/**
+	 * Gets the background.
+	 * 
+	 * @return the background.
+	 */
+	public Background getBackground() {
+		return this.background;
 	}
 
 }

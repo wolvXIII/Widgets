@@ -11,6 +11,7 @@ import com.is2t.widgets.font.FontProfile;
 import ej.microui.io.DisplayFont;
 import ej.microui.io.Image;
 
+// to be implemented for each screen size
 public interface ResourcesProfile {
 
 	DisplayFont getFont(FontProfile fontProfile);
