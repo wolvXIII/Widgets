@@ -7,6 +7,7 @@
 package com.is2t.composites;
 
 import ej.mwt.Composite;
+import ej.mwt.Widget;
 
 /**
  *
@@ -38,6 +39,18 @@ public class GridComposite extends Composite {
 
 	@Override
 	public void validate(int widthHint, int heightHint) {
+		if (!isVisible()) {
+			// optim: do not validate its hierarchy
+			setPreferredSize(0, 0);
+			return;
+		}
+
+		Widget[] contents = getWidgets();
+		int length = contents.length;
+		if (length == 0) {
+			// nothing to do
+			return;
+		}
 
 	}
 

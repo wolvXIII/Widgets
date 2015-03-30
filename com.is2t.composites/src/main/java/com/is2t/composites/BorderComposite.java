@@ -74,6 +74,12 @@ public class BorderComposite extends Composite {
 
 	@Override
 	public void validate(int widthHint, int heightHint) {
+		if (!isVisible()) {
+			// optim: do not validate its hierarchy
+			setPreferredSize(0, 0);
+			return;
+		}
+
 		boolean computeWidth = widthHint == MWT.NONE;
 		boolean computeHeight = heightHint == MWT.NONE;
 
@@ -128,10 +134,10 @@ public class BorderComposite extends Composite {
 
 		// center take remaining width
 		if (!computeWidth && this.horizontal) {
-			centerWidth = widthHint - firstPreferredWidth - lastPreferredWidth;
+			centerWidth = Math.max(0, widthHint - firstPreferredWidth - lastPreferredWidth);
 		}
 		if (!computeHeight && this.horizontal) {
-			centerHeight = heightHint - firstPreferredHeight - lastPreferredHeight;
+			centerHeight = Math.max(0, heightHint - firstPreferredHeight - lastPreferredHeight);
 		}
 		this.center.validate(centerWidth, centerHeight);
 		int centerPreferredWidth = this.center.getPreferredWidth();

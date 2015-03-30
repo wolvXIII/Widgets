@@ -46,7 +46,7 @@ public class SplitComposite extends Composite {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if there is already two widgets registered.
 	 */
@@ -61,7 +61,18 @@ public class SplitComposite extends Composite {
 
 	@Override
 	public void validate(int widthHint, int heightHint) {
+		if (!isVisible()) {
+			// optim: do not validate its hierarchy
+			setPreferredSize(0, 0);
+			return;
+		}
+
 		Widget[] widgets = getWidgets();
+		int length = widgets.length;
+		if (length == 0) {
+			// nothing to do
+			return;
+		}
 
 		boolean computeWidth = widthHint == MWT.NONE;
 		boolean computeHeight = heightHint == MWT.NONE;
@@ -97,17 +108,22 @@ public class SplitComposite extends Composite {
 			}
 		}
 
-		// validate widgets
+		// validate widgets and get their preferred widgets
 		Widget first = widgets[0];
 		Widget second = widgets[1];
 		first.validate(firstWidth, firstHeight);
-		second.validate(secondWidth, secondHeight);
-
-		// get widgets preferred widgets
 		int firstPreferredWidth = first.getPreferredWidth();
 		int firstPreferredHeight = first.getPreferredHeight();
-		int secondPreferredWidth = second.getPreferredWidth();
-		int secondPreferredHeight = second.getPreferredHeight();
+		int secondPreferredWidth;
+		int secondPreferredHeight;
+		if (second != null) {
+			second.validate(secondWidth, secondHeight);
+			secondPreferredWidth = second.getPreferredWidth();
+			secondPreferredHeight = second.getPreferredHeight();
+		} else {
+			secondPreferredWidth = 0;
+			secondPreferredHeight = 0;
+		}
 
 		// compute composite preferred size if necessary
 		if (computeWidth) {
@@ -174,7 +190,9 @@ public class SplitComposite extends Composite {
 
 		// set widgets bounds
 		first.setBounds(firstX, firstY, firstWidth, firstHeight);
-		second.setBounds(secondX, secondY, secondWidth, secondHeight);
+		if (second != null) {
+			second.setBounds(secondX, secondY, secondWidth, secondHeight);
+		}
 
 		super.setBounds(x, y, width, height);
 	}

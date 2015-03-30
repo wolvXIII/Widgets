@@ -37,7 +37,9 @@ public class TestSplitCompositeConsistency {
 				contains(splitComposite.getWidgets(), item1));
 		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 2nd item",
 				contains(splitComposite.getWidgets(), item2));
+
 		try {
+			// test add a third
 			splitComposite.add(item3);
 			CheckHelper.check(TestSplitCompositeConsistency.class, "3 children", false);
 		} catch (IllegalArgumentException e) {
@@ -50,6 +52,7 @@ public class TestSplitCompositeConsistency {
 					contains(splitComposite.getWidgets(), item2));
 		}
 
+		// test remove
 		splitComposite.remove(item1);
 		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 1 item", splitComposite.getWidgetsCount(), 1);
 		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 2nd item",
@@ -61,6 +64,7 @@ public class TestSplitCompositeConsistency {
 		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 3rd item",
 				contains(splitComposite.getWidgets(), item3));
 
+		// test remove all
 		splitComposite.removeAllWidgets();
 		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 0 item", splitComposite.getWidgetsCount(), 0);
 		splitComposite.add(item2);
@@ -70,6 +74,13 @@ public class TestSplitCompositeConsistency {
 				contains(splitComposite.getWidgets(), item1));
 		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 2nd item",
 				contains(splitComposite.getWidgets(), item2));
+
+		// test empty validation
+		splitComposite.removeAllWidgets();
+		CheckHelper.check(TestSplitCompositeConsistency.class, "contains 0 item", splitComposite.getWidgetsCount(), 0);
+		TestHelper.showAndWait(splitComposite, false);
+		CheckHelper.check(TestSplitCompositeAlone.class, "composite width", splitComposite.getWidth(), 0);
+		CheckHelper.check(TestSplitCompositeAlone.class, "composite height", splitComposite.getHeight(), 0);
 
 		CheckHelper.endCheck(TestSplitCompositeConsistency.class);
 	}
