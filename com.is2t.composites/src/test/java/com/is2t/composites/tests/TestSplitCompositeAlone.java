@@ -37,10 +37,10 @@ public class TestSplitCompositeAlone {
 		TestHelper.showAndWait(splitComposite, false);
 
 		// get widgets size
-		CheckHelper.check(TestSplitCompositeAlone.class, "left width", leftLabel.getWidth(), baseWidth);
-		CheckHelper.check(TestSplitCompositeAlone.class, "left height", leftLabel.getHeight(), baseHeight);
-		CheckHelper.check(TestSplitCompositeAlone.class, "composite width", splitComposite.getWidth(), baseWidth);
-		CheckHelper.check(TestSplitCompositeAlone.class, "composite height", splitComposite.getHeight(), baseHeight);
+		CheckHelper.check(TestSplitCompositeAlone.class, "h left width", leftLabel.getWidth(), baseWidth);
+		CheckHelper.check(TestSplitCompositeAlone.class, "h left height", leftLabel.getHeight(), baseHeight);
+		CheckHelper.check(TestSplitCompositeAlone.class, "h composite width", splitComposite.getWidth(), baseWidth * 3);
+		CheckHelper.check(TestSplitCompositeAlone.class, "h composite height", splitComposite.getHeight(), baseHeight);
 	}
 
 	private static void testVertical() {
@@ -48,18 +48,19 @@ public class TestSplitCompositeAlone {
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
 
-		Item leftLabel = new Item(baseWidth, baseHeight);
+		Item topLabel = new Item(baseWidth, baseHeight);
 		SplitComposite splitComposite = new SplitComposite();
 		splitComposite.setHorizontal(false);
 		splitComposite.setRatio(ratio);
-		splitComposite.add(leftLabel);
+		splitComposite.add(topLabel);
 		TestHelper.showAndWait(splitComposite, false);
 
 		// get widgets size
-		CheckHelper.check(TestSplitCompositeAlone.class, "left width", leftLabel.getWidth(), baseWidth);
-		CheckHelper.check(TestSplitCompositeAlone.class, "left height", leftLabel.getHeight(), baseHeight);
-		CheckHelper.check(TestSplitCompositeAlone.class, "composite width", splitComposite.getWidth(), baseWidth);
-		CheckHelper.check(TestSplitCompositeAlone.class, "composite height", splitComposite.getHeight(), baseHeight);
+		CheckHelper.check(TestSplitCompositeAlone.class, "v top width", topLabel.getWidth(), baseWidth);
+		CheckHelper.check(TestSplitCompositeAlone.class, "v top height", topLabel.getHeight(), baseHeight);
+		CheckHelper.check(TestSplitCompositeAlone.class, "v composite width", splitComposite.getWidth(), baseWidth);
+		CheckHelper.check(TestSplitCompositeAlone.class, "v composite height", splitComposite.getHeight(),
+				baseHeight * 3);
 	}
 
 }

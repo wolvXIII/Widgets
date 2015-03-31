@@ -87,7 +87,7 @@ public class TestSplitCompositeHierarchy {
 
 		// get widgets size
 		CheckHelper
-		.check(TestSplitCompositeHierarchy.class, "vhpus top left width", topLeftLabel.getWidth(), baseWidth);
+				.check(TestSplitCompositeHierarchy.class, "vhpus top left width", topLeftLabel.getWidth(), baseWidth);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "vhpus top left height", topLeftLabel.getHeight(),
 				baseHeight);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "vhpus top right width", topRightLabel.getWidth(),
@@ -158,7 +158,7 @@ public class TestSplitCompositeHierarchy {
 
 		// get widgets size
 		CheckHelper
-		.check(TestSplitCompositeHierarchy.class, "hvpus left top width", leftTopLabel.getWidth(), baseWidth);
+				.check(TestSplitCompositeHierarchy.class, "hvpus left top width", leftTopLabel.getWidth(), baseWidth);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "hvpus left topheight", leftTopLabel.getHeight(),
 				baseHeight);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "hvpus left bottom width", leftBottomLabel.getWidth(),
@@ -308,7 +308,7 @@ public class TestSplitCompositeHierarchy {
 				rightBottomLabel, ratio, false);
 		SplitComposite splitComposite = TestSplitCompositeSimple.createSplitComposite(leftSplitComposite,
 				rightSplitComposite, ratio, true);
-		TestHelper.showAndWait(splitComposite, false);
+		TestHelper.showAndWait(splitComposite, true);
 
 		Display display = Display.getDefaultDisplay();
 		int displayWidth = display.getWidth();

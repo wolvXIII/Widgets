@@ -10,6 +10,7 @@ import com.is2t.composites.SplitComposite;
 import com.is2t.composites.widgets.Item;
 import com.is2t.testsuite.support.CheckHelper;
 
+import ej.microui.MicroUI;
 import ej.mwt.Widget;
 
 /**
@@ -18,6 +19,7 @@ import ej.mwt.Widget;
 public class TestSplitCompositeConsistency {
 
 	public static void main(String[] args) {
+		MicroUI.errorLog(true);
 		CheckHelper.startCheck(TestSplitCompositeConsistency.class);
 
 		final int baseWidth = 30;

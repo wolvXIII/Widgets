@@ -52,7 +52,7 @@ public class SplitComposite extends Composite {
 	 */
 	@Override
 	public void add(Widget widget) {
-		if (getWidgetsCount() <= 2) {
+		if (getWidgetsCount() < 2) {
 			super.add(widget);
 		} else {
 			throw new IllegalArgumentException();
@@ -110,13 +110,13 @@ public class SplitComposite extends Composite {
 
 		// validate widgets and get their preferred widgets
 		Widget first = widgets[0];
-		Widget second = widgets[1];
 		first.validate(firstWidth, firstHeight);
 		int firstPreferredWidth = first.getPreferredWidth();
 		int firstPreferredHeight = first.getPreferredHeight();
 		int secondPreferredWidth;
 		int secondPreferredHeight;
-		if (second != null) {
+		if (length > 1) {
+			Widget second = widgets[1];
 			second.validate(secondWidth, secondHeight);
 			secondPreferredWidth = second.getPreferredWidth();
 			secondPreferredHeight = second.getPreferredHeight();
@@ -160,38 +160,46 @@ public class SplitComposite extends Composite {
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
 		Widget[] widgets = getWidgets();
-		Widget first = widgets[0];
-		Widget second = widgets[1];
+		int length = widgets.length;
+		if (length > 0) {
+			Widget first = widgets[0];
+			Widget second;
+			if (length > 1) {
+				second = widgets[1];
+			} else {
+				second = null;
+			}
 
-		// compute widgets bounds
-		int firstX = 0;
-		int firstY = 0;
-		int firstWidth;
-		int firstHeight;
-		int secondX;
-		int secondY;
-		int secondWidth;
-		int secondHeight;
-		if (this.horizontal) {
-			firstWidth = (int) (width * this.ratio);
-			firstHeight = height;
-			secondX = firstWidth;
-			secondY = 0;
-			secondWidth = width - firstWidth;
-			secondHeight = height;
-		} else {
-			firstWidth = width;
-			firstHeight = (int) (height * this.ratio);
-			secondX = 0;
-			secondY = firstHeight;
-			secondWidth = width;
-			secondHeight = height - firstHeight;
-		}
+			// compute widgets bounds
+			int firstX = 0;
+			int firstY = 0;
+			int firstWidth;
+			int firstHeight;
+			int secondX;
+			int secondY;
+			int secondWidth;
+			int secondHeight;
+			if (this.horizontal) {
+				firstWidth = (int) (width * this.ratio);
+				firstHeight = height;
+				secondX = firstWidth;
+				secondY = 0;
+				secondWidth = width - firstWidth;
+				secondHeight = height;
+			} else {
+				firstWidth = width;
+				firstHeight = (int) (height * this.ratio);
+				secondX = 0;
+				secondY = firstHeight;
+				secondWidth = width;
+				secondHeight = height - firstHeight;
+			}
 
-		// set widgets bounds
-		first.setBounds(firstX, firstY, firstWidth, firstHeight);
-		if (second != null) {
-			second.setBounds(secondX, secondY, secondWidth, secondHeight);
+			// set widgets bounds
+			first.setBounds(firstX, firstY, firstWidth, firstHeight);
+			if (second != null) {
+				second.setBounds(secondX, secondY, secondWidth, secondHeight);
+			}
 		}
 
 		super.setBounds(x, y, width, height);
