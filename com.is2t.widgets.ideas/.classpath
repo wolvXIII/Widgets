@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/java"/>
+	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="var" path="BON-1.2"/>
 	<classpathentry kind="var" path="EDC-1.2"/>
-	<classpathentry kind="var" path="MWT-1.0"/>
+	<classpathentry kind="var" path="MICROUI-2.0"/>
+	<classpathentry kind="var" path="MWT-2.0"/>
+	<classpathentry kind="var" path="EJ.COMPONENTS-2.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
