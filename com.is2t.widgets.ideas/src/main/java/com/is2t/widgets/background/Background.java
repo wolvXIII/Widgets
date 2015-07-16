@@ -6,13 +6,10 @@
  */
 package com.is2t.widgets.background;
 
-import com.is2t.widgets.laf.ColorProfile;
-
-import ej.microui.io.GraphicsContext;
+import ej.microui.display.GraphicsContext;
 
 public interface Background {
 
-	void draw(GraphicsContext g, ColorProfile colorProfile, int width,
-			int height);
+	void draw(GraphicsContext g, int width, int height);
 
 }

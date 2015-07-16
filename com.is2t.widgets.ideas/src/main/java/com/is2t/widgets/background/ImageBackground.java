@@ -6,15 +6,13 @@
  */
 package com.is2t.widgets.background;
 
-import com.is2t.widgets.laf.ColorProfile;
-
-import ej.microui.io.GraphicsContext;
-import ej.microui.io.Image;
+import ej.microui.display.GraphicsContext;
+import ej.microui.display.Image;
 
 /**
  *
  */
-public class TiledBackground extends PlainBackground {
+public class ImageBackground extends PlainBackground {
 
 	private Image image;
 	private int alignment;
@@ -58,12 +56,9 @@ public class TiledBackground extends PlainBackground {
 	}
 
 	@Override
-	public void draw(GraphicsContext g, ColorProfile colorProfile, int width,
-			int height) {
-		super.draw(g, colorProfile, width, height);
+	public void draw(GraphicsContext g, int width, int height) {
+		super.draw(g, width, height);
 		// TODO alignment management
-		// TODO repeat management
-		g.drawImage(this.image, 0, 0, GraphicsContext.LEFT
-				| GraphicsContext.TOP);
+		g.drawImage(this.image, 0, 0, GraphicsContext.LEFT | GraphicsContext.TOP);
 	}
 }

@@ -8,8 +8,8 @@ package com.is2t.widgets.decorator;
 
 import com.is2t.widgets.laf.ColorProfile;
 
-import ej.microui.io.DisplayFont;
-import ej.microui.io.GraphicsContext;
+import ej.microui.display.DisplayFont;
+import ej.microui.display.GraphicsContext;
 
 public class PictoDecorator extends AbstractDecorator implements Decorator {
 

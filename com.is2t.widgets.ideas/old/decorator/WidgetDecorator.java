@@ -8,7 +8,7 @@ package com.is2t.widgets.decorator;
 
 import com.is2t.widgets.laf.ColorProfile;
 
-import ej.microui.io.GraphicsContext;
+import ej.microui.display.GraphicsContext;
 import ej.mwt.Widget;
 
 /**
