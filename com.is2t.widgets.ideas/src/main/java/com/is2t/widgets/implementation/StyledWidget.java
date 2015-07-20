@@ -7,6 +7,7 @@
 package com.is2t.widgets.implementation;
 
 import com.is2t.widgets.Dimension;
+import com.is2t.widgets.State;
 import com.is2t.widgets.Style;
 import com.is2t.widgets.Stylesheet;
 import com.is2t.widgets.background.Background;
@@ -17,11 +18,20 @@ import com.is2t.widgets.font.FontProfile;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
+import ej.microui.event.Event;
+import ej.microui.event.controller.DispatchHelper;
+import ej.microui.event.controller.PointerEventHandler;
+import ej.microui.event.generators.Pointer;
 import ej.mwt.Widget;
 
 public class StyledWidget extends Widget {
 
 	private String text;
+	private State state;
+
+	public StyledWidget() {
+		this.state = State.None;
+	}
 
 	/**
 	 * Gets the text.
@@ -78,10 +88,6 @@ public class StyledWidget extends Widget {
 		int thisWidth = this.getWidth();
 		int thisHeight = this.getHeight();
 
-		// draw background
-		Background background = style.getBackground();
-		background.draw(g, thisWidth, thisHeight);
-
 		Dimension remainingSize = new Dimension();
 		remainingSize.setSize(thisWidth, thisHeight);
 		// apply margin
@@ -91,6 +97,10 @@ public class StyledWidget extends Widget {
 		// draw border
 		Boxing border = style.getBorder();
 		border.apply(g, remainingSize);
+
+		// draw background
+		Background background = style.getBackground();
+		background.draw(g, remainingSize.getWidth(), remainingSize.getHeight());
 
 		// apply padding
 		Boxing padding = style.getPadding();
@@ -113,8 +123,52 @@ public class StyledWidget extends Widget {
 
 	private Style getStyle() {
 		Stylesheet stylesheet = ServiceLoaderFactory.getServiceLoader().getService(Stylesheet.class);
-		Style style = stylesheet.getStyle(this);
+		Style style = stylesheet.getStyle(this, this.state);
 		return style;
+	}
+
+	@Override
+	public boolean handleEvent(int event) {
+		if (Event.getType(event) == Event.POINTER) {
+			DispatchHelper.dispatchPointer(event, new PointerEventHandler() {
+				@Override
+				public boolean onPointerReleased(Pointer arg0, int arg1, int arg2, int arg3) {
+					StyledWidget.this.state = State.None;
+					repaint();
+					return false;
+				}
+
+				@Override
+				public boolean onPointerPressed(Pointer arg0, int arg1, int arg2, int arg3) {
+					StyledWidget.this.state = State.Active;
+					repaint();
+					return false;
+				}
+
+				@Override
+				public boolean onPointerMoved(Pointer arg0, int arg1, int arg2, int arg3) {
+					return false;
+				}
+
+				@Override
+				public boolean onPointerExited(Pointer arg0, int arg1, int arg2, int arg3) {
+					StyledWidget.this.state = State.None;
+					repaint();
+					return false;
+				}
+
+				@Override
+				public boolean onPointerEntered(Pointer arg0, int arg1, int arg2, int arg3) {
+					return false;
+				}
+
+				@Override
+				public boolean onPointerDragged(Pointer arg0, int arg1, int arg2, int arg3) {
+					return false;
+				}
+			});
+		}
+		return super.handleEvent(event);
 	}
 
 }

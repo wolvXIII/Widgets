@@ -7,6 +7,7 @@
 package com.is2t.widgets;
 
 import com.is2t.widgets.background.Background;
+import com.is2t.widgets.boxmodel.Border;
 import com.is2t.widgets.boxmodel.Boxing;
 import com.is2t.widgets.font.FontProfile;
 
@@ -27,7 +28,7 @@ public interface Style {
 
 	Boxing getPadding();
 
-	Boxing getBorder();
+	Border getBorder();
 
 	Boxing getMargin();
 

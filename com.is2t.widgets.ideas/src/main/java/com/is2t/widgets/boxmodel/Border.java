@@ -15,6 +15,12 @@ import ej.microui.display.GraphicsContext;
  */
 public class Border implements Boxing {
 
+	/**
+	 * Singleton to use to avoid creating several instances.
+	 */
+	// FIXME make this singleton stateless
+	public static final Border NO_BORDER = new Border();
+
 	private int color;
 	private int size;
 	private int radius;
