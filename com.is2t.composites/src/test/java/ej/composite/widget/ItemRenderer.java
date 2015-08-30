@@ -4,7 +4,7 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package com.is2t.composites.widgets;
+package ej.composite.widget;
 
 import ej.microui.io.GraphicsContext;
 import ej.mwt.Renderable;
