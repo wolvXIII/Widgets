@@ -13,8 +13,8 @@ import ej.mwt.Widget;
 /**
  * Lays out its children to fit in 3 regions:
  * <ul>
- * <li>horizontal mode: west, east and center (respectively {@link MWT#WEST}, {@link MWT#EAST}, {@link MWT#CENTER},</li>
- * <li>vertical mode: north, south and center (respectively {@link MWT#NORTH}, {@link MWT#SOUTH}, {@link MWT#CENTER},</li>
+ * <li>horizontal mode: west, east and center (respectively {@link MWT#WEST}, {@link MWT#EAST}, {@link MWT#CENTER}),</li>
+ * <li>vertical mode: north, south and center (respectively {@link MWT#NORTH}, {@link MWT#SOUTH}, {@link MWT#CENTER}),</li>
  * </ul>
  * Beware that a widget added on west in vertical mode will be on north (the same goes horizontally and for east and
  * south regions).
@@ -45,14 +45,27 @@ public class BorderComposite extends Composite {
 		super.add(widget);
 	}
 
+	@Override
+	public void remove(Widget widget) {
+		if (widget == this.first) {
+			this.first = null;
+		} else if (widget == this.last) {
+			this.last = null;
+		} else if (widget == this.center) {
+			this.center = null;
+		}
+		super.remove(widget);
+	}
+
 	public void add(Widget widget, int at) {
 		switch (at) {
 		case MWT.WEST:
 			// case MWT.LEFT:
 		case MWT.NORTH:
 			// case MWT.TOP:
-			if (this.first != null) {
-				remove(this.first);
+			Widget firstLocal = this.first; // avoid synchronizing
+			if (firstLocal != null) {
+				remove(firstLocal);
 			}
 			this.first = widget;
 			super.add(widget);
@@ -61,15 +74,66 @@ public class BorderComposite extends Composite {
 			// case MWT.RIGHT:
 		case MWT.SOUTH:
 			// case MWT.BOTTOM:
-			if (this.last != null) {
-				remove(this.last);
+			Widget lastLocal = this.last; // avoid synchronizing
+			if (lastLocal != null) {
+				remove(lastLocal);
 			}
 			this.last = widget;
 			super.add(widget);
 			break;
 		case MWT.CENTER:
+			Widget centerLocal = this.center; // avoid synchronizing
+			if (centerLocal != null) {
+				remove(centerLocal);
+			}
+			this.center = widget;
 			add(widget);
+			break;
+		default:
+			throw new IllegalArgumentException();
 		}
+	}
+
+	public void remove(int at) {
+		switch (at) {
+		case MWT.WEST:
+			// case MWT.LEFT:
+		case MWT.NORTH:
+			// case MWT.TOP:
+			Widget firstLocal = this.first; // avoid synchronizing
+			if (firstLocal != null) {
+				remove(firstLocal);
+			}
+			this.first = null;
+			break;
+		case MWT.EAST:
+			// case MWT.RIGHT:
+		case MWT.SOUTH:
+			// case MWT.BOTTOM:
+			Widget lastLocal = this.last; // avoid synchronizing
+			if (lastLocal != null) {
+				remove(lastLocal);
+			}
+			this.last = null;
+			break;
+		case MWT.CENTER:
+			Widget centerLocal = this.center; // avoid synchronizing
+			if (centerLocal != null) {
+				remove(centerLocal);
+			}
+			this.center = null;
+			break;
+		default:
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public void removeAllWidgets() {
+		super.removeAllWidgets();
+		this.first = null;
+		this.last = null;
+		this.center = null;
 	}
 
 	@Override
@@ -122,15 +186,31 @@ public class BorderComposite extends Composite {
 			}
 		}
 
-		// validate widgets
-		this.first.validate(firstWidth, firstHeight);
-		this.last.validate(lastWidth, lastHeight);
+		Widget firstLocal = this.first; // avoid synchronizing
+		Widget lastLocal = this.last; // avoid synchronizing
+		Widget centerLocal = this.center; // avoid synchronizing
 
-		// get widgets preferred widgets
-		int firstPreferredWidth = this.first.getPreferredWidth();
-		int firstPreferredHeight = this.first.getPreferredHeight();
-		int lastPreferredWidth = this.last.getPreferredWidth();
-		int lastPreferredHeight = this.last.getPreferredHeight();
+		// validate widgets and get their preferred widgets
+		int firstPreferredWidth;
+		int firstPreferredHeight;
+		if (firstLocal != null) {
+			firstLocal.validate(firstWidth, firstHeight);
+			firstPreferredWidth = firstLocal.getPreferredWidth();
+			firstPreferredHeight = firstLocal.getPreferredHeight();
+		} else {
+			firstPreferredWidth = 0;
+			firstPreferredHeight = 0;
+		}
+		int lastPreferredWidth;
+		int lastPreferredHeight;
+		if (lastLocal != null) {
+			lastLocal.validate(lastWidth, lastHeight);
+			lastPreferredWidth = lastLocal.getPreferredWidth();
+			lastPreferredHeight = lastLocal.getPreferredHeight();
+		} else {
+			lastPreferredWidth = 0;
+			lastPreferredHeight = 0;
+		}
 
 		// center take remaining width
 		if (!computeWidth && this.horizontal) {
@@ -139,9 +219,16 @@ public class BorderComposite extends Composite {
 		if (!computeHeight && this.horizontal) {
 			centerHeight = Math.max(0, heightHint - firstPreferredHeight - lastPreferredHeight);
 		}
-		this.center.validate(centerWidth, centerHeight);
-		int centerPreferredWidth = this.center.getPreferredWidth();
-		int centerPreferredHeight = this.center.getPreferredHeight();
+		int centerPreferredWidth;
+		int centerPreferredHeight;
+		if (centerLocal != null) {
+			centerLocal.validate(centerWidth, centerHeight);
+			centerPreferredWidth = centerLocal.getPreferredWidth();
+			centerPreferredHeight = centerLocal.getPreferredHeight();
+		} else {
+			centerPreferredWidth = 0;
+			centerPreferredHeight = 0;
+		}
 
 		// compute composite preferred size if necessary
 		if (computeWidth) {
@@ -165,6 +252,11 @@ public class BorderComposite extends Composite {
 
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x, y, width, height);
+
+		Widget firstLocal = this.first; // avoid synchronizing
+		Widget lastLocal = this.last; // avoid synchronizing
+
 		// compute widgets bounds
 		int firstX = 0;
 		int firstY = 0;
@@ -179,9 +271,17 @@ public class BorderComposite extends Composite {
 		int centerWidth;
 		int centerHeight;
 		if (this.horizontal) {
-			firstWidth = this.first.getPreferredWidth();
+			if (firstLocal != null) {
+				firstWidth = firstLocal.getPreferredWidth();
+			} else {
+				firstWidth = 0;
+			}
 			firstHeight = height;
-			lastWidth = this.last.getPreferredWidth();
+			if (lastLocal != null) {
+				lastWidth = lastLocal.getPreferredWidth();
+			} else {
+				lastWidth = 0;
+			}
 			lastHeight = height;
 			lastX = width - lastWidth;
 			lastY = 0;
@@ -191,9 +291,17 @@ public class BorderComposite extends Composite {
 			centerHeight = height;
 		} else {
 			firstWidth = width;
-			firstHeight = this.first.getPreferredHeight();
+			if (firstLocal != null) {
+				firstHeight = firstLocal.getPreferredHeight();
+			} else {
+				firstHeight = 0;
+			}
 			lastWidth = width;
-			lastHeight = this.last.getPreferredHeight();
+			if (lastLocal != null) {
+				lastHeight = lastLocal.getPreferredHeight();
+			} else {
+				lastHeight = 0;
+			}
 			lastX = 0;
 			lastY = width - lastHeight;
 			centerX = 0;
@@ -203,11 +311,16 @@ public class BorderComposite extends Composite {
 		}
 
 		// set widgets bounds
-		this.first.setBounds(firstX, firstY, firstWidth, firstHeight);
-		this.last.setBounds(lastX, lastY, lastWidth, lastHeight);
-		this.center.setBounds(centerX, centerY, centerWidth, centerHeight);
-
-		super.setBounds(x, y, width, height);
+		if (firstLocal != null) {
+			firstLocal.setBounds(firstX, firstY, firstWidth, firstHeight);
+		}
+		if (lastLocal != null) {
+			lastLocal.setBounds(lastX, lastY, lastWidth, lastHeight);
+		}
+		Widget centerLocal = this.center; // avoid synchronizing
+		if (centerLocal != null) {
+			centerLocal.setBounds(centerX, centerY, centerWidth, centerHeight);
+		}
 	}
 
 }

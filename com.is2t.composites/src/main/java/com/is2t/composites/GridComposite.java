@@ -11,7 +11,9 @@ import ej.mwt.MWT;
 import ej.mwt.Widget;
 
 /**
- *
+ * Lays out its children in a grid.
+ * <p>
+ * All columns have the same width and all rows have the same height.
  */
 public class GridComposite extends Composite {
 
@@ -98,6 +100,8 @@ public class GridComposite extends Composite {
 
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x, y, width, height);
+
 		// TODO try to merge with validate
 		Widget[] widgets = getWidgets();
 		int length = widgets.length;
@@ -143,8 +147,6 @@ public class GridComposite extends Composite {
 				}
 			}
 		}
-
-		super.setBounds(x, y, width, height);
 	}
 
 }

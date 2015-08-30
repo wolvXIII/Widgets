@@ -159,6 +159,8 @@ public class SplitComposite extends Composite {
 
 	@Override
 	public void setBounds(int x, int y, int width, int height) {
+		super.setBounds(x, y, width, height);
+
 		Widget[] widgets = getWidgets();
 		int length = widgets.length;
 		if (length > 0) {
@@ -201,8 +203,34 @@ public class SplitComposite extends Composite {
 				second.setBounds(secondX, secondY, secondWidth, secondHeight);
 			}
 		}
+	}
 
-		super.setBounds(x, y, width, height);
+	@Override
+	public Widget getWidgetAt(int x, int y) {
+		// FIXME quicker than simple loop (super implementation)?
+		if (contains(x, y)) {
+			Widget[] widgets = getWidgets();
+			int relativeX = getRelativeX(x);
+			int relativeY = getRelativeY(y);
+			if (isFirstAt(relativeX, relativeY)) {
+				if (widgets.length > 0) {
+					return widgets[0].getWidgetAt(relativeX, relativeY);
+				}
+			} else {
+				if (widgets.length > 1) {
+					return widgets[1].getWidgetAt(relativeX, relativeY);
+				}
+			}
+		}
+		return null;
+	}
+
+	private boolean isFirstAt(int relativeX, int relativeY) {
+		if (this.horizontal) {
+			return (relativeX < getWidth() * this.ratio);
+		} else {
+			return (relativeY < getHeight() * this.ratio);
+		}
 	}
 
 }
