@@ -12,7 +12,7 @@ import ej.widget.Dimension;
 /**
  *
  */
-public class Border implements Boxing {
+public class Border implements Box {
 
 	/**
 	 * Singleton to use to avoid creating several instances.
@@ -55,8 +55,14 @@ public class Border implements Boxing {
 	}
 
 	@Override
-	public Dimension applySize(Dimension dimension) {
+	public Dimension box(Dimension dimension) {
 		dimension.increment(this.size * 2, this.size * 2);
+		return dimension;
+	}
+
+	@Override
+	public Dimension unbox(Dimension dimension) {
+		dimension.decrement(this.size * 2, this.size * 2);
 		return dimension;
 	}
 
