@@ -12,16 +12,21 @@ import ej.widget.Dimension;
 /**
  *
  */
-public class NoBoxing implements Boxing {
+public class NoBox implements Box {
 
 	/**
 	 * Singleton to use to avoid creating several instances.
 	 */
 	// assume that no boxing is stateless
-	public static final NoBoxing NO_BOXING = new NoBoxing();
+	public static final NoBox NO_BOXING = new NoBox();
 
 	@Override
-	public Dimension applySize(Dimension dimension) {
+	public Dimension box(Dimension dimension) {
+		return dimension;
+	}
+
+	@Override
+	public Dimension unbox(Dimension dimension) {
 		return dimension;
 	}
 

@@ -8,7 +8,7 @@ package ej.widget;
 
 import ej.widget.background.Background;
 import ej.widget.boxmodel.Border;
-import ej.widget.boxmodel.Boxing;
+import ej.widget.boxmodel.Box;
 import ej.widget.font.FontProfile;
 
 /**
@@ -22,15 +22,15 @@ public interface Style {
 
 	FontProfile getFontProfile();
 
-	// TODO manage text decoration & text indent & text tranform
+	// TODO manage text decoration & text indent & text tranform & vertical align
 	int getTextAlign();
 
 	Dimension getDimension();
 
-	Boxing getPadding();
+	Box getPadding();
 
 	Border getBorder();
 
-	Boxing getMargin();
+	Box getMargin();
 
 }

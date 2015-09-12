@@ -12,7 +12,7 @@ import ej.widget.Dimension;
 /**
  *
  */
-public class ComplexBoxing implements Boxing {
+public class ComplexBox implements Box {
 
 	private int top;
 	private int bottom;
@@ -96,8 +96,14 @@ public class ComplexBoxing implements Boxing {
 	}
 
 	@Override
-	public Dimension applySize(Dimension dimension) {
+	public Dimension box(Dimension dimension) {
 		dimension.increment(this.left + this.right, this.top + this.bottom);
+		return dimension;
+	}
+
+	@Override
+	public Dimension unbox(Dimension dimension) {
+		dimension.decrement(this.left + this.right, this.top + this.bottom);
 		return dimension;
 	}
 

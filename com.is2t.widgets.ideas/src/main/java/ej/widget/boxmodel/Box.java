@@ -12,9 +12,11 @@ import ej.widget.Dimension;
 /**
  *
  */
-public interface Boxing {
+public interface Box {
 
-	Dimension applySize(Dimension dimension);
+	Dimension box(Dimension dimension);
+
+	Dimension unbox(Dimension dimension);
 
 	Dimension apply(GraphicsContext g, Dimension dimension);
 

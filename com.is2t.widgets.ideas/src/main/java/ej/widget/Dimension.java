@@ -71,6 +71,11 @@ public class Dimension {
 		this.height += height;
 	}
 
+	public void decrement(int width, int height) {
+		this.width -= width;
+		this.height -= height;
+	}
+
 	public Dimension getDimension() {
 		Dimension dimension = new Dimension();
 		dimension.width = this.width;
