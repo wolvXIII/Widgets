@@ -14,4 +14,6 @@ public interface Styled {
 
 	List<State> getStates();
 
+	Object getParentElement();
+
 }

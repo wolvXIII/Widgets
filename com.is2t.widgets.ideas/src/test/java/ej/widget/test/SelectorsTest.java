@@ -6,8 +6,12 @@
  */
 package ej.widget.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.is2t.testsuite.support.CheckHelper;
 
+import ej.microui.display.Colors;
 import ej.widget.State;
 import ej.widget.Style;
 import ej.widget.cascading.CascadingStylesheet;
@@ -23,86 +27,126 @@ public class SelectorsTest extends StyledWidgetTest {
 
 	@Override
 	protected void check() {
-		checkSetStyle(true, true, true);
-		checkSetStyle(true, true, false);
-		checkSetStyle(true, false, true);
-		checkSetStyle(true, false, false);
-		checkSetStyle(false, false, false);
-		checkSetStyle(false, false, true);
-		checkSetStyle(false, true, false);
-		checkSetStyle(false, true, true);
+		long s = System.currentTimeMillis();
+		checkAll(true);
+		checkAll(false);
+		System.out.println("SelectorsTest.check() " + (System.currentTimeMillis() - s) + "ms");
 	}
 
-	private void checkSetStyle(boolean onRenderable1, boolean onRenderable2, boolean onRenderable3) {
+	private void checkAll(boolean hoverBeforeWarning) {
+		checkSetStyle(true, true, true, hoverBeforeWarning);
+		checkSetStyle(true, true, false, hoverBeforeWarning);
+		checkSetStyle(true, false, true, hoverBeforeWarning);
+		checkSetStyle(true, false, false, hoverBeforeWarning);
+		checkSetStyle(false, false, false, hoverBeforeWarning);
+		checkSetStyle(false, false, true, hoverBeforeWarning);
+		checkSetStyle(false, true, false, hoverBeforeWarning);
+		checkSetStyle(false, true, true, hoverBeforeWarning);
+	}
+
+	private void checkSetStyle(boolean onRenderable1, boolean onRenderable2, boolean onRenderable3,
+			boolean hoverBeforeWarning) {
 		SelectorsWidget renderable = new SelectorsWidget();
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style widgetStyle = createCompleteStyle();
-		Style hoverStyle = createBackgroundStyle();
-		Style warningStyle = createForegroundStyle();
+		Style hoverStyle = createForegroundBackgroundStyle(Colors.YELLOW, Colors.NAVY);
+		Style warningStyle = createForegroundBackgroundStyle(Colors.MAGENTA, Colors.GREEN);
 
-		if (onRenderable1) {
-			stylesheet.setStyle(renderable, widgetStyle);
+		addWidgetStyle(onRenderable1, renderable, stylesheet, widgetStyle);
+		if (hoverBeforeWarning) {
+			addHoverStyle(onRenderable2, renderable, stylesheet, hoverStyle);
+			addWarningStyle(onRenderable3, renderable, stylesheet, warningStyle);
 		} else {
-			stylesheet.setStyle(renderable.getClass(), widgetStyle);
+			addWarningStyle(onRenderable3, renderable, stylesheet, warningStyle);
+			addHoverStyle(onRenderable2, renderable, stylesheet, hoverStyle);
 		}
-		if (onRenderable2) {
-			stylesheet.setStyle(renderable, State.Hover, hoverStyle);
+		List<State> states = new ArrayList<>();
+		List<String> classSelectors = new ArrayList<>();
+
+		Style stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		CheckHelper.check(getClass(), "Set style", stylesheetStyle, widgetStyle);
+		check("Style", stylesheetStyle, widgetStyle);
+
+		states.add(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		if (onRenderable2 || (!onRenderable1)) {
+			check("Hover", stylesheetStyle, hoverStyle);
 		} else {
-			stylesheet.setStyle(renderable.getClass(), State.Hover, hoverStyle);
+			check("Style", stylesheetStyle, widgetStyle);
 		}
+
+		states.remove(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		check("Style", stylesheetStyle, widgetStyle);
+
+		classSelectors.add(WARNING);
+		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		if (onRenderable3 || (!onRenderable1)) {
+			check(WARNING, stylesheetStyle, warningStyle);
+		} else {
+			check("Style", stylesheetStyle, widgetStyle);
+		}
+
+		states.add(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		if (onRenderable1 && !onRenderable2 && !onRenderable3) {
+			check("Style", stylesheetStyle, widgetStyle);
+		} else if (hoverBeforeWarning && onRenderable2 == onRenderable3) {
+			// warning is added after hover selector
+			check("Warning", stylesheetStyle, warningStyle);
+		} else if (onRenderable2 && !onRenderable3) {
+			// on renderable is preferred over on type
+			check("Hover", stylesheetStyle, hoverStyle);
+		} else if (hoverBeforeWarning && onRenderable2 == onRenderable3) {
+			// hover is added after hover selector
+			check("Hover", stylesheetStyle, hoverStyle);
+		} else if (!onRenderable2 && onRenderable3) {
+			// on renderable is preferred over on type
+			check("Warning", stylesheetStyle, warningStyle);
+		} else if (onRenderable3 && !onRenderable2) {
+			check(WARNING, stylesheetStyle, warningStyle);
+		}
+
+		classSelectors.remove(WARNING);
+		states.remove(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		check("Style", stylesheetStyle, widgetStyle);
+	}
+
+	private void addWarningStyle(boolean onRenderable3, SelectorsWidget renderable, CascadingStylesheet stylesheet,
+			Style warningStyle) {
 		if (onRenderable3) {
 			stylesheet.setStyle(renderable, WARNING, warningStyle);
 		} else {
 			stylesheet.setStyle(renderable.getClass(), WARNING, warningStyle);
 		}
-		checkSetStyle(renderable, stylesheet, widgetStyle, hoverStyle, warningStyle);
 	}
 
-	private void checkSetStyle(SelectorsWidget renderable, CascadingStylesheet stylesheet, Style widgetStyle,
-			Style hoverStyle, Style warningStyle) {
-		Style stylesheetStyle = stylesheet.getStyle(renderable);
-		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));
-		CheckHelper.check(getClass(), "Set style", stylesheetStyle, widgetStyle);
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getBackground(), widgetStyle.getBackground());
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getForegroundColor(),
-				widgetStyle.getForegroundColor());
+	private void addHoverStyle(boolean onRenderable2, SelectorsWidget renderable, CascadingStylesheet stylesheet,
+			Style hoverStyle) {
+		if (onRenderable2) {
+			stylesheet.setStyle(renderable, State.Hover, hoverStyle);
+		} else {
+			stylesheet.setStyle(renderable.getClass(), State.Hover, hoverStyle);
+		}
+	}
 
-		renderable.addState(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable);
-		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));
-		CheckHelper.check(getClass(), "Hover attribute", stylesheetStyle.getBackground(), hoverStyle.getBackground());
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getForegroundColor(),
-				widgetStyle.getForegroundColor());
+	private void addWidgetStyle(boolean onRenderable1, SelectorsWidget renderable, CascadingStylesheet stylesheet,
+			Style widgetStyle) {
+		if (onRenderable1) {
+			stylesheet.setStyle(renderable, widgetStyle);
+		} else {
+			stylesheet.setStyle(renderable.getClass(), widgetStyle);
+		}
+	}
 
-		renderable.removeState(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable);
+	private void check(String message, Style stylesheetStyle, Style compareStyle) {
 		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getBackground(), widgetStyle.getBackground());
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getForegroundColor(),
-				widgetStyle.getForegroundColor());
-
-		renderable.addClassSelector(WARNING);
-		stylesheetStyle = stylesheet.getStyle(renderable);
-		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getBackground(), widgetStyle.getBackground());
-		CheckHelper.check(getClass(), "Warning attribute", stylesheetStyle.getForegroundColor(),
-				warningStyle.getForegroundColor());
-
-		renderable.addState(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable);
-		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));
-		CheckHelper.check(getClass(), "Hover attribute", stylesheetStyle.getBackground(), hoverStyle.getBackground());
-		CheckHelper.check(getClass(), "Warning attribute", stylesheetStyle.getForegroundColor(),
-				warningStyle.getForegroundColor());
-
-		renderable.removeClassSelector(WARNING);
-		renderable.removeState(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable);
-		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getBackground(), widgetStyle.getBackground());
-		CheckHelper.check(getClass(), "Style attribute", stylesheetStyle.getForegroundColor(),
-				widgetStyle.getForegroundColor());
+		CheckHelper.check(getClass(), message + " foreground", stylesheetStyle.getForegroundColor(),
+				compareStyle.getForegroundColor());
+		CheckHelper.check(getClass(), message + " background", stylesheetStyle.getBackground(),
+				compareStyle.getBackground());
 	}
 
 }

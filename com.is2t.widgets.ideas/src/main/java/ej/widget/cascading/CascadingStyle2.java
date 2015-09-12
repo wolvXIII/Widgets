@@ -10,7 +10,7 @@ import ej.widget.Dimension;
 import ej.widget.Style;
 import ej.widget.background.Background;
 import ej.widget.boxmodel.Border;
-import ej.widget.boxmodel.Boxing;
+import ej.widget.boxmodel.Box;
 import ej.widget.font.FontProfile;
 
 /*package*/class CascadingStyle2 implements Style {
@@ -30,9 +30,9 @@ import ej.widget.font.FontProfile;
 	private FontProfile fontProfile;
 	private int textAlign;
 	private Dimension dimension;
-	private Boxing padding;
+	private Box padding;
 	private Border border;
-	private Boxing margin;
+	private Box margin;
 
 	public CascadingStyle2() {
 		// set default values
@@ -157,7 +157,7 @@ import ej.widget.font.FontProfile;
 	}
 
 	@Override
-	public Boxing getPadding() {
+	public Box getPadding() {
 		return this.padding;
 	}
 
@@ -167,7 +167,7 @@ import ej.widget.font.FontProfile;
 	}
 
 	@Override
-	public Boxing getMargin() {
+	public Box getMargin() {
 		return this.margin;
 	}
 
@@ -242,7 +242,7 @@ import ej.widget.font.FontProfile;
 	 * @param padding
 	 *            the padding to set.
 	 */
-	public void setPadding(Boxing padding) {
+	public void setPadding(Box padding) {
 		if (padding != null) {
 			mark(PADDING_SHIFT);
 		}
@@ -268,7 +268,7 @@ import ej.widget.font.FontProfile;
 	 * @param margin
 	 *            the margin to set.
 	 */
-	public void setMargin(Boxing margin) {
+	public void setMargin(Box margin) {
 		if (margin != null) {
 			mark(MARGIN_SHIFT);
 		}

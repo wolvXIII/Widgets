@@ -15,7 +15,8 @@ import ej.microui.display.GraphicsContext;
 import ej.microui.event.Event;
 import ej.microui.event.controller.DispatchHelper;
 import ej.microui.event.controller.PointerEventHandler;
-import ej.microui.event.generators.Pointer;
+import ej.microui.event.generator.Pointer;
+import ej.mwt.Composite;
 import ej.mwt.Widget;
 import ej.widget.Dimension;
 import ej.widget.State;
@@ -23,7 +24,7 @@ import ej.widget.Style;
 import ej.widget.Styled;
 import ej.widget.Stylesheet;
 import ej.widget.background.Background;
-import ej.widget.boxmodel.Boxing;
+import ej.widget.boxmodel.Box;
 import ej.widget.font.FontLoader;
 import ej.widget.font.FontProfile;
 
@@ -117,6 +118,16 @@ public class StyledWidget extends Widget implements Styled {
 	}
 
 	@Override
+	public Object getParentElement() {
+		Composite parent = super.getParent();
+		if (parent == null) {
+			return getPanel();
+		} else {
+			return parent;
+		}
+	}
+
+	@Override
 	public void validate(int widthHint, int heightHint) {
 		Style style = getStyle();
 
@@ -130,16 +141,16 @@ public class StyledWidget extends Widget implements Styled {
 		totalSize.setSize(Math.max(dimension.getWidth(), contentWidth), Math.max(dimension.getHeight(), contentHeight));
 
 		// … plus padding size…
-		Boxing padding = style.getPadding();
-		padding.applySize(totalSize);
+		Box padding = style.getPadding();
+		padding.box(totalSize);
 
 		// … plus border size…
-		Boxing border = style.getBorder();
-		border.applySize(totalSize);
+		Box border = style.getBorder();
+		border.box(totalSize);
 
 		// … plus margin size…
-		Boxing margin = style.getMargin();
-		margin.applySize(totalSize);
+		Box margin = style.getMargin();
+		margin.box(totalSize);
 
 		// … equals the preferred size
 		setPreferredSize(totalSize.getWidth(), totalSize.getHeight());
@@ -155,11 +166,11 @@ public class StyledWidget extends Widget implements Styled {
 		Dimension remainingSize = new Dimension();
 		remainingSize.setSize(thisWidth, thisHeight);
 		// apply margin
-		Boxing margin = style.getMargin();
+		Box margin = style.getMargin();
 		margin.apply(g, remainingSize);
 
 		// draw border
-		Boxing border = style.getBorder();
+		Box border = style.getBorder();
 		border.apply(g, remainingSize);
 
 		// draw background
@@ -167,7 +178,7 @@ public class StyledWidget extends Widget implements Styled {
 		background.draw(g, remainingSize.getWidth(), remainingSize.getHeight());
 
 		// apply padding
-		Boxing padding = style.getPadding();
+		Box padding = style.getPadding();
 		padding.apply(g, remainingSize);
 
 		// draw text

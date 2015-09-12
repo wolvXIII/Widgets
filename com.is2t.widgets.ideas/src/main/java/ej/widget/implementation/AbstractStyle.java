@@ -10,7 +10,7 @@ import ej.widget.Dimension;
 import ej.widget.Style;
 import ej.widget.background.Background;
 import ej.widget.boxmodel.Border;
-import ej.widget.boxmodel.Boxing;
+import ej.widget.boxmodel.Box;
 import ej.widget.font.FontProfile;
 
 /**
@@ -23,9 +23,9 @@ public abstract class AbstractStyle implements Style {
 	protected FontProfile fontProfile;
 	protected int textAlign;
 	protected Dimension dimension;
-	protected Boxing padding;
+	protected Box padding;
 	protected Border border;
-	protected Boxing margin;
+	protected Box margin;
 
 	@Override
 	public int getForegroundColor() {
@@ -53,7 +53,7 @@ public abstract class AbstractStyle implements Style {
 	}
 
 	@Override
-	public Boxing getPadding() {
+	public Box getPadding() {
 		return this.padding;
 	}
 
@@ -63,7 +63,7 @@ public abstract class AbstractStyle implements Style {
 	}
 
 	@Override
-	public Boxing getMargin() {
+	public Box getMargin() {
 		return this.margin;
 	}
 
@@ -123,7 +123,7 @@ public abstract class AbstractStyle implements Style {
 	 * @param padding
 	 *            the padding to set.
 	 */
-	public void setPadding(Boxing padding) {
+	public void setPadding(Box padding) {
 		this.padding = padding;
 	}
 
@@ -143,7 +143,7 @@ public abstract class AbstractStyle implements Style {
 	 * @param margin
 	 *            the margin to set.
 	 */
-	public void setMargin(Boxing margin) {
+	public void setMargin(Box margin) {
 		this.margin = margin;
 	}
 

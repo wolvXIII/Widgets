@@ -1,8 +1,12 @@
 package ej.widget.test.env;
 
-import ej.mwt.Composite;
+import java.util.List;
 
-public class ParentedWidget extends SimpleWidget {
+import ej.mwt.Composite;
+import ej.widget.State;
+import ej.widget.Styled;
+
+public class ParentedWidget extends SimpleWidget implements Styled {
 
 	private final Composite parent;
 
@@ -12,6 +16,21 @@ public class ParentedWidget extends SimpleWidget {
 
 	@Override
 	public Composite getParent() {
+		return this.parent;
+	}
+
+	@Override
+	public List<String> getClassSelectors() {
+		return null;
+	}
+
+	@Override
+	public List<State> getStates() {
+		return null;
+	}
+
+	@Override
+	public Object getParentElement() {
 		return this.parent;
 	}
 
