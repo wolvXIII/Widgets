@@ -44,7 +44,7 @@ public class PlainBackground implements Background {
 	public boolean equals(Object obj) {
 		if (obj instanceof PlainBackground) {
 			PlainBackground other = (PlainBackground) obj;
-			return this.backgroundColor == other.getColor();
+			return this.backgroundColor == other.backgroundColor;
 		}
 		return false;
 	}
