@@ -72,6 +72,10 @@ public interface Stylesheet {
 
 	void setStyle(Style style);
 
+	void setStyle(State state, Style style);
+
+	void setStyle(String classSelector, Style style);
+
 	void setStyle(List<String> classSelectors, List<State> states, Style style);
 
 }

@@ -259,6 +259,18 @@ public class CascadingStylesheet implements Stylesheet {
 	}
 
 	@Override
+	public void setStyle(State state, Style style) {
+		Styles styles = this.globalStyles;
+		overrideIn(style, state, styles);
+	}
+
+	@Override
+	public void setStyle(String classSelector, Style style) {
+		Styles styles = this.globalStyles;
+		overrideIn(style, classSelector, styles);
+	}
+
+	@Override
 	public void setStyle(List<String> classSelectors, List<State> states, Style style) {
 		Styles styles = this.globalStyles;
 		overrideIn(style, classSelectors, states, styles);

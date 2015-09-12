@@ -98,7 +98,7 @@ public class SelectorsTest extends StyledWidgetTest {
 		} else if (onRenderable2 && !onRenderable3) {
 			// on renderable is preferred over on type
 			check("Hover", stylesheetStyle, hoverStyle);
-		} else if (hoverBeforeWarning && onRenderable2 == onRenderable3) {
+		} else if (!hoverBeforeWarning && onRenderable2 == onRenderable3) {
 			// hover is added after hover selector
 			check("Hover", stylesheetStyle, hoverStyle);
 		} else if (!onRenderable2 && onRenderable3) {
