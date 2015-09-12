@@ -212,11 +212,11 @@ public class BorderComposite extends Composite {
 			lastPreferredHeight = 0;
 		}
 
-		// center take remaining width
+		// center take remaining size
 		if (!computeWidth && this.horizontal) {
 			centerWidth = Math.max(0, widthHint - firstPreferredWidth - lastPreferredWidth);
 		}
-		if (!computeHeight && this.horizontal) {
+		if (!computeHeight && !this.horizontal) {
 			centerHeight = Math.max(0, heightHint - firstPreferredHeight - lastPreferredHeight);
 		}
 		int centerPreferredWidth;
@@ -229,18 +229,19 @@ public class BorderComposite extends Composite {
 			centerPreferredWidth = 0;
 			centerPreferredHeight = 0;
 		}
+		System.out.println("BorderComposite.validate() " + centerPreferredWidth + " " + centerPreferredHeight);
 
 		// compute composite preferred size if necessary
 		if (computeWidth) {
 			if (this.horizontal) {
 				widthHint = firstPreferredWidth + centerPreferredWidth + lastPreferredWidth;
 			} else {
-				widthHint = Math.max(Math.max(firstPreferredWidth, lastPreferredWidth), centerWidth);
+				widthHint = Math.max(Math.max(firstPreferredWidth, lastPreferredWidth), centerPreferredWidth);
 			}
 		}
 		if (computeHeight) {
 			if (this.horizontal) {
-				heightHint = Math.max(Math.max(firstPreferredHeight, lastPreferredHeight), centerHeight);
+				heightHint = Math.max(Math.max(firstPreferredHeight, lastPreferredHeight), centerPreferredHeight);
 			} else {
 				heightHint = firstPreferredHeight + centerPreferredHeight + lastPreferredHeight;
 			}

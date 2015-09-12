@@ -4,11 +4,12 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package ej.composite.test;
+package ej.composite.test.split;
 
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.SplitComposite;
+import ej.composite.test.TestHelper;
 import ej.composite.widget.Item;
 import ej.microui.io.Display;
 import ej.mwt.Widget;
