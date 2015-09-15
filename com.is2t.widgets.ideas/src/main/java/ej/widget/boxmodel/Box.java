@@ -7,17 +7,17 @@
 package ej.widget.boxmodel;
 
 import ej.microui.display.GraphicsContext;
-import ej.widget.Dimension;
+import ej.widget.Size;
 
 /**
  *
  */
 public interface Box {
 
-	Dimension box(Dimension dimension);
+	Size box(Size dimension);
 
-	Dimension unbox(Dimension dimension);
+	Size unbox(Size dimension);
 
-	Dimension apply(GraphicsContext g, Dimension dimension);
+	Size apply(GraphicsContext g, Size dimension);
 
 }

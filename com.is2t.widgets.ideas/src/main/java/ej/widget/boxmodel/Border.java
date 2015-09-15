@@ -7,7 +7,7 @@
 package ej.widget.boxmodel;
 
 import ej.microui.display.GraphicsContext;
-import ej.widget.Dimension;
+import ej.widget.Size;
 
 /**
  *
@@ -55,19 +55,19 @@ public class Border implements Box {
 	}
 
 	@Override
-	public Dimension box(Dimension dimension) {
+	public Size box(Size dimension) {
 		dimension.increment(this.size * 2, this.size * 2);
 		return dimension;
 	}
 
 	@Override
-	public Dimension unbox(Dimension dimension) {
+	public Size unbox(Size dimension) {
 		dimension.decrement(this.size * 2, this.size * 2);
 		return dimension;
 	}
 
 	@Override
-	public Dimension apply(GraphicsContext g, Dimension dimension) {
+	public Size apply(GraphicsContext g, Size dimension) {
 		g.setColor(this.color);
 		// TODO apply radius
 		int size = this.size;

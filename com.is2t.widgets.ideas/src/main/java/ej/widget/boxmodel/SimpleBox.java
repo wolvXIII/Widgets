@@ -7,7 +7,7 @@
 package ej.widget.boxmodel;
 
 import ej.microui.display.GraphicsContext;
-import ej.widget.Dimension;
+import ej.widget.Size;
 
 /**
  *
@@ -36,19 +36,19 @@ public class SimpleBox implements Box {
 	}
 
 	@Override
-	public Dimension box(Dimension dimension) {
+	public Size box(Size dimension) {
 		dimension.increment(this.size * 2, this.size * 2);
 		return dimension;
 	}
 
 	@Override
-	public Dimension unbox(Dimension dimension) {
+	public Size unbox(Size dimension) {
 		dimension.decrement(this.size * 2, this.size * 2);
 		return dimension;
 	}
 
 	@Override
-	public Dimension apply(GraphicsContext g, Dimension dimension) {
+	public Size apply(GraphicsContext g, Size dimension) {
 		g.translate(this.size, this.size);
 		dimension.increment(-this.size * 2, -this.size * 2);
 		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());

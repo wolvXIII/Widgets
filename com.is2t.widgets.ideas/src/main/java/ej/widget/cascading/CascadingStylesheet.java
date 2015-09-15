@@ -12,7 +12,6 @@ import java.util.Map;
 
 import ej.microui.display.Colors;
 import ej.microui.display.GraphicsContext;
-import ej.widget.Dimension;
 import ej.widget.State;
 import ej.widget.Style;
 import ej.widget.Styled;
@@ -20,6 +19,7 @@ import ej.widget.Stylesheet;
 import ej.widget.background.PlainBackground;
 import ej.widget.boxmodel.Border;
 import ej.widget.boxmodel.NoBox;
+import ej.widget.dimension.NoDimension;
 import ej.widget.font.FontProfile;
 
 public class CascadingStylesheet implements Stylesheet {
@@ -43,7 +43,7 @@ public class CascadingStylesheet implements Stylesheet {
 		defaultStyle.setBackground(background);
 		defaultStyle.setFontProfile(new FontProfile());
 		defaultStyle.setTextAlign(GraphicsContext.HCENTER | GraphicsContext.VCENTER);
-		defaultStyle.setDimension(Dimension.NO_DIMENSION);
+		defaultStyle.setDimension(NoDimension.NO_DIMENSION);
 		defaultStyle.setPadding(NoBox.NO_BOXING);
 		defaultStyle.setBorder(Border.NO_BORDER);
 		defaultStyle.setMargin(NoBox.NO_BOXING);

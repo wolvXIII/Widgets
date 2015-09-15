@@ -6,13 +6,13 @@
  */
 package ej.widget.implementation;
 
-
 public class SimpleStyle extends AbstractStyle implements Cloneable {
 
 	public SimpleStyle() {
 		// set default values
 		this.foregroundColor = -1;
 		this.textAlign = -1;
+		// others are null: VM DONE
 	}
 
 	@Override

@@ -11,14 +11,12 @@ import ej.mwt.MWT;
 /**
  *
  */
-public class Dimension {
-
-	public static final Dimension NO_DIMENSION = new Dimension();
+public class Size {
 
 	private int width;
 	private int height;
 
-	public Dimension() {
+	public Size() {
 		this.width = MWT.NONE;
 		this.height = MWT.NONE;
 	}
@@ -76,8 +74,8 @@ public class Dimension {
 		this.height -= height;
 	}
 
-	public Dimension getDimension() {
-		Dimension dimension = new Dimension();
+	public Size getDimension() {
+		Size dimension = new Size();
 		dimension.width = this.width;
 		dimension.height = this.height;
 		return dimension;

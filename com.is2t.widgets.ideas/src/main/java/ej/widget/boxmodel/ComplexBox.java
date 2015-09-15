@@ -7,7 +7,7 @@
 package ej.widget.boxmodel;
 
 import ej.microui.display.GraphicsContext;
-import ej.widget.Dimension;
+import ej.widget.Size;
 
 /**
  *
@@ -96,19 +96,19 @@ public class ComplexBox implements Box {
 	}
 
 	@Override
-	public Dimension box(Dimension dimension) {
+	public Size box(Size dimension) {
 		dimension.increment(this.left + this.right, this.top + this.bottom);
 		return dimension;
 	}
 
 	@Override
-	public Dimension unbox(Dimension dimension) {
+	public Size unbox(Size dimension) {
 		dimension.decrement(this.left + this.right, this.top + this.bottom);
 		return dimension;
 	}
 
 	@Override
-	public Dimension apply(GraphicsContext g, Dimension dimension) {
+	public Size apply(GraphicsContext g, Size dimension) {
 		g.translate(this.left, this.top);
 		dimension.increment(-this.left - this.right, -this.top - this.bottom);
 		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());

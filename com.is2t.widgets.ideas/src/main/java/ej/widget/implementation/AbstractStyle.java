@@ -6,11 +6,11 @@
  */
 package ej.widget.implementation;
 
-import ej.widget.Dimension;
 import ej.widget.Style;
 import ej.widget.background.Background;
 import ej.widget.boxmodel.Border;
 import ej.widget.boxmodel.Box;
+import ej.widget.dimension.Dimension;
 import ej.widget.font.FontProfile;
 
 /**

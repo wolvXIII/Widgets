@@ -18,13 +18,14 @@ import ej.microui.event.controller.PointerEventHandler;
 import ej.microui.event.generator.Pointer;
 import ej.mwt.Composite;
 import ej.mwt.Widget;
-import ej.widget.Dimension;
+import ej.widget.Size;
 import ej.widget.State;
 import ej.widget.Style;
 import ej.widget.Styled;
 import ej.widget.Stylesheet;
 import ej.widget.background.Background;
 import ej.widget.boxmodel.Box;
+import ej.widget.dimension.Dimension;
 import ej.widget.font.FontLoader;
 import ej.widget.font.FontProfile;
 
@@ -130,15 +131,16 @@ public class StyledWidget extends Widget implements Styled {
 	@Override
 	public void validate(int widthHint, int heightHint) {
 		Style style = getStyle();
+		Size totalSize = new Size();
 
 		// content size…
 		DisplayFont font = getFont(style);
 		int contentWidth = font.stringWidth(this.text);
 		int contentHeight = font.getHeight();
-		Dimension dimension = style.getDimension();
+		totalSize.setSize(contentWidth, contentHeight);
 
-		Dimension totalSize = new Dimension();
-		totalSize.setSize(Math.max(dimension.getWidth(), contentWidth), Math.max(dimension.getHeight(), contentHeight));
+		Dimension dimension = style.getDimension();
+		dimension.apply(totalSize, widthHint, heightHint);
 
 		// … plus padding size…
 		Box padding = style.getPadding();
@@ -163,7 +165,7 @@ public class StyledWidget extends Widget implements Styled {
 		int thisWidth = this.getWidth();
 		int thisHeight = this.getHeight();
 
-		Dimension remainingSize = new Dimension();
+		Size remainingSize = new Size();
 		remainingSize.setSize(thisWidth, thisHeight);
 		// apply margin
 		Box margin = style.getMargin();

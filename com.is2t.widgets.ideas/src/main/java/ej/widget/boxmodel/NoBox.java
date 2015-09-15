@@ -7,31 +7,31 @@
 package ej.widget.boxmodel;
 
 import ej.microui.display.GraphicsContext;
-import ej.widget.Dimension;
+import ej.widget.Size;
 
-/**
- *
- */
 public class NoBox implements Box {
 
 	/**
-	 * Singleton to use to avoid creating several instances.
+	 * NoBox singleton.
 	 */
-	// assume that no boxing is stateless
+	// assume that it is stateless
 	public static final NoBox NO_BOXING = new NoBox();
 
+	private NoBox() {
+	}
+
 	@Override
-	public Dimension box(Dimension dimension) {
+	public Size box(Size dimension) {
 		return dimension;
 	}
 
 	@Override
-	public Dimension unbox(Dimension dimension) {
+	public Size unbox(Size dimension) {
 		return dimension;
 	}
 
 	@Override
-	public Dimension apply(GraphicsContext g, Dimension dimension) {
+	public Size apply(GraphicsContext g, Size dimension) {
 		return dimension;
 	}
 
