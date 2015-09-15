@@ -12,15 +12,16 @@ import java.util.Map;
 
 import ej.microui.display.Colors;
 import ej.microui.display.GraphicsContext;
+import ej.widget.Element;
 import ej.widget.State;
 import ej.widget.Style;
-import ej.widget.Styled;
 import ej.widget.Stylesheet;
 import ej.widget.background.PlainBackground;
 import ej.widget.boxmodel.Border;
 import ej.widget.boxmodel.NoBox;
 import ej.widget.dimension.NoDimension;
 import ej.widget.font.FontProfile;
+import ej.widget.test.StyleHelper;
 
 public class CascadingStylesheet implements Stylesheet {
 
@@ -52,76 +53,69 @@ public class CascadingStylesheet implements Stylesheet {
 
 	@Override
 	public Style getStyle(Object object) {
-		// long s = System.currentTimeMillis();
 		CascadingStyle resultingStyle = new CascadingStyle();
+
 		// instance
 		Styles styles = getStyles(object);
 		if (styles != null && merge(resultingStyle, styles.style)) {
 			return resultingStyle;
 		}
+
 		// type
 		styles = getStyles(object.getClass());
 		if (styles != null && merge(resultingStyle, styles.style)) {
 			return resultingStyle;
 		}
-		// page parent
-		if (getParentAndMerge(resultingStyle, object)) {
-			return resultingStyle;
-		}
+
+		// no page parent resolution
+
 		// global
 		merge(resultingStyle, this.globalStyles.style);
-		// TODO manage renderable inheritance?
-		// System.out.println("Get simple style: " + (System.currentTimeMillis() - s) + "ms");
+
 		return resultingStyle;
 	}
 
 	@Override
-	public Style getStyle(Object object, List<String> classSelectors, List<State> states) {
-		// long s = System.currentTimeMillis();
+	public Style getStyle(Element element) {
+		List<String> classSelectors = element.getClassSelectors();
+		List<State> states = element.getStates();
 		CascadingStyle resultingStyle = new CascadingStyle();
+
 		// instance: state then global
-		Styles styles = getStyles(object);
+		Styles styles = getStyles(element);
 		if (styles != null) {
 			if (getAndMerge(classSelectors, states, resultingStyle, styles)) {
 				return resultingStyle;
 			}
-			if (merge(resultingStyle, styles.style)) {
-				return resultingStyle;
-			}
 		}
+
 		// type: state then global
-		styles = getStyles(object.getClass());
+		styles = getStyles(element.getClass());
 		if (styles != null) {
 			if (getAndMerge(classSelectors, states, resultingStyle, styles)) {
 				return resultingStyle;
 			}
-			if (merge(resultingStyle, styles.style)) {
-				return resultingStyle;
-			}
 		}
+
 		// page parent
-		if (getParentAndMerge(resultingStyle, object)) {
+		if (getParentAndMerge(resultingStyle, element)) {
 			return resultingStyle;
 		}
+
 		// global
 		if (getAndMerge(classSelectors, states, resultingStyle, this.globalStyles)) {
 			return resultingStyle;
 		}
-		if (merge(resultingStyle, this.globalStyles.style)) {
-			return resultingStyle;
-		}
-		// TODO manage renderable inheritance?
-		// System.out.println("Get complex style: " + (System.currentTimeMillis() - s) + "ms");
+
 		return resultingStyle;
 	}
 
-	private boolean getParentAndMerge(CascadingStyle resultingStyle, Object object) {
-		Object parent = getParent(object);
+	private boolean getParentAndMerge(CascadingStyle resultingStyle, Element element) {
+		Object parent = element.getParentElement();
 		if (parent != null) {
 			Style parentStyle;
-			if (parent instanceof Styled) {
-				Styled styledParent = (Styled) parent;
-				parentStyle = getStyle(parent, styledParent.getClassSelectors(), styledParent.getStates());
+			if (parent instanceof Element) {
+				parentStyle = getStyle((Element) parent);
 			} else {
 				parentStyle = getStyle(parent);
 			}
@@ -130,30 +124,6 @@ public class CascadingStylesheet implements Stylesheet {
 			}
 		}
 		return false;
-	}
-
-	private Object getParent(Object object) {
-		// FIXME expose getStyle(Widget), getStyle(Panel) & getStyle(Desktop) instead of getStyle(Renderable)
-		// if (object instanceof Widget) {
-		// Widget widget = (Widget) object;
-		// Composite parent = widget.getParent();
-		// if (parent != null) {
-		// return parent;
-		// } else {
-		// return widget.getPanel();
-		// }
-		// } else if (object instanceof Panel) {
-		// Panel panel = (Panel) object;
-		// return panel.getDesktop();
-		// }
-		// return null;
-
-		// FIXME expose getStyle(Styled) instead of getStyle(Object)
-		if (object instanceof Styled) {
-			Styled styled = (Styled) object;
-			return styled.getParentElement();
-		}
-		return null;
 	}
 
 	private boolean getAndMerge(List<String> classSelectors, List<State> states, CascadingStyle resultingStyle,
@@ -166,6 +136,9 @@ public class CascadingStylesheet implements Stylesheet {
 				}
 			}
 		}
+		if (merge(resultingStyle, styles.style)) {
+			return true;
+		}
 		return false;
 	}
 
@@ -175,15 +148,6 @@ public class CascadingStylesheet implements Stylesheet {
 		}
 		return false;
 	}
-
-	// @Override
-	// public void setDefaultStyle(Style style) {
-	// // validate that default style is complete
-	// if (!CascadingHelper.isComplete(style)) {
-	// throw new IllegalArgumentException();
-	// }
-	// this.defaultStyle = style;
-	// }
 
 	@Override
 	public void setStyle(Class<?> type, Style style) {
@@ -254,6 +218,9 @@ public class CascadingStylesheet implements Stylesheet {
 
 	@Override
 	public void setStyle(Style style) {
+		if (!StyleHelper.isComplete(style)) {
+			throw new IllegalArgumentException();
+		}
 		Styles styles = this.globalStyles;
 		overrideIn(style, styles);
 	}

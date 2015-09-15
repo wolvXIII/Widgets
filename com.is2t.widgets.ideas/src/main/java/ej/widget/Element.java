@@ -8,7 +8,7 @@ package ej.widget;
 
 import java.util.List;
 
-public interface Styled {
+public interface Element {
 
 	List<String> getClassSelectors();
 

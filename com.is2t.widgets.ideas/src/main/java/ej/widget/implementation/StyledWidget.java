@@ -18,10 +18,10 @@ import ej.microui.event.controller.PointerEventHandler;
 import ej.microui.event.generator.Pointer;
 import ej.mwt.Composite;
 import ej.mwt.Widget;
+import ej.widget.Element;
 import ej.widget.Size;
 import ej.widget.State;
 import ej.widget.Style;
-import ej.widget.Styled;
 import ej.widget.Stylesheet;
 import ej.widget.background.Background;
 import ej.widget.boxmodel.Box;
@@ -29,7 +29,7 @@ import ej.widget.dimension.Dimension;
 import ej.widget.font.FontLoader;
 import ej.widget.font.FontProfile;
 
-public class StyledWidget extends Widget implements Styled {
+public class StyledWidget extends Widget implements Element {
 
 	private final List<String> classSelectors;
 	private final List<State> states;
@@ -200,7 +200,7 @@ public class StyledWidget extends Widget implements Styled {
 
 	private Style getStyle() {
 		Stylesheet stylesheet = ServiceLoaderFactory.getServiceLoader().getService(Stylesheet.class);
-		Style style = stylesheet.getStyle(this, this.classSelectors, this.states);
+		Style style = stylesheet.getStyle(this);
 		return style;
 	}
 

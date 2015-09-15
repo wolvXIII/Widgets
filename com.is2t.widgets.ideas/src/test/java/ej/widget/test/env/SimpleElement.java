@@ -9,14 +9,21 @@ package ej.widget.test.env;
 import java.util.ArrayList;
 import java.util.List;
 
+import ej.widget.Element;
 import ej.widget.State;
 
-public class SelectorsWidget extends SimpleWidget {
+public class SimpleElement implements Element {
 
 	private final List<String> classSelectors;
 	private final List<State> states;
+	private final Element parent;
 
-	public SelectorsWidget() {
+	public SimpleElement() {
+		this(null);
+	}
+
+	public SimpleElement(Element parent) {
+		this.parent = parent;
 		this.classSelectors = new ArrayList<>();
 		this.states = new ArrayList<>();
 	}
@@ -35,6 +42,21 @@ public class SelectorsWidget extends SimpleWidget {
 
 	public void removeClassSelector(String classSelector) {
 		this.classSelectors.remove(classSelector);
+	}
+
+	@Override
+	public List<String> getClassSelectors() {
+		return this.classSelectors;
+	}
+
+	@Override
+	public List<State> getStates() {
+		return this.states;
+	}
+
+	@Override
+	public Object getParentElement() {
+		return this.parent;
 	}
 
 }

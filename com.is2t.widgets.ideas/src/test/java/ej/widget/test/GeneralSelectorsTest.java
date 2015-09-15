@@ -6,16 +6,13 @@
  */
 package ej.widget.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.microui.display.Colors;
 import ej.widget.State;
 import ej.widget.Style;
 import ej.widget.cascading.CascadingStylesheet;
-import ej.widget.test.env.SelectorsWidget;
+import ej.widget.test.env.SimpleElement;
 
 public class GeneralSelectorsTest extends StyledWidgetTest {
 
@@ -34,7 +31,7 @@ public class GeneralSelectorsTest extends StyledWidgetTest {
 	}
 
 	private void checkAll(boolean hoverBeforeWarning) {
-		SelectorsWidget renderable = new SelectorsWidget();
+		SimpleElement element = new SimpleElement();
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style widgetStyle = createCompleteStyle();
@@ -49,36 +46,34 @@ public class GeneralSelectorsTest extends StyledWidgetTest {
 			addWarningStyle(stylesheet, warningStyle);
 			addHoverStyle(stylesheet, hoverStyle);
 		}
-		List<State> states = new ArrayList<>();
-		List<String> classSelectors = new ArrayList<>();
 
-		Style stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		Style stylesheetStyle = stylesheet.getStyle(element);
 		CheckHelper.check(getClass(), "Set style", stylesheetStyle, widgetStyle);
 		check("Style", stylesheetStyle, widgetStyle);
 
-		states.add(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.addState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		check("Hover", stylesheetStyle, hoverStyle);
 
-		states.remove(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.removeState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		check("Style", stylesheetStyle, widgetStyle);
 
-		classSelectors.add(WARNING);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.addClassSelector(WARNING);
+		stylesheetStyle = stylesheet.getStyle(element);
 		check(WARNING, stylesheetStyle, warningStyle);
 
-		states.add(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.addState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		if (hoverBeforeWarning) {
 			check("Warning", stylesheetStyle, warningStyle);
 		} else {
 			check("Hover", stylesheetStyle, hoverStyle);
 		}
 
-		classSelectors.remove(WARNING);
-		states.remove(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.removeClassSelector(WARNING);
+		element.removeState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		check("Style", stylesheetStyle, widgetStyle);
 	}
 

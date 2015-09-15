@@ -8,12 +8,10 @@ package ej.widget.test;
 
 import com.is2t.testsuite.support.CheckHelper;
 
-import ej.mwt.Composite;
-import ej.mwt.Widget;
+import ej.widget.Element;
 import ej.widget.Style;
 import ej.widget.cascading.CascadingStylesheet;
-import ej.widget.test.env.ParentedWidget;
-import ej.widget.test.env.SimpleComposite;
+import ej.widget.test.env.SimpleElement;
 
 public class InheritanceTest extends StyledWidgetTest {
 
@@ -30,58 +28,58 @@ public class InheritanceTest extends StyledWidgetTest {
 	}
 
 	private void checkSetRenderableRenderableStyle() {
-		Composite parent = new SimpleComposite();
-		Widget renderable = new ParentedWidget(parent);
+		Element parent = new SimpleElement();
+		Element element = new SimpleElement(parent);
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style parentStyle = createForegroundStyle();
 		Style renderableStyle = createBackgroundStyle();
 
-		stylesheet.setStyle(renderable, renderableStyle);
+		stylesheet.setStyle(element, renderableStyle);
 		stylesheet.setStyle(parent, parentStyle);
-		checkSetStyle(renderable, stylesheet, parentStyle, renderableStyle);
+		checkSetStyle(element, stylesheet, parentStyle, renderableStyle);
 	}
 
 	private void checkSetRenderableTypeStyle() {
-		Composite parent = new SimpleComposite();
-		Widget renderable = new ParentedWidget(parent);
+		Element parent = new SimpleElement();
+		Element element = new SimpleElement(parent);
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style parentStyle = createForegroundStyle();
 		Style renderableStyle = createBackgroundStyle();
 
-		stylesheet.setStyle(renderable, renderableStyle);
+		stylesheet.setStyle(element, renderableStyle);
 		stylesheet.setStyle(parent.getClass(), parentStyle);
-		checkSetStyle(renderable, stylesheet, parentStyle, renderableStyle);
+		checkSetStyle(element, stylesheet, parentStyle, renderableStyle);
 	}
 
 	private void checkSetTypeRenderableStyle() {
-		Composite parent = new SimpleComposite();
-		Widget renderable = new ParentedWidget(parent);
+		Element parent = new SimpleElement();
+		Element element = new SimpleElement(parent);
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style parentStyle = createForegroundStyle();
 		Style renderableStyle = createBackgroundStyle();
 
-		stylesheet.setStyle(renderable.getClass(), renderableStyle);
+		stylesheet.setStyle(element.getClass(), renderableStyle);
 		stylesheet.setStyle(parent, parentStyle);
-		checkSetStyle(renderable, stylesheet, parentStyle, renderableStyle);
+		checkSetStyle(element, stylesheet, parentStyle, renderableStyle);
 	}
 
 	private void checkSetTypeTypeStyle() {
-		Composite parent = new SimpleComposite();
-		Widget renderable = new ParentedWidget(parent);
+		Element parent = new SimpleElement();
+		Element element = new SimpleElement(parent);
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style parentStyle = createForegroundStyle();
 		Style renderableStyle = createBackgroundStyle();
 
-		stylesheet.setStyle(renderable.getClass(), renderableStyle);
+		stylesheet.setStyle(element.getClass(), renderableStyle);
 		stylesheet.setStyle(parent.getClass(), parentStyle);
-		checkSetStyle(renderable, stylesheet, parentStyle, renderableStyle);
+		checkSetStyle(element, stylesheet, parentStyle, renderableStyle);
 	}
 
-	private void checkSetStyle(Widget renderable, CascadingStylesheet stylesheet, Style parentStyle,
+	private void checkSetStyle(Element renderable, CascadingStylesheet stylesheet, Style parentStyle,
 			Style renderableStyle) {
 		Style stylesheetStyle = stylesheet.getStyle(renderable);
 		CheckHelper.check(getClass(), "Complete style", StyleHelper.isComplete(stylesheetStyle));

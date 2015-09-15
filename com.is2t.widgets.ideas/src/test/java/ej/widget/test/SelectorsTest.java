@@ -6,16 +6,13 @@
  */
 package ej.widget.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.microui.display.Colors;
 import ej.widget.State;
 import ej.widget.Style;
 import ej.widget.cascading.CascadingStylesheet;
-import ej.widget.test.env.SelectorsWidget;
+import ej.widget.test.env.SimpleElement;
 
 public class SelectorsTest extends StyledWidgetTest {
 
@@ -46,50 +43,48 @@ public class SelectorsTest extends StyledWidgetTest {
 
 	private void checkSetStyle(boolean onRenderable1, boolean onRenderable2, boolean onRenderable3,
 			boolean hoverBeforeWarning) {
-		SelectorsWidget renderable = new SelectorsWidget();
+		SimpleElement element = new SimpleElement();
 		CascadingStylesheet stylesheet = new CascadingStylesheet();
 
 		Style widgetStyle = createCompleteStyle();
 		Style hoverStyle = createForegroundBackgroundStyle(Colors.YELLOW, Colors.NAVY);
 		Style warningStyle = createForegroundBackgroundStyle(Colors.MAGENTA, Colors.GREEN);
 
-		addWidgetStyle(onRenderable1, renderable, stylesheet, widgetStyle);
+		addWidgetStyle(onRenderable1, element, stylesheet, widgetStyle);
 		if (hoverBeforeWarning) {
-			addHoverStyle(onRenderable2, renderable, stylesheet, hoverStyle);
-			addWarningStyle(onRenderable3, renderable, stylesheet, warningStyle);
+			addHoverStyle(onRenderable2, element, stylesheet, hoverStyle);
+			addWarningStyle(onRenderable3, element, stylesheet, warningStyle);
 		} else {
-			addWarningStyle(onRenderable3, renderable, stylesheet, warningStyle);
-			addHoverStyle(onRenderable2, renderable, stylesheet, hoverStyle);
+			addWarningStyle(onRenderable3, element, stylesheet, warningStyle);
+			addHoverStyle(onRenderable2, element, stylesheet, hoverStyle);
 		}
-		List<State> states = new ArrayList<>();
-		List<String> classSelectors = new ArrayList<>();
 
-		Style stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		Style stylesheetStyle = stylesheet.getStyle(element);
 		CheckHelper.check(getClass(), "Set style", stylesheetStyle, widgetStyle);
 		check("Style", stylesheetStyle, widgetStyle);
 
-		states.add(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.addState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		if (onRenderable2 || (!onRenderable1)) {
 			check("Hover", stylesheetStyle, hoverStyle);
 		} else {
 			check("Style", stylesheetStyle, widgetStyle);
 		}
 
-		states.remove(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.removeState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		check("Style", stylesheetStyle, widgetStyle);
 
-		classSelectors.add(WARNING);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.addClassSelector(WARNING);
+		stylesheetStyle = stylesheet.getStyle(element);
 		if (onRenderable3 || (!onRenderable1)) {
 			check(WARNING, stylesheetStyle, warningStyle);
 		} else {
 			check("Style", stylesheetStyle, widgetStyle);
 		}
 
-		states.add(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.addState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		if (onRenderable1 && !onRenderable2 && !onRenderable3) {
 			check("Style", stylesheetStyle, widgetStyle);
 		} else if (hoverBeforeWarning && onRenderable2 == onRenderable3) {
@@ -108,13 +103,13 @@ public class SelectorsTest extends StyledWidgetTest {
 			check(WARNING, stylesheetStyle, warningStyle);
 		}
 
-		classSelectors.remove(WARNING);
-		states.remove(State.Hover);
-		stylesheetStyle = stylesheet.getStyle(renderable, classSelectors, states);
+		element.removeClassSelector(WARNING);
+		element.removeState(State.Hover);
+		stylesheetStyle = stylesheet.getStyle(element);
 		check("Style", stylesheetStyle, widgetStyle);
 	}
 
-	private void addWarningStyle(boolean onRenderable3, SelectorsWidget renderable, CascadingStylesheet stylesheet,
+	private void addWarningStyle(boolean onRenderable3, SimpleElement renderable, CascadingStylesheet stylesheet,
 			Style warningStyle) {
 		if (onRenderable3) {
 			stylesheet.setStyle(renderable, WARNING, warningStyle);
@@ -123,7 +118,7 @@ public class SelectorsTest extends StyledWidgetTest {
 		}
 	}
 
-	private void addHoverStyle(boolean onRenderable2, SelectorsWidget renderable, CascadingStylesheet stylesheet,
+	private void addHoverStyle(boolean onRenderable2, SimpleElement renderable, CascadingStylesheet stylesheet,
 			Style hoverStyle) {
 		if (onRenderable2) {
 			stylesheet.setStyle(renderable, State.Hover, hoverStyle);
@@ -132,7 +127,7 @@ public class SelectorsTest extends StyledWidgetTest {
 		}
 	}
 
-	private void addWidgetStyle(boolean onRenderable1, SelectorsWidget renderable, CascadingStylesheet stylesheet,
+	private void addWidgetStyle(boolean onRenderable1, SimpleElement renderable, CascadingStylesheet stylesheet,
 			Style widgetStyle) {
 		if (onRenderable1) {
 			stylesheet.setStyle(renderable, widgetStyle);
