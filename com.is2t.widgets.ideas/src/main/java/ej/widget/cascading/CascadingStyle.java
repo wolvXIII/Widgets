@@ -7,7 +7,7 @@
 package ej.widget.cascading;
 
 import ej.widget.Style;
-import ej.widget.implementation.AbstractStyle;
+import ej.widget.style.AbstractStyle;
 
 /*package*/class CascadingStyle extends AbstractStyle {
 

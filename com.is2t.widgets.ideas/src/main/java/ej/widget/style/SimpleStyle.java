@@ -4,7 +4,7 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package ej.widget.implementation;
+package ej.widget.style;
 
 public class SimpleStyle extends AbstractStyle implements Cloneable {
 

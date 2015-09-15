@@ -17,7 +17,7 @@ import ej.widget.boxmodel.SimpleBox;
 import ej.widget.dimension.FixedDimension;
 import ej.widget.font.FontProfile;
 import ej.widget.font.FontProfile.FontSize;
-import ej.widget.implementation.SimpleStyle;
+import ej.widget.style.SimpleStyle;
 
 /**
  *
