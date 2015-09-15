@@ -27,7 +27,6 @@ public class GeneralSelectorsTest extends StyledWidgetTest {
 
 	@Override
 	protected void check() {
-		CheckHelper.verboseMode = true;
 		long s = System.currentTimeMillis();
 		checkAll(true);
 		checkAll(false);
