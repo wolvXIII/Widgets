@@ -8,7 +8,7 @@ package ej.composite.test;
 
 import com.is2t.testsuite.support.CheckHelper;
 
-import ej.microui.io.Display;
+import ej.microui.display.Display;
 import ej.mwt.Composite;
 import ej.mwt.Desktop;
 import ej.mwt.Panel;

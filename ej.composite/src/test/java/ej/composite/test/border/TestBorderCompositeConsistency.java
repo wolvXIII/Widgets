@@ -9,6 +9,7 @@ package ej.composite.test.border;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.BorderComposite;
+import ej.composite.test.Test;
 import ej.composite.test.TestHelper;
 import ej.composite.test.split.TestSplitCompositeConsistency;
 import ej.composite.widget.Item;
@@ -18,12 +19,16 @@ import ej.mwt.MWT;
 /**
  *
  */
-public class TestBorderCompositeConsistency {
+public class TestBorderCompositeConsistency extends Test {
 
 	public static void main(String[] args) {
-		MicroUI.errorLog(true);
-		CheckHelper.startCheck(TestSplitCompositeConsistency.class);
+		MicroUI.start();
+		new TestBorderCompositeConsistency().start();
+		MicroUI.stop();
+	}
 
+	@Override
+	protected void run() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		Item item1 = new Item(baseWidth, baseHeight);
@@ -134,8 +139,6 @@ public class TestBorderCompositeConsistency {
 		CheckHelper.check(TestBorderCompositeConsistency.class, "composite height after remove all",
 				borderComposite.getHeight(), 0);
 		TestHelper.hide(borderComposite);
-
-		CheckHelper.endCheck(TestBorderCompositeConsistency.class);
 	}
 
 }

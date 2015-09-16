@@ -10,21 +10,26 @@ import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.BorderComposite;
 import ej.composite.SplitComposite;
+import ej.composite.test.Test;
 import ej.composite.test.TestHelper;
 import ej.composite.widget.Item;
+import ej.microui.MicroUI;
 
 /**
  *
  */
-public class TestBorderCompositeCenterAlone {
+public class TestBorderCompositeCenterAlone extends Test {
 
 	public static void main(String[] args) {
-		CheckHelper.startCheck(TestBorderCompositeCenterAlone.class);
+		MicroUI.start();
+		new TestBorderCompositeCenterAlone().start();
+		MicroUI.stop();
+	}
 
+	@Override
+	protected void run() {
 		testHorizontal();
-		// testVertical();
-
-		CheckHelper.endCheck(TestBorderCompositeCenterAlone.class);
+		testVertical();
 	}
 
 	private static void testHorizontal() {

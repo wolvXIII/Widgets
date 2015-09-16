@@ -9,27 +9,32 @@ package ej.composite.test.split;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.SplitComposite;
+import ej.composite.test.Test;
 import ej.composite.test.TestHelper;
 import ej.composite.widget.Item;
-import ej.microui.io.Display;
+import ej.microui.MicroUI;
+import ej.microui.display.Display;
 import ej.mwt.Widget;
 
 /**
  *
  */
-public class TestSplitCompositeSimple {
+public class TestSplitCompositeSimple extends Test {
 
 	public static void main(String[] args) {
-		CheckHelper.startCheck(TestSplitCompositeSimple.class);
+		MicroUI.start();
+		new TestSplitCompositeSimple().start();
+		MicroUI.stop();
+	}
 
+	@Override
+	protected void run() {
 		testHorizontalPackedUniformSplit();
 		testVerticalPackedUniformSplit();
 		testHorizontalFillUniformSplit();
 		testVerticalFillUniformSplit();
 		testHorizontalPackedVariableSplit();
 		testVerticalPackedVariableSplit();
-
-		CheckHelper.endCheck(TestSplitCompositeSimple.class);
 	}
 
 	private static void testHorizontalPackedUniformSplit() {
@@ -158,7 +163,7 @@ public class TestSplitCompositeSimple {
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs top height", topLabel.getHeight(), baseHeight);
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs bottom width", bottomLabel.getWidth(), biggestWidth);
 		CheckHelper
-				.check(TestSplitCompositeSimple.class, "vpvs bottom height", bottomLabel.getHeight(), baseHeight * 2);
+		.check(TestSplitCompositeSimple.class, "vpvs bottom height", bottomLabel.getHeight(), baseHeight * 2);
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs composite width", splitComposite.getWidth(),
 				biggestWidth);
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs composite height", splitComposite.getHeight(),
@@ -175,7 +180,7 @@ public class TestSplitCompositeSimple {
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs top height", topLabel.getHeight(), baseHeight);
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs bottom width", bottomLabel.getWidth(), biggestWidth);
 		CheckHelper
-				.check(TestSplitCompositeSimple.class, "vpvs bottom height", bottomLabel.getHeight(), baseHeight * 2);
+		.check(TestSplitCompositeSimple.class, "vpvs bottom height", bottomLabel.getHeight(), baseHeight * 2);
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs composite width", splitComposite.getWidth(),
 				biggestWidth);
 		CheckHelper.check(TestSplitCompositeSimple.class, "vpvs composite height", splitComposite.getHeight(),

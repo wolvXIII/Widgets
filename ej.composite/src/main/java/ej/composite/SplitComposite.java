@@ -6,6 +6,7 @@
  */
 package ej.composite;
 
+import ej.microui.display.GraphicsContext;
 import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
@@ -57,6 +58,16 @@ public class SplitComposite extends Composite {
 		} else {
 			throw new IllegalArgumentException();
 		}
+	}
+
+	@Override
+	public void remove(Widget widget) throws NullPointerException {
+		super.remove(widget);
+	}
+
+	@Override
+	public void removeAllWidgets() {
+		super.removeAllWidgets();
 	}
 
 	@Override
@@ -231,6 +242,11 @@ public class SplitComposite extends Composite {
 		} else {
 			return (relativeY < getHeight() * this.ratio);
 		}
+	}
+
+	@Override
+	public void render(GraphicsContext g) {
+		// TODO
 	}
 
 }

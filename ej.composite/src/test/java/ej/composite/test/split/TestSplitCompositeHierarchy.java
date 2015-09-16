@@ -9,18 +9,25 @@ package ej.composite.test.split;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.SplitComposite;
+import ej.composite.test.Test;
 import ej.composite.test.TestHelper;
 import ej.composite.widget.Item;
-import ej.microui.io.Display;
+import ej.microui.MicroUI;
+import ej.microui.display.Display;
 
 /**
  *
  */
-public class TestSplitCompositeHierarchy {
+public class TestSplitCompositeHierarchy extends Test {
 
 	public static void main(String[] args) {
-		CheckHelper.startCheck(TestSplitCompositeHierarchy.class);
+		MicroUI.start();
+		new TestSplitCompositeHierarchy().start();
+		MicroUI.stop();
+	}
 
+	@Override
+	protected void run() {
 		testHorizontalHorizontalFillUniformSplit();
 		testVerticalHorizontalFillUniformSplit();
 		testVerticalVerticalFillUniformSplit();
@@ -29,8 +36,6 @@ public class TestSplitCompositeHierarchy {
 		testVerticalHorizontalPackedUniformSplit();
 		testVerticalVerticalPackedUniformSplit();
 		testHorizontalVerticalPackedUniformSplit();
-
-		CheckHelper.endCheck(TestSplitCompositeHierarchy.class);
 	}
 
 	private static void testHorizontalHorizontalPackedUniformSplit() {
@@ -88,7 +93,7 @@ public class TestSplitCompositeHierarchy {
 
 		// get widgets size
 		CheckHelper
-				.check(TestSplitCompositeHierarchy.class, "vhpus top left width", topLeftLabel.getWidth(), baseWidth);
+		.check(TestSplitCompositeHierarchy.class, "vhpus top left width", topLeftLabel.getWidth(), baseWidth);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "vhpus top left height", topLeftLabel.getHeight(),
 				baseHeight);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "vhpus top right width", topRightLabel.getWidth(),
@@ -159,7 +164,7 @@ public class TestSplitCompositeHierarchy {
 
 		// get widgets size
 		CheckHelper
-				.check(TestSplitCompositeHierarchy.class, "hvpus left top width", leftTopLabel.getWidth(), baseWidth);
+		.check(TestSplitCompositeHierarchy.class, "hvpus left top width", leftTopLabel.getWidth(), baseWidth);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "hvpus left topheight", leftTopLabel.getHeight(),
 				baseHeight);
 		CheckHelper.check(TestSplitCompositeHierarchy.class, "hvpus left bottom width", leftBottomLabel.getWidth(),

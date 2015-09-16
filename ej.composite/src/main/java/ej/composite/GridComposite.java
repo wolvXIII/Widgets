@@ -6,6 +6,7 @@
  */
 package ej.composite;
 
+import ej.microui.display.GraphicsContext;
 import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
@@ -147,6 +148,10 @@ public class GridComposite extends Composite {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void render(GraphicsContext g) {
 	}
 
 }

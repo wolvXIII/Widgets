@@ -9,6 +9,7 @@ package ej.composite.test.split;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.SplitComposite;
+import ej.composite.test.Test;
 import ej.composite.test.TestHelper;
 import ej.composite.widget.Item;
 import ej.microui.MicroUI;
@@ -16,12 +17,16 @@ import ej.microui.MicroUI;
 /**
  *
  */
-public class TestSplitCompositeConsistency {
+public class TestSplitCompositeConsistency extends Test {
 
 	public static void main(String[] args) {
-		MicroUI.errorLog(true);
-		CheckHelper.startCheck(TestSplitCompositeConsistency.class);
+		MicroUI.start();
+		new TestSplitCompositeConsistency().start();
+		MicroUI.stop();
+	}
 
+	@Override
+	protected void run() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		Item item1 = new Item(baseWidth, baseHeight);
@@ -71,9 +76,10 @@ public class TestSplitCompositeConsistency {
 		TestHelper.checkItemsCount(TestSplitCompositeConsistency.class, splitComposite, 0);
 		TestHelper.showAndWait(splitComposite, false);
 		CheckHelper.check(TestSplitCompositeConsistency.class, "composite width", splitComposite.getWidth(), 0);
-		CheckHelper.check(TestSplitCompositeConsistency.class, "composite height", splitComposite.getHeight(), 0);
-
-		CheckHelper.endCheck(TestSplitCompositeConsistency.class);
+		CheckHelper.check(TestSplitCompositeConsistency.class, "composite height", splitComposite.getHeight(), 0);// TODO
+																													// Auto-generated
+																													// method
+																													// stub
 	}
 
 }

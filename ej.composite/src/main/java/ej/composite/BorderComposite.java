@@ -6,6 +6,7 @@
  */
 package ej.composite;
 
+import ej.microui.display.GraphicsContext;
 import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
@@ -36,6 +37,9 @@ public class BorderComposite extends Composite {
 		this.horizontal = horizontal;
 	}
 
+	/**
+	 * Adds a widget at the center this grid composite.
+	 */
 	@Override
 	public void add(Widget widget) {
 		if (this.center != null) {
@@ -57,6 +61,24 @@ public class BorderComposite extends Composite {
 		super.remove(widget);
 	}
 
+	/**
+	 * Adds a widget at a position this grid composite.
+	 * <p>
+	 * The position can be one of: {@link MWT#CENTER}, {@link MWT#NORTH}, {@link MWT#SOUTH}, {@link MWT#EAST},
+	 * {@link MWT#WEST}.
+	 *
+	 * @param widget
+	 *            the widget to add.
+	 * @param at
+	 *            the position to add the widget to.
+	 * @throws NullPointerException
+	 *             if the given widget is <code>null</code>.
+	 * @throws IllegalArgumentException
+	 *             if the given position is invalid.
+	 * @throws IllegalArgumentException
+	 *             if the given widget or one of its children is already connected to a panel.
+	 * @see #add(Widget)
+	 */
 	public void add(Widget widget, int at) {
 		switch (at) {
 		case MWT.WEST:
@@ -94,6 +116,22 @@ public class BorderComposite extends Composite {
 		}
 	}
 
+	/**
+	 * Removes the widget at a position this grid composite.
+	 * <p>
+	 * If no widget is at this position, nothing is done.
+	 * <p>
+	 * The position can be one of: {@link MWT#CENTER}, {@link MWT#NORTH}, {@link MWT#SOUTH}, {@link MWT#EAST},
+	 * {@link MWT#WEST}.
+	 *
+	 * @param at
+	 *            the position to add the widget to.
+	 * @throws NullPointerException
+	 *             if the given widget is <code>null</code>.
+	 * @throws IllegalArgumentException
+	 *             if the given position is invalid.
+	 * @see #remove(Widget)
+	 */
 	public void remove(int at) {
 		switch (at) {
 		case MWT.WEST:
@@ -229,7 +267,6 @@ public class BorderComposite extends Composite {
 			centerPreferredWidth = 0;
 			centerPreferredHeight = 0;
 		}
-		System.out.println("BorderComposite.validate() " + centerPreferredWidth + " " + centerPreferredHeight);
 
 		// compute composite preferred size if necessary
 		if (computeWidth) {
@@ -322,6 +359,11 @@ public class BorderComposite extends Composite {
 		if (centerLocal != null) {
 			centerLocal.setBounds(centerX, centerY, centerWidth, centerHeight);
 		}
+	}
+
+	@Override
+	public void render(GraphicsContext g) {
+		// TODO
 	}
 
 }

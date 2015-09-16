@@ -9,21 +9,26 @@ package ej.composite.test.split;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.SplitComposite;
+import ej.composite.test.Test;
 import ej.composite.test.TestHelper;
 import ej.composite.widget.Item;
+import ej.microui.MicroUI;
 
 /**
  *
  */
-public class TestSplitCompositeAlone {
+public class TestSplitCompositeAlone extends Test {
 
 	public static void main(String[] args) {
-		CheckHelper.startCheck(TestSplitCompositeAlone.class);
+		MicroUI.start();
+		new TestSplitCompositeAlone().start();
+		MicroUI.stop();
+	}
 
+	@Override
+	protected void run() {
 		testHorizontal();
 		testVertical();
-
-		CheckHelper.endCheck(TestSplitCompositeAlone.class);
 	}
 
 	private static void testHorizontal() {

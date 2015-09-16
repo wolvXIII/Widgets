@@ -6,8 +6,8 @@
  */
 package ej.composite.widget;
 
+import ej.microui.display.GraphicsContext;
 import ej.mwt.Widget;
-import ej.mwt.rendering.Renderer;
 
 /**
  *
@@ -15,7 +15,6 @@ import ej.mwt.rendering.Renderer;
 public class Item extends Widget {
 
 	private final int color;
-	private final ItemRenderer labelRenderer;
 	private final int expectedWidth;
 	private final int expectedHeight;
 
@@ -23,7 +22,6 @@ public class Item extends Widget {
 		this.expectedWidth = expectedWidth;
 		this.expectedHeight = expectedHeight;
 		this.color = (int) (Math.random() * 0xffffff);
-		this.labelRenderer = new ItemRenderer();
 	}
 
 	/**
@@ -54,8 +52,16 @@ public class Item extends Widget {
 	}
 
 	@Override
-	public Renderer getRenderer() {
-		return this.labelRenderer;
+	public void validate(int widthHint, int heightHint) {
+		setPreferredSize(this.expectedWidth, this.expectedHeight);
+	}
+
+	@Override
+	public void render(GraphicsContext g) {
+		int renderableWidth = getWidth();
+		int renderableHeight = getHeight();
+		g.setColor(getColor());
+		g.fillRect(0, 0, renderableWidth, renderableHeight);
 	}
 
 }
