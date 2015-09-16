@@ -8,6 +8,7 @@ package ej.composite.test;
 
 import com.is2t.testsuite.support.CheckHelper;
 
+import ej.composite.test.flow.FlowCompositeFill;
 import ej.microui.display.Display;
 import ej.mwt.Composite;
 import ej.mwt.Desktop;
@@ -59,6 +60,13 @@ public class TestHelper {
 
 	public static void checkDoesNotContain(Class<?> clazz, Composite composite, Widget widget) {
 		CheckHelper.check(clazz, "does not contain item", !contains(composite.getWidgets(), widget));
+	}
+
+	public static void checkWidget(String name, Widget widget, int x, int y, int width, int height) {
+		CheckHelper.check(FlowCompositeFill.class, name + " x", widget.getX(), x);
+		CheckHelper.check(FlowCompositeFill.class, name + " y", widget.getY(), y);
+		CheckHelper.check(FlowCompositeFill.class, name + " width", widget.getWidth(), width);
+		CheckHelper.check(FlowCompositeFill.class, name + " height", widget.getHeight(), height);
 	}
 
 }
