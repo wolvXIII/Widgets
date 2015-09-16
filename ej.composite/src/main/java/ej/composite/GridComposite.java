@@ -22,6 +22,13 @@ public class GridComposite extends Composite {
 	private int count;
 
 	/**
+	 * Creates a new horizontal grid composite.
+	 */
+	public GridComposite() {
+		this.horizontal = true;
+	}
+
+	/**
 	 * Sets the composite orientation: horizontal or vertical.
 	 *
 	 * @param horizontal

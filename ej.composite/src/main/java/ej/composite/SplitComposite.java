@@ -22,6 +22,13 @@ public class SplitComposite extends Composite {
 	private float ratio;
 
 	/**
+	 * Creates a new horizontal split composite.
+	 */
+	public SplitComposite() {
+		this.horizontal = true;
+	}
+
+	/**
 	 * Sets the composite orientation: horizontal or vertical.
 	 *
 	 * @param horizontal

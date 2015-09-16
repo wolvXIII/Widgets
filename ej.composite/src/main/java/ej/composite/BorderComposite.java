@@ -28,6 +28,13 @@ public class BorderComposite extends Composite {
 	private Widget last;
 
 	/**
+	 * Creates a new horizontal border composite.
+	 */
+	public BorderComposite() {
+		this.horizontal = true;
+	}
+
+	/**
 	 * Sets the composite orientation: horizontal or vertical.
 	 *
 	 * @param horizontal
