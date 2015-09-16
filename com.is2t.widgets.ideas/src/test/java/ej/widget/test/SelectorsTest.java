@@ -61,52 +61,52 @@ public class SelectorsTest extends StyledWidgetTest {
 
 		Style stylesheetStyle = stylesheet.getStyle(element);
 		CheckHelper.check(getClass(), "Set style", stylesheetStyle, widgetStyle);
-		check("Style", stylesheetStyle, widgetStyle);
+		check("Style 0", stylesheetStyle, widgetStyle);
 
 		element.addState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
 		if (onRenderable2 || (!onRenderable1)) {
-			check("Hover", stylesheetStyle, hoverStyle);
+			check("Hover 1", stylesheetStyle, hoverStyle);
 		} else {
-			check("Style", stylesheetStyle, widgetStyle);
+			check("Style 1", stylesheetStyle, widgetStyle);
 		}
 
 		element.removeState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
-		check("Style", stylesheetStyle, widgetStyle);
+		check("Style 2", stylesheetStyle, widgetStyle);
 
 		element.addClassSelector(WARNING);
 		stylesheetStyle = stylesheet.getStyle(element);
 		if (onRenderable3 || (!onRenderable1)) {
-			check(WARNING, stylesheetStyle, warningStyle);
+			check("Warning 3", stylesheetStyle, warningStyle);
 		} else {
-			check("Style", stylesheetStyle, widgetStyle);
+			check("Style 3", stylesheetStyle, widgetStyle);
 		}
 
 		element.addState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
 		if (onRenderable1 && !onRenderable2 && !onRenderable3) {
-			check("Style", stylesheetStyle, widgetStyle);
+			check("Style 4", stylesheetStyle, widgetStyle);
 		} else if (hoverBeforeWarning && onRenderable2 == onRenderable3) {
 			// warning is added after hover selector
-			check("Warning", stylesheetStyle, warningStyle);
+			check("Warning 4", stylesheetStyle, warningStyle);
 		} else if (onRenderable2 && !onRenderable3) {
 			// on renderable is preferred over on type
-			check("Hover", stylesheetStyle, hoverStyle);
+			check("Hover 4", stylesheetStyle, hoverStyle);
 		} else if (!hoverBeforeWarning && onRenderable2 == onRenderable3) {
 			// hover is added after hover selector
-			check("Hover", stylesheetStyle, hoverStyle);
+			check("Hover 5", stylesheetStyle, hoverStyle);
 		} else if (!onRenderable2 && onRenderable3) {
 			// on renderable is preferred over on type
-			check("Warning", stylesheetStyle, warningStyle);
+			check("Warning 5", stylesheetStyle, warningStyle);
 		} else if (onRenderable3 && !onRenderable2) {
-			check(WARNING, stylesheetStyle, warningStyle);
+			check("Warning 5", stylesheetStyle, warningStyle);
 		}
 
 		element.removeClassSelector(WARNING);
 		element.removeState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
-		check("Style", stylesheetStyle, widgetStyle);
+		check("Style 6", stylesheetStyle, widgetStyle);
 	}
 
 	private void addWarningStyle(boolean onRenderable3, SimpleElement renderable, CascadingStylesheet stylesheet,

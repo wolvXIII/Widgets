@@ -49,32 +49,32 @@ public class GeneralSelectorsTest extends StyledWidgetTest {
 
 		Style stylesheetStyle = stylesheet.getStyle(element);
 		CheckHelper.check(getClass(), "Set style", stylesheetStyle, widgetStyle);
-		check("Style", stylesheetStyle, widgetStyle);
+		check("Style 0", stylesheetStyle, widgetStyle);
 
 		element.addState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
-		check("Hover", stylesheetStyle, hoverStyle);
+		check("Hover 1", stylesheetStyle, hoverStyle);
 
 		element.removeState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
-		check("Style", stylesheetStyle, widgetStyle);
+		check("Style 2", stylesheetStyle, widgetStyle);
 
 		element.addClassSelector(WARNING);
 		stylesheetStyle = stylesheet.getStyle(element);
-		check(WARNING, stylesheetStyle, warningStyle);
+		check("Warning 3", stylesheetStyle, warningStyle);
 
 		element.addState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
 		if (hoverBeforeWarning) {
-			check("Warning", stylesheetStyle, warningStyle);
+			check("Warning 4", stylesheetStyle, warningStyle);
 		} else {
-			check("Hover", stylesheetStyle, hoverStyle);
+			check("Hover 4", stylesheetStyle, hoverStyle);
 		}
 
 		element.removeClassSelector(WARNING);
 		element.removeState(State.Hover);
 		stylesheetStyle = stylesheet.getStyle(element);
-		check("Style", stylesheetStyle, widgetStyle);
+		check("Style 5", stylesheetStyle, widgetStyle);
 	}
 
 	private void addWarningStyle(CascadingStylesheet stylesheet, Style warningStyle) {
