@@ -9,9 +9,9 @@ package ej.widget.test;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.microui.display.Colors;
-import ej.widget.State;
-import ej.widget.Style;
-import ej.widget.cascading.CascadingStylesheet;
+import ej.style.State;
+import ej.style.Style;
+import ej.style.cascading.CascadingStylesheet;
 import ej.widget.test.env.SimpleElement;
 
 public class GeneralSelectorsTest extends StyledWidgetTest {

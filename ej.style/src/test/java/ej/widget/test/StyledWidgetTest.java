@@ -10,14 +10,14 @@ import com.is2t.testsuite.support.CheckHelper;
 
 import ej.microui.display.Colors;
 import ej.microui.display.GraphicsContext;
-import ej.widget.Style;
-import ej.widget.background.PlainBackground;
-import ej.widget.boxmodel.Border;
-import ej.widget.boxmodel.SimpleBox;
-import ej.widget.dimension.FixedDimension;
-import ej.widget.font.FontProfile;
-import ej.widget.font.FontProfile.FontSize;
-import ej.widget.style.SimpleStyle;
+import ej.style.Style;
+import ej.style.background.PlainBackground;
+import ej.style.boxmodel.Border;
+import ej.style.boxmodel.SimpleBox;
+import ej.style.dimension.FixedDimension;
+import ej.style.font.FontProfile;
+import ej.style.font.FontProfile.FontSize;
+import ej.style.util.SimpleStyle;
 
 /**
  *

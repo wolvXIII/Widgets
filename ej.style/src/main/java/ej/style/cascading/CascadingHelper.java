@@ -4,13 +4,13 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package ej.widget.test;
+package ej.style.cascading;
 
 import ej.style.Style;
 
-public class StyleHelper {
+/*package*/class CascadingHelper {
 
-	private StyleHelper() {
+	private CascadingHelper() {
 	}
 
 	public static boolean isComplete(Style style) {

@@ -9,8 +9,8 @@ package ej.widget.test.env;
 import java.util.ArrayList;
 import java.util.List;
 
-import ej.widget.Element;
-import ej.widget.State;
+import ej.style.Element;
+import ej.style.State;
 
 public class SimpleElement implements Element {
 

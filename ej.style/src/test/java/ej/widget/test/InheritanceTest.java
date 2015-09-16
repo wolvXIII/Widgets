@@ -8,9 +8,9 @@ package ej.widget.test;
 
 import com.is2t.testsuite.support.CheckHelper;
 
-import ej.widget.Element;
-import ej.widget.Style;
-import ej.widget.cascading.CascadingStylesheet;
+import ej.style.Element;
+import ej.style.Style;
+import ej.style.cascading.CascadingStylesheet;
 import ej.widget.test.env.SimpleElement;
 
 public class InheritanceTest extends StyledWidgetTest {
