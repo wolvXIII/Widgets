@@ -50,6 +50,11 @@ public class PlainBackground implements Background {
 	}
 
 	@Override
+	public int hashCode() {
+		return 0; // why not?
+	}
+
+	@Override
 	public String toString() {
 		return "Plain background: " + Integer.toHexString(this.backgroundColor);
 	}
