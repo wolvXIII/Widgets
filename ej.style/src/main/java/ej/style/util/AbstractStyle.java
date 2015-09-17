@@ -12,6 +12,7 @@ import ej.style.boxmodel.Border;
 import ej.style.boxmodel.Box;
 import ej.style.dimension.Dimension;
 import ej.style.font.FontProfile;
+import ej.style.text.TextManager;
 
 /**
  *
@@ -21,7 +22,7 @@ public abstract class AbstractStyle implements Style {
 	protected int foregroundColor;
 	protected Background background;
 	protected FontProfile fontProfile;
-	protected int textAlign;
+	protected TextManager textManager;
 	protected Dimension dimension;
 	protected Box padding;
 	protected Border border;
@@ -43,8 +44,8 @@ public abstract class AbstractStyle implements Style {
 	}
 
 	@Override
-	public int getTextAlign() {
-		return this.textAlign;
+	public TextManager getTextManager() {
+		return this.textManager;
 	}
 
 	@Override
@@ -98,13 +99,13 @@ public abstract class AbstractStyle implements Style {
 	}
 
 	/**
-	 * Sets the text alignment.
+	 * Sets the text manager.
 	 *
-	 * @param textAlign
-	 *            the text alignment to set.
+	 * @param textManager
+	 *            the text manager to set.
 	 */
-	public void setTextAlign(int textAlign) {
-		this.textAlign = textAlign;
+	public void setTextManager(TextManager textManager) {
+		this.textManager = textManager;
 	}
 
 	/**
@@ -152,7 +153,7 @@ public abstract class AbstractStyle implements Style {
 		if (obj instanceof Style) {
 			Style other = (Style) obj;
 			return this.foregroundColor == other.getForegroundColor() && this.background == other.getBackground()
-					&& this.fontProfile == other.getFontProfile() && this.textAlign == other.getTextAlign()
+					&& this.fontProfile == other.getFontProfile() && this.textManager == other.getTextManager()
 					&& this.dimension == other.getDimension() && this.padding == other.getPadding()
 					&& this.border == other.getBorder() && this.margin == other.getMargin();
 		}
@@ -173,7 +174,7 @@ public abstract class AbstractStyle implements Style {
 		sb.append("Foreground: " + Integer.toHexString(getForegroundColor())).append('\n');
 		sb.append("Background: " + getBackground().toString()).append('\n');
 		sb.append("Font profile: " + getFontProfile().toString()).append('\n');
-		sb.append("Text align: " + Integer.toHexString(getTextAlign())).append('\n');
+		sb.append("Text manager: " + getTextManager().toString()).append('\n');
 		sb.append("Dimension: " + getDimension().toString()).append('\n');
 		sb.append("Padding: " + getPadding().toString()).append('\n');
 		sb.append("Border: " + getBorder().toString()).append('\n');

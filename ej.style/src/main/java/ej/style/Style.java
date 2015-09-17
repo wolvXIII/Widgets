@@ -11,6 +11,7 @@ import ej.style.boxmodel.Border;
 import ej.style.boxmodel.Box;
 import ej.style.dimension.Dimension;
 import ej.style.font.FontProfile;
+import ej.style.text.TextManager;
 
 /**
  *
@@ -23,8 +24,7 @@ public interface Style {
 
 	FontProfile getFontProfile();
 
-	// TODO manage text decoration & text indent & text tranform & vertical align
-	int getTextAlign();
+	TextManager getTextManager();
 
 	Dimension getDimension();
 

@@ -11,7 +11,6 @@ public class SimpleStyle extends AbstractStyle implements Cloneable {
 	public SimpleStyle() {
 		// set default values
 		this.foregroundColor = -1;
-		this.textAlign = -1;
 		// others are null: VM DONE
 	}
 
@@ -32,7 +31,7 @@ public class SimpleStyle extends AbstractStyle implements Cloneable {
 		simpleStyle.foregroundColor = this.foregroundColor;
 		simpleStyle.background = this.background;
 		simpleStyle.fontProfile = this.fontProfile;
-		simpleStyle.textAlign = this.textAlign;
+		simpleStyle.textManager = this.textManager;
 		simpleStyle.dimension = this.dimension;
 		simpleStyle.padding = this.padding;
 		simpleStyle.border = this.border;

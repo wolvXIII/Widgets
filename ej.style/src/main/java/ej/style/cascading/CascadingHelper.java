@@ -14,7 +14,7 @@ import ej.style.Style;
 	}
 
 	public static boolean isComplete(Style style) {
-		return isSetForeground(style) && isSetBackground(style) && isSetFontProfile(style) && isSetTextAlign(style)
+		return isSetForeground(style) && isSetBackground(style) && isSetFontProfile(style) && isSetTextManager(style)
 				&& isSetDimension(style) && isSetPadding(style) && isSetBorder(style) && isSetMargin(style);
 	}
 
@@ -30,8 +30,8 @@ import ej.style.Style;
 		return style.getFontProfile() != null;
 	}
 
-	public static boolean isSetTextAlign(Style style) {
-		return style.getTextAlign() != -1;
+	public static boolean isSetTextManager(Style style) {
+		return style.getTextManager() != null;
 	}
 
 	public static boolean isSetDimension(Style style) {

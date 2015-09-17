@@ -14,7 +14,6 @@ import ej.style.util.AbstractStyle;
 	public CascadingStyle() {
 		// set default values
 		this.foregroundColor = -1;
-		this.textAlign = -1;
 		// others are null: VM DONE
 	}
 
@@ -31,8 +30,8 @@ import ej.style.util.AbstractStyle;
 		if (!CascadingHelper.isSetFontProfile(this)) {
 			this.fontProfile = style.getFontProfile();
 		}
-		if (!CascadingHelper.isSetTextAlign(this)) {
-			this.textAlign = style.getTextAlign();
+		if (!CascadingHelper.isSetTextManager(this)) {
+			this.textManager = style.getTextManager();
 		}
 		if (!CascadingHelper.isSetDimension(this)) {
 			this.dimension = style.getDimension();
@@ -56,8 +55,8 @@ import ej.style.util.AbstractStyle;
 		if (!CascadingHelper.isSetFontProfile(this)) {
 			this.fontProfile = parentStyle.getFontProfile();
 		}
-		if (!CascadingHelper.isSetTextAlign(this)) {
-			this.textAlign = parentStyle.getTextAlign();
+		if (!CascadingHelper.isSetTextManager(this)) {
+			this.textManager = parentStyle.getTextManager();
 		}
 		return CascadingHelper.isComplete(this);
 	}
@@ -75,8 +74,8 @@ import ej.style.util.AbstractStyle;
 		if (CascadingHelper.isSetFontProfile(style)) {
 			this.fontProfile = style.getFontProfile();
 		}
-		if (CascadingHelper.isSetTextAlign(style)) {
-			this.textAlign = style.getTextAlign();
+		if (CascadingHelper.isSetTextManager(style)) {
+			this.textManager = style.getTextManager();
 		}
 		if (CascadingHelper.isSetDimension(style)) {
 			this.dimension = style.getDimension();
@@ -97,7 +96,7 @@ import ej.style.util.AbstractStyle;
 		simpleStyle.foregroundColor = this.foregroundColor;
 		simpleStyle.background = this.background;
 		simpleStyle.fontProfile = this.fontProfile;
-		simpleStyle.textAlign = this.textAlign;
+		simpleStyle.textManager = this.textManager;
 		simpleStyle.dimension = this.dimension;
 		simpleStyle.padding = this.padding;
 		simpleStyle.border = this.border;
