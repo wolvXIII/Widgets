@@ -18,7 +18,7 @@ import ej.microui.event.generator.Pointer;
  * 
  * You can also specify the position of the icon relative to the text. By default, icon is on the left of the text.
  */
-public class Button extends StyledComposite {
+public class Button extends AllSizeComposite {
 
 	private boolean pressed;
 	private final List<OnClickListener> onClickListeners;

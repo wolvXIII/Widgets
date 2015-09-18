@@ -6,17 +6,16 @@
  */
 package ej.composite;
 
-import ej.microui.display.GraphicsContext;
-import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
+import ej.widget.StyledComposite;
 
 /**
  * Lays out its children in two regions, giving a each one a ratio of its size.
  *
  * @see #setRatio(float)
  */
-public class SplitComposite extends Composite {
+public class SplitComposite extends StyledComposite {
 
 	private boolean horizontal;
 	private float ratio;
@@ -249,11 +248,6 @@ public class SplitComposite extends Composite {
 		} else {
 			return (relativeY < getHeight() * this.ratio);
 		}
-	}
-
-	@Override
-	public void render(GraphicsContext g) {
-		// TODO
 	}
 
 }

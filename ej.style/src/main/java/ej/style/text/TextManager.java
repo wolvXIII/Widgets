@@ -12,6 +12,8 @@ import ej.style.Size;
 
 public interface TextManager {
 
-	void drawText(GraphicsContext g, String text, DisplayFont font, Size size);
+	void drawText(GraphicsContext g, String text, DisplayFont font, int color, Size size);
+
+	Size computeContentSize(String text, DisplayFont font);
 
 }

@@ -5,7 +5,7 @@
 	IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/extra"> 
-	<info organisation="com.is2t.library.ui" module="widgets" status="integration" revision="1.0.0">
+	<info organisation="ej.library.ui" module="widget" status="integration" revision="1.0.0">
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-javalib" revision="1.+">
 		</ea:build>
 	</info>
@@ -19,13 +19,13 @@
 	</configurations>
 	
 	<dependencies>
-		<!--<dependency org="ej.api" name="edc" rev="[1.2.0-RC0,2.0.0-RC0[" conf="provided->*" />
+		<dependency org="ej.api" name="edc" rev="[1.2.0-RC0,2.0.0-RC0[" conf="provided->*" />
 		<dependency org="com.is2t.libraries" name="mwt" rev="[2.0.0-RC0,3.0.0-RC0[" conf="provided->*" />
 		<dependency org="ej.library.runtime" name="components" rev="[3.0.0-RC0,4.0.0-RC0["/>
+		<dependency org="com.is2t.libraries" name="ej.motion" rev="[2.0.0-RC0,3.0.0-RC0["/>
 		<dependency transitive="false" org="com.is2t.testsuite" name="checkHelper" rev="1.1.0" conf="test->default" >
 		    <artifact name="checkHelper" m:classifier="api" ext="jar"/>
 		</dependency> -->
 		
-		<dependency org="com.is2t.libraries" name="ej.motion" rev="[2.0.0-RC0,3.0.0-RC0["/>
 	</dependencies>
 </ivy-module>

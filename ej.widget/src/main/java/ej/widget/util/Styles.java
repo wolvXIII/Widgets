@@ -31,25 +31,23 @@ public class Styles {
 	}
 
 	public static Size computePreferredSize(int widthHint, int heightHint, Style style, Size contentSize) {
-		Size preferredSize = new Size();
-
 		// Content size…
 		Dimension dimension = style.getDimension();
 		dimension.apply(contentSize, widthHint, heightHint);
 
 		// … plus padding size…
 		Box padding = style.getPadding();
-		padding.box(preferredSize);
+		padding.box(contentSize);
 
 		// … plus border size…
 		Box border = style.getBorder();
-		border.box(preferredSize);
+		border.box(contentSize);
 
 		// … plus margin size…
 		Box margin = style.getMargin();
-		margin.box(preferredSize);
+		margin.box(contentSize);
 
-		return preferredSize;
+		return contentSize;
 	}
 
 	public static void renderWithoutContent(GraphicsContext g, Size remainingSize, Style style) {

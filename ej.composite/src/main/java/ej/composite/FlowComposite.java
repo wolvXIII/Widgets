@@ -8,15 +8,15 @@ package ej.composite;
 
 import java.util.Iterator;
 
-import ej.microui.display.GraphicsContext;
 import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
+import ej.widget.StyledComposite;
 
 /**
  * A flow composite is a {@link Composite} that lays out its children in rows or columns.
  */
-public class FlowComposite extends Composite {
+public class FlowComposite extends StyledComposite {
 
 	/**
 	 * Lay out direction.
@@ -175,11 +175,6 @@ public class FlowComposite extends Composite {
 				currentColumnWidth = Math.max(currentColumnWidth, widgetPreferredWidth);
 			}
 		}
-	}
-
-	@Override
-	public void render(GraphicsContext g) {
-		// TODO
 	}
 
 }

@@ -9,7 +9,6 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.GraphicsContext;
 import ej.microui.event.Event;
@@ -168,10 +167,5 @@ public abstract class StyledComposite extends Composite implements Controller, E
 
 	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
 		// Nothing to do by default.
-	}
-
-	@Override
-	public void validate(int widthHint, int heightHint) {
-		setPreferredSize(widthHint, heightHint);
 	}
 }

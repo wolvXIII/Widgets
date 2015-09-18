@@ -6,10 +6,9 @@
  */
 package ej.composite;
 
-import ej.microui.display.GraphicsContext;
-import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
+import ej.widget.StyledComposite;
 
 /**
  * Lays out its children to fit in 3 regions:
@@ -20,7 +19,7 @@ import ej.mwt.Widget;
  * Beware that a widget added on west in vertical mode will be on north (the same goes horizontally and for east and
  * south regions).
  */
-public class BorderComposite extends Composite {
+public class BorderComposite extends StyledComposite {
 
 	private boolean horizontal;
 	private Widget first;
@@ -367,10 +366,4 @@ public class BorderComposite extends Composite {
 			centerLocal.setBounds(centerX, centerY, centerWidth, centerHeight);
 		}
 	}
-
-	@Override
-	public void render(GraphicsContext g) {
-		// TODO
-	}
-
 }

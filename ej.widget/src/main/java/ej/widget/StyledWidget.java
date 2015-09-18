@@ -9,7 +9,6 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.GraphicsContext;
 import ej.microui.event.Event;
@@ -101,14 +100,12 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	@Override
 	public void validate(int widthHint, int heightHint) {
-		// Style style = getStyle();
-		// Dimension contentSize = getContentSize(style);
-		// Dimension preferredSize = Styles.computePreferredSize(widthHint,
-		// heightHint, style, contentSize);
-		// setPreferredSize(preferredSize.getWidth(),
-		// preferredSize.getHeight());
+		Style style = getStyle();
+		Size contentSize = getContentSize(style);
+		Size preferredSize = Styles.computePreferredSize(widthHint, heightHint, style, contentSize);
+		setPreferredSize(preferredSize.getWidth(), preferredSize.getHeight());
 
-		setPreferredSize(widthHint, heightHint);
+		// setPreferredSize(widthHint, heightHint);
 	}
 
 	/***

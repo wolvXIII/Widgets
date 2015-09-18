@@ -6,17 +6,16 @@
  */
 package ej.composite;
 
-import ej.microui.display.GraphicsContext;
-import ej.mwt.Composite;
 import ej.mwt.MWT;
 import ej.mwt.Widget;
+import ej.widget.StyledComposite;
 
 /**
  * Lays out its children in a grid.
  * <p>
  * All columns have the same width and all rows have the same height.
  */
-public class GridComposite extends Composite {
+public class GridComposite extends StyledComposite {
 
 	private boolean horizontal;
 	private int count;
@@ -46,6 +45,16 @@ public class GridComposite extends Composite {
 	 */
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	@Override
+	public void add(Widget widget) throws NullPointerException, IllegalArgumentException {
+		super.add(widget);
+	}
+
+	@Override
+	public void remove(Widget widget) throws NullPointerException {
+		super.remove(widget);
 	}
 
 	@Override
@@ -155,10 +164,6 @@ public class GridComposite extends Composite {
 				}
 			}
 		}
-	}
-
-	@Override
-	public void render(GraphicsContext g) {
 	}
 
 }
