@@ -16,6 +16,7 @@ public class SimpleButton extends Button {
 	public SimpleButton() {
 		this.label = new Label();
 		setWidget(this.label);
+		System.out.println("SimpleButton.SimpleButton() " + this.label);
 	}
 
 	public String getText() {

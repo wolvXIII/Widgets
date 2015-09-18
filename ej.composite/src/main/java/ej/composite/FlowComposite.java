@@ -69,12 +69,6 @@ public class FlowComposite extends StyledComposite {
 			return;
 		}
 
-		int length = getWidgetsCount();
-		if (length == 0) {
-			// nothing to do
-			return;
-		}
-
 		boolean computeWidth = widthHint == MWT.NONE;
 		boolean computeHeight = heightHint == MWT.NONE;
 
@@ -86,22 +80,22 @@ public class FlowComposite extends StyledComposite {
 		int currentLineHeight = 0;
 		int currentColumnWidth = 0;
 
-		System.out.println("FlowComposite.validate()");
+		// System.out.println("FlowComposite.validate()");
 		Iterator<Widget> iterator = iterator();
 		while (iterator.hasNext()) {
 			Widget widget = iterator.next();
 
-			System.out.println("\t* widget: " + widget);
-			System.out.println("\tsize hint: " + widgetWidthHint + " " + widgetHeightHint);
+			// System.out.println("\t* widget: " + widget);
+			// System.out.println("\tsize hint: " + widgetWidthHint + " " + widgetHeightHint);
 			widget.validate(widgetWidthHint, widgetHeightHint);
 
 			int widgetPreferredWidth = widget.getPreferredWidth();
 			int widgetPreferredHeight = widget.getPreferredHeight();
-			System.out.println("\tpreferred size: " + widgetPreferredWidth + " " + widgetPreferredHeight);
+			// System.out.println("\tpreferred size: " + widgetPreferredWidth + " " + widgetPreferredHeight);
 
 			if(this.horizontal) {
 				if (!computeWidth && currentX + widgetPreferredWidth > widthHint) {
-					System.out.println("\tnew line");
+					// System.out.println("\tnew line");
 					// create a new line
 					currentX = 0;
 					currentY += currentLineHeight;
@@ -111,7 +105,7 @@ public class FlowComposite extends StyledComposite {
 				currentLineHeight = Math.max(currentLineHeight, widgetPreferredHeight);
 			} else {
 				if (!computeHeight && currentY + widgetPreferredHeight > heightHint) {
-					System.out.println("\tnew column");
+					// System.out.println("\tnew column");
 					// create a new column
 					currentY = 0;
 					currentX += currentColumnWidth;
@@ -141,7 +135,7 @@ public class FlowComposite extends StyledComposite {
 		int currentLineHeight = 0;
 		int currentColumnWidth = 0;
 
-		System.out.println("FlowComposite.setBounds()");
+		// System.out.println("FlowComposite.setBounds()");
 		Iterator<Widget> iterator = iterator();
 		while (iterator.hasNext()) {
 			Widget widget = iterator.next();
@@ -149,9 +143,9 @@ public class FlowComposite extends StyledComposite {
 			int widgetPreferredWidth = widget.getPreferredWidth();
 			int widgetPreferredHeight = widget.getPreferredHeight();
 
-			System.out.println("\t* widget: " + widget);
-			System.out.println(
-					"\tat " + currentX + " " + currentY + " " + widgetPreferredWidth + " " + widgetPreferredHeight);
+			// System.out.println("\t* widget: " + widget);
+			// System.out.println(
+			// "\tat " + currentX + " " + currentY + " " + widgetPreferredWidth + " " + widgetPreferredHeight);
 
 			if (this.horizontal) {
 				if (currentX + widgetPreferredWidth > width) {

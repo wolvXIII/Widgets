@@ -32,7 +32,7 @@ public class TestBorderCompositeCenterAlone extends Test {
 		testVertical();
 	}
 
-	private static void testHorizontal() {
+	private void testHorizontal() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 
@@ -66,7 +66,7 @@ public class TestBorderCompositeCenterAlone extends Test {
 				displayHeight);
 	}
 
-	private static void testVertical() {
+	private void testVertical() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 

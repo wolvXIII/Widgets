@@ -9,6 +9,7 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import ej.microui.display.GraphicsContext;
 import ej.microui.event.generator.Pointer;
 
 /**
@@ -66,5 +67,11 @@ public class Button extends AllSizeComposite {
 		setPressed(false);
 		performClick();
 		return false;
+	}
+
+	@Override
+	public void render(GraphicsContext g) {
+		System.out.println("Button.render() " + this);
+		super.render(g);
 	}
 }

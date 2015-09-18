@@ -31,7 +31,7 @@ public class TestSplitCompositeAlone extends Test {
 		testVertical();
 	}
 
-	private static void testHorizontal() {
+	private void testHorizontal() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -50,7 +50,7 @@ public class TestSplitCompositeAlone extends Test {
 		CheckHelper.check(TestSplitCompositeAlone.class, "h composite height", splitComposite.getHeight(), baseHeight);
 	}
 
-	private static void testVertical() {
+	private void testVertical() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;

@@ -58,6 +58,16 @@ public class Label extends StyledWidget {
 	}
 
 	@Override
+	public void validate(int widthHint, int heightHint) {
+		super.validate(widthHint, heightHint);
+	}
+
+	@Override
+	public void render(GraphicsContext g) {
+		super.render(g);
+	}
+
+	@Override
 	protected Size getContentSize(Style style) {
 		DisplayFont font = Styles.getFont(style);
 		return style.getTextManager().computeContentSize(this.text, font);

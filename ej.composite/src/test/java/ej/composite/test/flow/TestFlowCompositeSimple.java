@@ -52,15 +52,15 @@ public class TestFlowCompositeSimple extends Test {
 		TestHelper.checkContains(TestFlowCompositeSimple.class, flowComposite, item2);
 
 		TestHelper.showAndWait(flowComposite, false);
-		TestHelper.checkWidget("item1", item1, 0, 0, width1, height1);
-		TestHelper.checkWidget("item2", item2, width1, 0, width2, height2);
-		TestHelper.checkWidget("composite", flowComposite, 0, 0, width1 + width2, Math.max(height1, height2));
+		TestHelper.checkWidget(getClass(), "item1", item1, 0, 0, width1, height1);
+		TestHelper.checkWidget(getClass(), "item2", item2, width1, 0, width2, height2);
+		TestHelper.checkWidget(getClass(), "composite", flowComposite, 0, 0, width1 + width2, Math.max(height1, height2));
 		TestHelper.hide(flowComposite);
 
 		TestHelper.showAndWait(flowComposite, true);
-		TestHelper.checkWidget("item1", item1, 0, 0, width1, height1);
-		TestHelper.checkWidget("item2", item2, width1, 0, width2, height2);
-		TestHelper.checkWidget("composite", flowComposite, 0, 0, displayWidth, displayHeight);
+		TestHelper.checkWidget(getClass(), "item1", item1, 0, 0, width1, height1);
+		TestHelper.checkWidget(getClass(), "item2", item2, width1, 0, width2, height2);
+		TestHelper.checkWidget(getClass(), "composite", flowComposite, 0, 0, displayWidth, displayHeight);
 		TestHelper.hide(flowComposite);
 	}
 
@@ -87,15 +87,15 @@ public class TestFlowCompositeSimple extends Test {
 		TestHelper.checkContains(TestFlowCompositeSimple.class, flowComposite, item2);
 
 		TestHelper.showAndWait(flowComposite, false);
-		TestHelper.checkWidget("item1", item1, 0, 0, width1, height1);
-		TestHelper.checkWidget("item2", item2, 0, height1, width2, height2);
-		TestHelper.checkWidget("composite", flowComposite, 0, 0, Math.max(width1, width2), height1 + height2);
+		TestHelper.checkWidget(getClass(), "item1", item1, 0, 0, width1, height1);
+		TestHelper.checkWidget(getClass(), "item2", item2, 0, height1, width2, height2);
+		TestHelper.checkWidget(getClass(), "composite", flowComposite, 0, 0, Math.max(width1, width2), height1 + height2);
 		TestHelper.hide(flowComposite);
 
 		TestHelper.showAndWait(flowComposite, true);
-		TestHelper.checkWidget("item1", item1, 0, 0, width1, height1);
-		TestHelper.checkWidget("item2", item2, 0, height1, width2, height2);
-		TestHelper.checkWidget("composite", flowComposite, 0, 0, displayWidth, displayHeight);
+		TestHelper.checkWidget(getClass(), "item1", item1, 0, 0, width1, height1);
+		TestHelper.checkWidget(getClass(), "item2", item2, 0, height1, width2, height2);
+		TestHelper.checkWidget(getClass(), "composite", flowComposite, 0, 0, displayWidth, displayHeight);
 		TestHelper.hide(flowComposite);
 	}
 

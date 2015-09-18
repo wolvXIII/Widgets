@@ -13,7 +13,7 @@ import ej.style.util.Size;
 
 public class Radio extends ToggleView {
 
-	private static final int DIAMETER = 34;
+	private static final int DIAMETER = 28;
 	private static final int THICKNESS = 2;
 	private static final int FADE = 1;
 
@@ -44,7 +44,8 @@ public class Radio extends ToggleView {
 	@Override
 	protected Size getContentSize(Style style) {
 		Size contentSize = new Size();
-		contentSize.setSize(DIAMETER, DIAMETER);
+		int realDiameter = DIAMETER + THICKNESS + 2 * FADE + 1;
+		contentSize.setSize(realDiameter, realDiameter);
 		return contentSize;
 	}
 }

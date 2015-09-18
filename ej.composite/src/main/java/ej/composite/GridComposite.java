@@ -6,6 +6,9 @@
  */
 package ej.composite;
 
+
+import java.util.Iterator;
+
 import ej.mwt.MWT;
 import ej.mwt.Widget;
 import ej.widget.StyledComposite;
@@ -58,6 +61,11 @@ public class GridComposite extends StyledComposite {
 	}
 
 	@Override
+	public void removeAllWidgets() {
+		super.removeAllWidgets();
+	}
+
+	@Override
 	public void validate(int widthHint, int heightHint) {
 		if (!isVisible()) {
 			// optim: do not validate its hierarchy
@@ -65,11 +73,10 @@ public class GridComposite extends StyledComposite {
 			return;
 		}
 
-		// XXX idea: add an iterator in composites to avoid copying the array
-		Widget[] widgets = getWidgets();
-		int length = widgets.length;
+		int length = getWidgetsCount();
 		if (length == 0) {
 			// nothing to do
+			setPreferredSize(widthHint, heightHint);
 			return;
 		}
 
@@ -95,7 +102,9 @@ public class GridComposite extends StyledComposite {
 		int maxCellWidth = 0;
 		int maxCellHeight = 0;
 
-		for (Widget widget : widgets) {
+		Iterator<Widget> iterator = iterator();
+		while (iterator.hasNext()) {
+			Widget widget = iterator.next();
 			widget.validate(cellsWidth, cellsHeight);
 
 			// compute biggest size
@@ -120,8 +129,10 @@ public class GridComposite extends StyledComposite {
 		super.setBounds(x, y, width, height);
 
 		// TODO try to merge with validate
-		Widget[] widgets = getWidgets();
-		int length = widgets.length;
+		int length = getWidgetsCount();
+		if (length == 0) {
+			return;
+		}
 
 		// compute widgets bounds
 		boolean horizontalLocal = this.horizontal;
@@ -143,7 +154,9 @@ public class GridComposite extends StyledComposite {
 		int offset = 0;
 		int currentX = 0;
 		int currentY = 0;
-		for (Widget widget : widgets) {
+		Iterator<Widget> iterator = iterator();
+		while (iterator.hasNext()) {
+			Widget widget = iterator.next();
 			widget.setBounds(currentX, currentY, cellWidth, cellHeight);
 
 			if (++offset == countLocal) {

@@ -37,6 +37,7 @@ public class TextManagerFull implements TextManager {
 	// TODO: handle the justify case.
 	@Override
 	public void drawText(GraphicsContext g, String text, DisplayFont font, int color, Size size) {
+		System.out.println("TextManagerFull.drawText()");
 		g.setFont(font);
 		g.setColor(color);
 		int width = size.getWidth();
