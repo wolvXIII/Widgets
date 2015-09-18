@@ -69,13 +69,6 @@ public class FlowComposite extends Composite {
 			return;
 		}
 
-		int length = getWidgetsCount();
-		if (length == 0) {
-			// nothing to do
-			setPreferredSize(widthHint, heightHint);
-			return;
-		}
-
 		boolean computeWidth = widthHint == MWT.NONE;
 		boolean computeHeight = heightHint == MWT.NONE;
 

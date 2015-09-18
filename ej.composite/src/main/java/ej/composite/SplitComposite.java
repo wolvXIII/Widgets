@@ -89,6 +89,7 @@ public class SplitComposite extends Composite {
 		int length = widgets.length;
 		if (length == 0) {
 			// nothing to do
+			setPreferredSize(widthHint, heightHint);
 			return;
 		}
 
