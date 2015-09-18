@@ -9,13 +9,13 @@ package ej.widget.util;
 import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
-import ej.style.Size;
 import ej.style.Style;
 import ej.style.background.Background;
 import ej.style.boxmodel.Box;
 import ej.style.dimension.Dimension;
 import ej.style.font.FontLoader;
 import ej.style.font.FontProfile;
+import ej.style.util.Size;
 
 public class Styles {
 

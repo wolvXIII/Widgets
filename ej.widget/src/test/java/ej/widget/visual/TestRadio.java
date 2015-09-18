@@ -6,11 +6,11 @@
  */
 package ej.widget.visual;
 
-
 import ej.microui.MicroUI;
 import ej.mwt.Desktop;
 import ej.mwt.Panel;
 import ej.widget.Radio;
+import ej.widget.RadioButton;
 
 /**
  * 
@@ -21,10 +21,14 @@ public class TestRadio {
 		MicroUI.start();
 		Desktop desktop = new Desktop();
 		Panel panel = new Panel();
-		panel.setPacked(false);
 
+		RadioButton radioButton = new RadioButton(false);
 		Radio radio = new Radio();
-		panel.setWidget(radio);
+		radioButton.addOnChangeListener(radio);
+		radioButton.setWidget(radio);
+		panel.setWidget(radioButton);
+
+		panel.setWidget(radioButton);
 		panel.show(desktop, true);
 		desktop.show();
 	}

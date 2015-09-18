@@ -8,39 +8,43 @@ package ej.widget;
 
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
-import ej.style.Size;
 import ej.style.Style;
+import ej.style.util.Size;
 
-public class Radio extends StyledWidget {
+public class Radio extends ToggleView {
 
-	private static final int CONTENT_SIZE = 34;
+	private static final int DIAMETER = 34;
 	private static final int THICKNESS = 2;
+	private static final int FADE = 1;
 
 	@Override
 	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
 		int remainingWidth = remainingSize.getWidth();
 		int remainingHeight = remainingSize.getHeight();
 		AntiAliasedShapes antiAliasedShapes = AntiAliasedShapes.Singleton;
-		antiAliasedShapes.setFade(1);
+		antiAliasedShapes.setFade(FADE);
 		antiAliasedShapes.setThickness(THICKNESS);
 		int foregroundColor = style.getForegroundColor();
 		g.setColor(foregroundColor);
 
-		int x = (remainingWidth - CONTENT_SIZE) / 2;
-		int y = (remainingHeight - CONTENT_SIZE) / 2;
-		int diameter = CONTENT_SIZE;
+		int x = (remainingWidth - DIAMETER) / 2;
+		int y = (remainingHeight - DIAMETER) / 2;
+		antiAliasedShapes.drawCircle(g, x, y, DIAMETER);
 
-		antiAliasedShapes.drawCircle(g, x, y, diameter);
-		// g.drawCircle(x, y, diameter);
-		antiAliasedShapes.setThickness(18);
-		antiAliasedShapes.drawPoint(g, remainingWidth / 2, remainingHeight / 2);
-
+		if (this.checked) {
+			int checkedDiameter = DIAMETER / 3 + (1 - (DIAMETER & 1));
+			int checkedX = (remainingWidth - checkedDiameter) / 2;
+			int checkedY = (remainingHeight - checkedDiameter) / 2;
+			g.fillCircle(checkedX, checkedY, checkedDiameter);
+			antiAliasedShapes.setThickness(2);
+			antiAliasedShapes.drawCircle(g, checkedX, checkedY, checkedDiameter);
+		}
 	}
 
 	@Override
 	protected Size getContentSize(Style style) {
 		Size contentSize = new Size();
-		contentSize.setSize(CONTENT_SIZE, CONTENT_SIZE);
+		contentSize.setSize(DIAMETER, DIAMETER);
 		return contentSize;
 	}
 }

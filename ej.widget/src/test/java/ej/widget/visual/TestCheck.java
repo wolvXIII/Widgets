@@ -6,7 +6,6 @@
  */
 package ej.widget.visual;
 
-
 import ej.microui.MicroUI;
 import ej.mwt.Desktop;
 import ej.mwt.Panel;
@@ -21,7 +20,6 @@ public class TestCheck {
 		MicroUI.start();
 		Desktop desktop = new Desktop();
 		Panel panel = new Panel();
-		panel.setPacked(false);
 
 		Check check = new Check();
 		panel.setWidget(check);

@@ -10,7 +10,7 @@
 	<classpathentry kind="var" path="BON-1.2"/>
 	<classpathentry kind="var" path="LOGGING-LIGHTWEIGHT-2.0"/>
 	<classpathentry kind="var" path="CHECKHELPER-1.1.0"/>
-	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=Widget&amp;ivyXmlPath=module.ivy&amp;confs=*"/>
+	<classpathentry kind="con" path="org.apache.ivyde.eclipse.cpcontainer.IVYDE_CONTAINER/?project=Widget&amp;ivyXmlPath=module.ivy&amp;confs=default%2Ctest"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ej.style"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

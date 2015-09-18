@@ -17,8 +17,8 @@ import ej.motion.MotionManager;
 import ej.motion.ease.EaseMotionManager;
 import ej.motion.util.MotionAnimator;
 import ej.motion.util.MotionListener;
-import ej.style.Size;
 import ej.style.Style;
+import ej.style.util.Size;
 import ej.widget.util.Styles;
 import ej.widget.util.TouchConfiguration;
 

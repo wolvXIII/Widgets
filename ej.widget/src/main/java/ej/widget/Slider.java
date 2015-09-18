@@ -9,8 +9,8 @@ package ej.widget;
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.microui.event.generator.Pointer;
-import ej.style.Size;
 import ej.style.Style;
+import ej.style.util.Size;
 import ej.widget.util.ColorsHelper;
 
 public class Slider extends AbstractProgressBar {

@@ -8,7 +8,7 @@ package ej.style.text;
 
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
-import ej.style.Size;
+import ej.style.util.Size;
 
 public interface TextManager {
 

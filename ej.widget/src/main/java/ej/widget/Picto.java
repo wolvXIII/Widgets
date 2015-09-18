@@ -8,8 +8,8 @@ package ej.widget;
 
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
-import ej.style.Size;
 import ej.style.Style;
+import ej.style.util.Size;
 import ej.widget.util.Styles;
 
 /**

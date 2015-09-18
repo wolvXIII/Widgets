@@ -8,15 +8,15 @@ package ej.widget;
 
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
-import ej.style.Size;
 import ej.style.Style;
+import ej.style.util.Size;
 
 /**
  * 
  */
-public class Check extends StyledWidget {
+public class Check extends StyledWidget implements OnStateChangeListener {
 
-	private static final int CONTENT_SIZE = 36;
+	private static final int SIZE = 36;
 
 	private boolean checked;
 
@@ -32,7 +32,7 @@ public class Check extends StyledWidget {
 		int foregroundColor = style.getForegroundColor();
 
 		g.setColor(foregroundColor);
-		int drawingSize = CONTENT_SIZE - thickness;
+		int drawingSize = SIZE - thickness;
 
 		int x1 = (remainingWidth - drawingSize) / 2;
 		int y1 = (remainingHeight - drawingSize) / 2;
@@ -86,8 +86,14 @@ public class Check extends StyledWidget {
 	@Override
 	protected Size getContentSize(Style style) {
 		Size contentSize = new Size();
-		contentSize.setSize(CONTENT_SIZE, CONTENT_SIZE);
+		contentSize.setSize(SIZE, SIZE);
 		return contentSize;
+	}
+
+	@Override
+	public void onStateChange(Object source, boolean before, boolean after) {
+		this.checked = after;
+		repaint();
 	}
 
 }

@@ -9,23 +9,26 @@ package ej.widget.visual;
 import ej.microui.MicroUI;
 import ej.mwt.Desktop;
 import ej.mwt.Panel;
-import ej.widget.Switch;
-import ej.widget.ToggleButton;
+import ej.widget.Radio;
+import ej.widget.RadioButton;
 
 /**
  * 
  */
-public class TestSwitch {
+public class TestRadioButton {
 
 	public static void main(String[] args) {
 		MicroUI.start();
 		Desktop desktop = new Desktop();
 		Panel panel = new Panel();
-		ToggleButton toggleButton = new ToggleButton(false);
-		Switch sswitch = new Switch();
-		toggleButton.addOnChangeListener(sswitch);
-		toggleButton.setWidget(sswitch);
-		panel.setWidget(toggleButton);
+
+		RadioButton radioButton = new RadioButton(false);
+		Radio radio = new Radio();
+		radioButton.addOnChangeListener(radio);
+		radioButton.setWidget(radio);
+		panel.setWidget(radioButton);
+
+		panel.setWidget(radioButton);
 		panel.show(desktop, true);
 		desktop.show();
 	}
