@@ -9,7 +9,7 @@ package ej.style;
 import java.util.List;
 
 /**
- *
+ * Represents a style sheet.
  */
 // HTML / CSS matching:
 // - renderable type is class selector
@@ -19,11 +19,11 @@ import java.util.List;
 public interface Stylesheet {
 
 	/**
-	 * Gets the style for the given renderable.
+	 * Gets the style for the given object.
 	 *
-	 * @param renderable
-	 *            the renderable to get the style.
-	 * @return the style applied to the renderable.
+	 * @param object
+	 *            the object to get the style for.
+	 * @return the style applied to the object.
 	 */
 	Style getStyle(Object object);
 
@@ -36,20 +36,116 @@ public interface Stylesheet {
 	 */
 	Style getStyle(Element element);
 
+	/**
+	 * Sets the style to apply to a type of element.
+	 *
+	 * @param type
+	 *            the element type.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Class<?> type, Style style);
 
+	/**
+	 * Sets the style to apply to an element.
+	 *
+	 * @param object
+	 *            the element.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Object object, Style style);
 
+	/**
+	 * Sets the style to apply to a type of element in a specific state.
+	 *
+	 * @param type
+	 *            the element type.
+	 * @param state
+	 *            the state.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Class<?> type, State state, Style style);
 
+	/**
+	 * Sets the style to apply to an element in a specific state.
+	 *
+	 * @param object
+	 *            the element.
+	 * @param state
+	 *            the state.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Object object, State state, Style style);
 
+	/**
+	 * Sets the style to apply to a type of element with a specific class selector.
+	 *
+	 * @param type
+	 *            the element type.
+	 * @param classSelector
+	 *            the class selector.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Class<?> type, String classSelector, Style style);
 
+	/**
+	 * Sets the style to apply to an element with a specific class selector.
+	 *
+	 * @param object
+	 *            the element.
+	 * @param classSelector
+	 *            the class selector.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Object object, String classSelector, Style style);
 
+	/**
+	 * Sets the style to apply to a type of element with some class selectors and states.
+	 *
+	 * @param type
+	 *            the element type.
+	 * @param classSelectors
+	 *            the class selectors.
+	 * @param states
+	 *            the states.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Class<?> type, List<String> classSelectors, List<State> states, Style style);
 
+	/**
+	 * Sets the style to apply to an element with some class selectors and states.
+	 *
+	 * @param object
+	 *            the element.
+	 * @param classSelectors
+	 *            the class selectors.
+	 * @param states
+	 *            the states.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(Object object, List<String> classSelectors, List<State> states, Style style);
 
 	/**
@@ -68,10 +164,42 @@ public interface Stylesheet {
 	 */
 	void setStyle(Style style);
 
+	/**
+	 * Sets the global style for the given state.
+	 *
+	 * @param state
+	 *            the state.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(State state, Style style);
 
+	/**
+	 * Sets the global style for the given class selector.
+	 *
+	 * @param classSelector
+	 *            the class selector.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(String classSelector, Style style);
 
+	/**
+	 * Sets the global style for the given selectors (class selectors + states).
+	 *
+	 * @param classSelectors
+	 *            the class selectors.
+	 * @param states
+	 *            the states.
+	 * @param style
+	 *            the style.
+	 * @throws NullPointerException
+	 *             if a parameter is <code>null</code>.
+	 */
 	void setStyle(List<String> classSelectors, List<State> states, Style style);
 
 }

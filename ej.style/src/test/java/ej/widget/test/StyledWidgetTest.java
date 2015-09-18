@@ -11,11 +11,11 @@ import com.is2t.testsuite.support.CheckHelper;
 import ej.microui.display.Colors;
 import ej.style.Style;
 import ej.style.background.PlainBackground;
-import ej.style.boxmodel.Border;
-import ej.style.boxmodel.SimpleBox;
 import ej.style.dimension.FixedDimension;
 import ej.style.font.FontProfile;
 import ej.style.font.FontProfile.FontSize;
+import ej.style.outline.Border;
+import ej.style.outline.SimpleOutline;
 import ej.style.text.TextManagerFull;
 import ej.style.util.SimpleStyle;
 
@@ -55,16 +55,16 @@ public abstract class StyledWidgetTest {
 		dimension.setSize(20, 20);
 		simpleStyle.setDimension(dimension);
 		simpleStyle.setTextManager(new TextManagerFull());
-		SimpleBox padding = new SimpleBox();
-		padding.setSize(10);
+		SimpleOutline padding = new SimpleOutline();
+		padding.setThickness(10);
 		simpleStyle.setPadding(padding);
 		Border border = new Border();
 		border.setWidth(2);
 		border.setRadius(1);
 		border.setColor(Colors.MAGENTA);
 		simpleStyle.setBorder(border);
-		SimpleBox margin = new SimpleBox();
-		margin.setSize(5);
+		SimpleOutline margin = new SimpleOutline();
+		margin.setThickness(5);
 		simpleStyle.setMargin(margin);
 		return simpleStyle;
 	}

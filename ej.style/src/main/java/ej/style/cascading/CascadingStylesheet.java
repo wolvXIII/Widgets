@@ -16,19 +16,25 @@ import ej.style.State;
 import ej.style.Style;
 import ej.style.Stylesheet;
 import ej.style.background.PlainBackground;
-import ej.style.boxmodel.Border;
-import ej.style.boxmodel.NoBox;
 import ej.style.dimension.NoDimension;
 import ej.style.font.FontProfile;
+import ej.style.outline.Border;
+import ej.style.outline.EmptyOutline;
 import ej.style.text.TextManagerFull;
 import ej.widget.test.StyleHelper;
 
+/**
+ * Style sheet that manage a cascading resolution of the style.
+ */
 public class CascadingStylesheet implements Stylesheet {
 
 	private final Map<Class<?>, Styles> typeStyles;
 	private final Map<Object, Styles> styles;
 	private final Styles globalStyles;
 
+	/**
+	 * Creates a new cascading style sheet.
+	 */
 	public CascadingStylesheet() {
 		this.typeStyles = new HashMap<>();
 		this.styles = new HashMap<>();
@@ -45,9 +51,9 @@ public class CascadingStylesheet implements Stylesheet {
 		defaultStyle.setFontProfile(new FontProfile());
 		defaultStyle.setTextManager(new TextManagerFull());
 		defaultStyle.setDimension(NoDimension.NO_DIMENSION);
-		defaultStyle.setPadding(NoBox.NO_BOXING);
+		defaultStyle.setPadding(EmptyOutline.EMPTY_OUTLINE);
 		defaultStyle.setBorder(Border.NO_BORDER);
-		defaultStyle.setMargin(NoBox.NO_BOXING);
+		defaultStyle.setMargin(EmptyOutline.EMPTY_OUTLINE);
 		return defaultStyle;
 	}
 
@@ -81,7 +87,7 @@ public class CascadingStylesheet implements Stylesheet {
 		List<State> states = element.getStates();
 		CascadingStyle resultingStyle = new CascadingStyle();
 
-		// instance: state then global
+		// instance
 		Styles styles = getStyles(element);
 		if (styles != null) {
 			if (getAndMerge(classSelectors, states, resultingStyle, styles)) {
@@ -89,7 +95,7 @@ public class CascadingStylesheet implements Stylesheet {
 			}
 		}
 
-		// type: state then global
+		// type
 		styles = getStyles(element.getClass());
 		if (styles != null) {
 			if (getAndMerge(classSelectors, states, resultingStyle, styles)) {
@@ -128,6 +134,7 @@ public class CascadingStylesheet implements Stylesheet {
 
 	private boolean getAndMerge(List<String> classSelectors, List<State> states, CascadingStyle resultingStyle,
 			Styles styles) {
+		// apply selectors…
 		for (SelectorStyle selectorStyle : styles.selectorsStyles) {
 			if (selectorStyle.selector.fit(classSelectors, states)) {
 				CascadingStyle stateStyle = selectorStyle.style;
@@ -136,6 +143,7 @@ public class CascadingStylesheet implements Stylesheet {
 				}
 			}
 		}
+		// …then global
 		if (merge(resultingStyle, styles.style)) {
 			return true;
 		}

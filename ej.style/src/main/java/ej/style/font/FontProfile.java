@@ -8,15 +8,51 @@ package ej.style.font;
 
 import ej.microui.display.DisplayFont;
 
+/**
+ * A font profile represents a font with a family, a size and a style.
+ */
 public class FontProfile {
 
 	/**
-	 * @see http://www.w3schools.com/cssref/pr_font_font-size.asp
+	 * Font sizes.
 	 */
 	public enum FontSize {
-		XX_SMALL, X_SMALL, SMALL, MEDIUM/* default */, LARGE, X_LARGE, XX_LARGE, SMALLER, LARGER, LENGTH/* custom */,
-		PERCENT, INITIAL, INHERIT;
-	};
+		/**
+		 * Extra extra small.
+		 */
+		XX_SMALL,
+		/**
+		 * Extra small.
+		 */
+		X_SMALL,
+		/**
+		 * Small.
+		 */
+		SMALL,
+		/**
+		 * Medium.
+		 */
+		MEDIUM,
+		/**
+		 * Large.
+		 */
+		LARGE,
+		/**
+		 * Extra large.
+		 */
+		X_LARGE,
+		/**
+		 * Extra extra large.
+		 */
+		XX_LARGE,
+		/**
+		 * Manual fixed size length.
+		 */
+		LENGTH/* custom */,
+		/*
+		 * PERCENT,SMALLER, LARGER, INITIAL, INHERIT
+		 */;
+	}
 
 	private String family;
 	private FontSize size;
@@ -24,8 +60,11 @@ public class FontProfile {
 	// FIXME distinguish font-style & font-weight?
 	private int style; // MicroUI DisplayFont styles
 
+	/**
+	 * Creates a new font profile.
+	 */
 	public FontProfile() {
-		this.family = "";
+		this.family = ""; //$NON-NLS-1$
 		this.size = FontSize.MEDIUM;
 		this.style = DisplayFont.STYLE_PLAIN;
 	}
@@ -71,7 +110,7 @@ public class FontProfile {
 	/**
 	 * Gets the font size value.
 	 * <p>
-	 * Used only if size is one of {@link FontSize#LENGTH} or {@link FontSize#PERCENT}.
+	 * Used only if size is one of {@link FontSize#LENGTH}.
 	 *
 	 * @return the size value.
 	 */

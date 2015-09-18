@@ -4,7 +4,7 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package ej.style.boxmodel;
+package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
 import ej.style.util.Size;
@@ -12,7 +12,7 @@ import ej.style.util.Size;
 /**
  *
  */
-public class Border implements Box {
+public class Border implements Outline {
 
 	/**
 	 * Singleton to use to avoid creating several instances.
@@ -55,13 +55,13 @@ public class Border implements Box {
 	}
 
 	@Override
-	public Size box(Size dimension) {
+	public Size wrap(Size dimension) {
 		dimension.increment(this.size * 2, this.size * 2);
 		return dimension;
 	}
 
 	@Override
-	public Size unbox(Size dimension) {
+	public Size unwrap(Size dimension) {
 		dimension.decrement(this.size * 2, this.size * 2);
 		return dimension;
 	}

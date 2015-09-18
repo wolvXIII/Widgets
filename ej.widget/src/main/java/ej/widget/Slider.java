@@ -31,9 +31,9 @@ public class Slider extends AbstractProgressBar {
 	protected float getPositionFactor(int pointerX) {
 		Style style = getStyle();
 		Size size = new Size();
-		style.getMargin().box(size);
-		style.getPadding().box(size);
-		style.getBorder().box(size);
+		style.getMargin().wrap(size);
+		style.getPadding().wrap(size);
+		style.getBorder().wrap(size);
 		int width = getWidth();
 
 		int halfNoContentWidth = size.getWidth() / 2;

@@ -8,25 +8,49 @@ package ej.style.util;
 
 import ej.style.Style;
 import ej.style.background.Background;
-import ej.style.boxmodel.Border;
-import ej.style.boxmodel.Box;
 import ej.style.dimension.Dimension;
 import ej.style.font.FontProfile;
+import ej.style.outline.Border;
+import ej.style.outline.Outline;
 import ej.style.text.TextManager;
 
 /**
- *
+ * Convenient abstract implementation of style.
  */
 public abstract class AbstractStyle implements Style {
 
+	/**
+	 * Foreground color.
+	 */
 	protected int foregroundColor;
+	/**
+	 * Background.
+	 */
 	protected Background background;
+	/**
+	 * Font profile.
+	 */
 	protected FontProfile fontProfile;
+	/**
+	 * Text manager.
+	 */
 	protected TextManager textManager;
+	/**
+	 * Dimension.
+	 */
 	protected Dimension dimension;
-	protected Box padding;
+	/**
+	 * Padding.
+	 */
+	protected Outline padding;
+	/**
+	 * Border.
+	 */
 	protected Border border;
-	protected Box margin;
+	/**
+	 * Margin.
+	 */
+	protected Outline margin;
 
 	@Override
 	public int getForegroundColor() {
@@ -54,7 +78,7 @@ public abstract class AbstractStyle implements Style {
 	}
 
 	@Override
-	public Box getPadding() {
+	public Outline getPadding() {
 		return this.padding;
 	}
 
@@ -64,7 +88,7 @@ public abstract class AbstractStyle implements Style {
 	}
 
 	@Override
-	public Box getMargin() {
+	public Outline getMargin() {
 		return this.margin;
 	}
 
@@ -124,7 +148,7 @@ public abstract class AbstractStyle implements Style {
 	 * @param padding
 	 *            the padding to set.
 	 */
-	public void setPadding(Box padding) {
+	public void setPadding(Outline padding) {
 		this.padding = padding;
 	}
 
@@ -144,7 +168,7 @@ public abstract class AbstractStyle implements Style {
 	 * @param margin
 	 *            the margin to set.
 	 */
-	public void setMargin(Box margin) {
+	public void setMargin(Outline margin) {
 		this.margin = margin;
 	}
 
@@ -171,14 +195,14 @@ public abstract class AbstractStyle implements Style {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Foreground: " + Integer.toHexString(getForegroundColor())).append('\n');
-		sb.append("Background: " + getBackground().toString()).append('\n');
-		sb.append("Font profile: " + getFontProfile().toString()).append('\n');
-		sb.append("Text manager: " + getTextManager().toString()).append('\n');
-		sb.append("Dimension: " + getDimension().toString()).append('\n');
-		sb.append("Padding: " + getPadding().toString()).append('\n');
-		sb.append("Border: " + getBorder().toString()).append('\n');
-		sb.append("Margin: " + getMargin().toString()).append('\n');
+		sb.append("Foreground: " + Integer.toHexString(getForegroundColor())).append('\n'); //$NON-NLS-1$
+		sb.append("Background: " + getBackground().toString()).append('\n'); //$NON-NLS-1$
+		sb.append("Font profile: " + getFontProfile().toString()).append('\n'); //$NON-NLS-1$
+		sb.append("Text manager: " + getTextManager().toString()).append('\n'); //$NON-NLS-1$
+		sb.append("Dimension: " + getDimension().toString()).append('\n'); //$NON-NLS-1$
+		sb.append("Padding: " + getPadding().toString()).append('\n'); //$NON-NLS-1$
+		sb.append("Border: " + getBorder().toString()).append('\n'); //$NON-NLS-1$
+		sb.append("Margin: " + getMargin().toString()).append('\n'); //$NON-NLS-1$
 		return sb.toString();
 	}
 

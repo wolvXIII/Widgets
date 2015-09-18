@@ -11,20 +11,14 @@ import ej.microui.display.GraphicsContext;
 import ej.style.util.Size;
 
 /**
- * Text manager implementation that manage text alignment, indentation, decoration and transform.
+ * Text manager implementation that manage draws the text aligned on the top left.
  */
-public class TextManagerFull implements TextManager {
-
-	// TODO manage text decoration & text indent & text tranform
-
-	// Graphics context constants.
-	// private int alignement;
+public class SimpleTextManager implements TextManager {
 
 	@Override
 	public void drawText(GraphicsContext g, String text, DisplayFont font, Size size) {
-		// TODO
 		g.setFont(font);
-		g.drawString(text, 0, 0, 0);
+		g.drawString(text, 0, 0, GraphicsContext.LEFT | GraphicsContext.TOP);
 	}
 
 }

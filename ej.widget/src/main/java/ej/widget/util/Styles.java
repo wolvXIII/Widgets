@@ -11,10 +11,10 @@ import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;
 import ej.style.background.Background;
-import ej.style.boxmodel.Box;
 import ej.style.dimension.Dimension;
 import ej.style.font.FontLoader;
 import ej.style.font.FontProfile;
+import ej.style.outline.Outline;
 import ej.style.util.Size;
 
 public class Styles {
@@ -38,27 +38,27 @@ public class Styles {
 		dimension.apply(contentSize, widthHint, heightHint);
 
 		// … plus padding size…
-		Box padding = style.getPadding();
-		padding.box(preferredSize);
+		Outline padding = style.getPadding();
+		padding.wrap(preferredSize);
 
 		// … plus border size…
-		Box border = style.getBorder();
-		border.box(preferredSize);
+		Outline border = style.getBorder();
+		border.wrap(preferredSize);
 
 		// … plus margin size…
-		Box margin = style.getMargin();
-		margin.box(preferredSize);
+		Outline margin = style.getMargin();
+		margin.wrap(preferredSize);
 
 		return preferredSize;
 	}
 
 	public static void renderWithoutContent(GraphicsContext g, Size remainingSize, Style style) {
 		// Apply margin.
-		Box margin = style.getMargin();
+		Outline margin = style.getMargin();
 		margin.apply(g, remainingSize);
 
 		// Draw border.
-		Box border = style.getBorder();
+		Outline border = style.getBorder();
 		border.apply(g, remainingSize);
 
 		// Draw background.
@@ -66,7 +66,7 @@ public class Styles {
 		background.draw(g, remainingSize.getWidth(), remainingSize.getHeight());
 
 		// Apply padding.
-		Box padding = style.getPadding();
+		Outline padding = style.getPadding();
 		padding.apply(g, remainingSize);
 	}
 }

@@ -11,7 +11,7 @@ import ej.style.util.AbstractStyle;
 
 /*package*/class CascadingStyle extends AbstractStyle {
 
-	public CascadingStyle() {
+	CascadingStyle() {
 		// set default values
 		this.foregroundColor = -1;
 		// others are null: VM DONE
@@ -20,7 +20,7 @@ import ej.style.util.AbstractStyle;
 	/**
 	 * Fills all missing attributes of this style with those in the given style.
 	 */
-	public boolean merge(Style style) {
+	boolean merge(Style style) {
 		if (!CascadingHelper.isSetForeground(this)) {
 			this.foregroundColor = style.getForegroundColor();
 		}
@@ -48,7 +48,7 @@ import ej.style.util.AbstractStyle;
 		return CascadingHelper.isComplete(this);
 	}
 
-	public boolean inheritMerge(Style parentStyle) {
+	boolean inheritMerge(Style parentStyle) {
 		if (!CascadingHelper.isSetForeground(this)) {
 			this.foregroundColor = parentStyle.getForegroundColor();
 		}
@@ -64,7 +64,7 @@ import ej.style.util.AbstractStyle;
 	/**
 	 * Fills all defined attributes of the given style in this style.
 	 */
-	public void override(Style style) {
+	void override(Style style) {
 		if (CascadingHelper.isSetForeground(style)) {
 			this.foregroundColor = style.getForegroundColor();
 		}
@@ -91,7 +91,7 @@ import ej.style.util.AbstractStyle;
 		}
 	}
 
-	public CascadingStyle copy() {
+	CascadingStyle copy() {
 		CascadingStyle simpleStyle = new CascadingStyle();
 		simpleStyle.foregroundColor = this.foregroundColor;
 		simpleStyle.background = this.background;

@@ -4,29 +4,32 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package ej.style.boxmodel;
+package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
 import ej.style.util.Size;
 
-public class NoBox implements Box {
+/**
+ * A outline that is empty.
+ */
+public class EmptyOutline implements Outline {
 
 	/**
-	 * NoBox singleton.
+	 * Empty outline singleton.
 	 */
 	// assume that it is stateless
-	public static final NoBox NO_BOXING = new NoBox();
+	public static final EmptyOutline EMPTY_OUTLINE = new EmptyOutline();
 
-	private NoBox() {
+	private EmptyOutline() {
 	}
 
 	@Override
-	public Size box(Size dimension) {
+	public Size wrap(Size dimension) {
 		return dimension;
 	}
 
 	@Override
-	public Size unbox(Size dimension) {
+	public Size unwrap(Size dimension) {
 		return dimension;
 	}
 
