@@ -18,10 +18,10 @@ import ej.microui.event.controller.EventGeneratorsHandler;
 import ej.microui.event.generator.Pointer;
 import ej.mwt.Widget;
 import ej.style.Element;
-import ej.style.Size;
 import ej.style.State;
 import ej.style.Style;
 import ej.style.Stylesheet;
+import ej.style.util.Size;
 import ej.widget.util.Styles;
 
 /**

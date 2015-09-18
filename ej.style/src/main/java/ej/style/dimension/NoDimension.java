@@ -6,7 +6,7 @@
  */
 package ej.style.dimension;
 
-import ej.style.Size;
+import ej.style.util.Size;
 
 /**
  *

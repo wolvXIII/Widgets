@@ -7,7 +7,7 @@
 package ej.style.boxmodel;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.Size;
+import ej.style.util.Size;
 
 public class NoBox implements Box {
 

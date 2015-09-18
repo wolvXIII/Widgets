@@ -7,7 +7,7 @@
 package ej.style.dimension;
 
 import ej.mwt.MWT;
-import ej.style.Size;
+import ej.style.util.Size;
 
 public class FixedDimension implements Dimension {
 

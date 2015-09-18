@@ -8,8 +8,8 @@ package ej.widget;
 
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
-import ej.style.Size;
 import ej.style.Style;
+import ej.style.util.Size;
 
 /**
  * 
