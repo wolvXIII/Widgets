@@ -49,6 +49,21 @@ public class GridComposite extends Composite {
 	}
 
 	@Override
+	public void add(Widget widget) throws NullPointerException, IllegalArgumentException {
+		super.add(widget);
+	}
+
+	@Override
+	public void remove(Widget widget) throws NullPointerException {
+		super.remove(widget);
+	}
+
+	@Override
+	public void removeAllWidgets() {
+		super.removeAllWidgets();
+	}
+
+	@Override
 	public void validate(int widthHint, int heightHint) {
 		if (!isVisible()) {
 			// optim: do not validate its hierarchy
@@ -61,6 +76,7 @@ public class GridComposite extends Composite {
 		int length = widgets.length;
 		if (length == 0) {
 			// nothing to do
+			setPreferredSize(widthHint, heightHint);
 			return;
 		}
 
@@ -113,6 +129,9 @@ public class GridComposite extends Composite {
 		// TODO try to merge with validate
 		Widget[] widgets = getWidgets();
 		int length = widgets.length;
+		if (length == 0) {
+			return;
+		}
 
 		// compute widgets bounds
 		boolean horizontalLocal = this.horizontal;
