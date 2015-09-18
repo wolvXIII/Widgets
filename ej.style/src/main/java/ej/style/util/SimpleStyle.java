@@ -6,8 +6,14 @@
  */
 package ej.style.util;
 
+/**
+ * Simple implementation of style.
+ */
 public class SimpleStyle extends AbstractStyle implements Cloneable {
 
+	/**
+	 * Creates a simple style.
+	 */
 	public SimpleStyle() {
 		// set default values
 		this.foregroundColor = -1;
@@ -21,6 +27,11 @@ public class SimpleStyle extends AbstractStyle implements Cloneable {
 		return clone;
 	}
 
+	/**
+	 * Creates a copy of this style.
+	 * 
+	 * @return a copy of this style.
+	 */
 	public SimpleStyle copy() {
 		SimpleStyle simpleStyle = new SimpleStyle();
 		copyIn(simpleStyle);

@@ -4,15 +4,15 @@
  * Copyright 2015 IS2T. All rights reserved.
  * IS2T PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
-package ej.style.boxmodel;
+package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
 import ej.style.util.Size;
 
 /**
- *
+ * Complex outline that have a different thickness for each edge.
  */
-public class ComplexBox implements Box {
+public class ComplexOutline implements Outline {
 
 	private int top;
 	private int bottom;
@@ -96,13 +96,13 @@ public class ComplexBox implements Box {
 	}
 
 	@Override
-	public Size box(Size dimension) {
+	public Size wrap(Size dimension) {
 		dimension.increment(this.left + this.right, this.top + this.bottom);
 		return dimension;
 	}
 
 	@Override
-	public Size unbox(Size dimension) {
+	public Size unwrap(Size dimension) {
 		dimension.decrement(this.left + this.right, this.top + this.bottom);
 		return dimension;
 	}
@@ -110,7 +110,7 @@ public class ComplexBox implements Box {
 	@Override
 	public Size apply(GraphicsContext g, Size dimension) {
 		g.translate(this.left, this.top);
-		dimension.increment(-this.left - this.right, -this.top - this.bottom);
+		unwrap(dimension);
 		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());
 		return dimension;
 	}

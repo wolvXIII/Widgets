@@ -7,35 +7,31 @@
 package ej.style;
 
 /**
- *
+ * Represents the states of an element.
  */
-// Sure about that?!
 public enum State {
 
-	//no state
-//	None,
-	
 	//pseudo-classes
 	Active,
 	Checked,
 	Disabled,
 	Empty,
 	Enabled,
-	FirstChild,
-	FirstOfType,
+	// FirstChild,
+	// FirstOfType,
 	Focus,
 	Hover,
 	InRange,
 	Invalid,
-	Lang, //parameter
-	LastChild,
-	LastOfType,
+	// Lang, //parameter
+	// LastChild,
+	// LastOfType,
 	Link,
-	Not, //parameter
-	NthChild, //parameter
-	NthLastChild, //parameter
-	NthLastOfType, // parameter
-	NthOfType, //parameter
+	// Not, //parameter
+	// NthChild, //parameter
+	// NthLastChild, //parameter
+	// NthLastOfType, // parameter
+	// NthOfType, //parameter
 	OnlyOfType,
 	OnlyChild,
 	Optional,
@@ -47,12 +43,12 @@ public enum State {
 	Target,
 	Valid,
 	Visited,
-	
+
 	//pseudo-elements
-	After,
-	Before,
-	FirstLetter,
-	FirstLine,
-	Selection,
+	// After,
+	// Before,
+	// FirstLetter,
+	// FirstLine,
+	// Selection,
 
 }

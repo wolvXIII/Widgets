@@ -9,7 +9,7 @@ package ej.style.dimension;
 import ej.style.util.Size;
 
 /**
- *
+ * Dimension without constraint.
  */
 public class NoDimension implements Dimension {
 

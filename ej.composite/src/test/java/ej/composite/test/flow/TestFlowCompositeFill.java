@@ -22,7 +22,7 @@ public class TestFlowCompositeFill extends Test {
 	public static void main(String[] args) {
 		MicroUI.start();
 		new TestFlowCompositeFill().start();
-		// MicroUI.stop();
+		MicroUI.stop();
 	}
 
 	@Override

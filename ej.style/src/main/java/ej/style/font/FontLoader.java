@@ -9,7 +9,7 @@ package ej.style.font;
 import ej.microui.display.DisplayFont;
 
 /**
- *
+ * A font loader is responsible of loading the fonts.
  */
 public interface FontLoader {
 

@@ -10,6 +10,9 @@ import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.util.Size;
 
+/**
+ * Text manager implementation that manage text alignment, indentation, decoration and transform.
+ */
 public class TextManagerFull implements TextManager {
 
 	// TODO manage text decoration & text indent & text tranform
@@ -17,6 +20,7 @@ public class TextManagerFull implements TextManager {
 	// Graphics context constants.
 	private int alignment;
 	private int lineHeight;
+
 
 	/**
 	 * 
