@@ -29,14 +29,14 @@ public class TestGridCompositeNone extends Test {
 		testVertical();
 	}
 
-	private static void testHorizontal() {
+	private void testHorizontal() {
 		GridComposite gridComposite = new GridComposite();
 		gridComposite.setHorizontal(true);
 		gridComposite.setCount(2);
 		TestHelper.showAndWait(gridComposite, false);
 
 		// get widgets size
-		TestHelper.checkWidget("h composite", gridComposite, 0, 0, 0, 0);
+		TestHelper.checkWidget(getClass(), "h composite", gridComposite, 0, 0, 0, 0);
 
 		TestHelper.hide(gridComposite);
 		TestHelper.showAndWait(gridComposite, true);
@@ -45,17 +45,17 @@ public class TestGridCompositeNone extends Test {
 		int displayWidth = display.getWidth();
 		int displayHeight = display.getHeight();
 		// get widgets size
-		TestHelper.checkWidget("h composite", gridComposite, 0, 0, displayWidth, displayHeight);
+		TestHelper.checkWidget(getClass(), "h composite", gridComposite, 0, 0, displayWidth, displayHeight);
 	}
 
-	private static void testVertical() {
+	private void testVertical() {
 		GridComposite gridComposite = new GridComposite();
 		gridComposite.setHorizontal(false);
 		gridComposite.setCount(2);
 		TestHelper.showAndWait(gridComposite, false);
 
 		// get widgets size
-		TestHelper.checkWidget("v composite", gridComposite, 0, 0, 0, 0);
+		TestHelper.checkWidget(getClass(), "v composite", gridComposite, 0, 0, 0, 0);
 
 		TestHelper.hide(gridComposite);
 		TestHelper.showAndWait(gridComposite, true);
@@ -64,7 +64,7 @@ public class TestGridCompositeNone extends Test {
 		int displayWidth = display.getWidth();
 		int displayHeight = display.getHeight();
 		// get widgets size
-		TestHelper.checkWidget("v composite", gridComposite, 0, 0, displayWidth, displayHeight);
+		TestHelper.checkWidget(getClass(), "v composite", gridComposite, 0, 0, displayWidth, displayHeight);
 	}
 
 }

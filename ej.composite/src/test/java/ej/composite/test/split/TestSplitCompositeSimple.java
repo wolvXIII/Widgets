@@ -37,7 +37,7 @@ public class TestSplitCompositeSimple extends Test {
 		testVerticalPackedVariableSplit();
 	}
 
-	private static void testHorizontalPackedUniformSplit() {
+	private void testHorizontalPackedUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -58,7 +58,7 @@ public class TestSplitCompositeSimple extends Test {
 				baseHeight);
 	}
 
-	private static void testHorizontalPackedVariableSplit() {
+	private void testHorizontalPackedVariableSplit() {
 		final int baseWidth = 30;
 		final int biggestHeight = 40;
 		final int smallestHeight = 20;
@@ -99,7 +99,7 @@ public class TestSplitCompositeSimple extends Test {
 				biggestHeight);
 	}
 
-	private static void testHorizontalFillUniformSplit() {
+	private void testHorizontalFillUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -125,7 +125,7 @@ public class TestSplitCompositeSimple extends Test {
 				displayHeight);
 	}
 
-	private static void testVerticalPackedUniformSplit() {
+	private void testVerticalPackedUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -146,7 +146,7 @@ public class TestSplitCompositeSimple extends Test {
 				baseHeight * 3);
 	}
 
-	private static void testVerticalPackedVariableSplit() {
+	private void testVerticalPackedVariableSplit() {
 		final int biggestWidth = 30;
 		final int smallestWidth = 15;
 		final int baseHeight = 20;
@@ -187,7 +187,7 @@ public class TestSplitCompositeSimple extends Test {
 				baseHeight * 3);
 	}
 
-	private static void testVerticalFillUniformSplit() {
+	private void testVerticalFillUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -213,7 +213,7 @@ public class TestSplitCompositeSimple extends Test {
 				displayHeight);
 	}
 
-	public static SplitComposite createSplitComposite(Widget firstLabel, Widget secondLabel, float ratio,
+	static SplitComposite createSplitComposite(Widget firstLabel, Widget secondLabel, float ratio,
 			boolean horizontal) {
 		SplitComposite splitComposite = new SplitComposite();
 		splitComposite.setHorizontal(horizontal);

@@ -8,6 +8,7 @@ package ej.composite.test;
 
 import ej.composite.test.border.TestBorderCompositeCenterAlone;
 import ej.composite.test.border.TestBorderCompositeConsistency;
+import ej.composite.test.border.TestBorderCompositeNorthAlone;
 import ej.composite.test.flow.TestFlowCompositeFill;
 import ej.composite.test.flow.TestFlowCompositeSimple;
 import ej.composite.test.grid.TestGridCompositeNone;
@@ -28,6 +29,7 @@ public class TestAll {
 
 		new TestBorderCompositeCenterAlone().start();
 		new TestBorderCompositeConsistency().start();
+		new TestBorderCompositeNorthAlone().start();
 
 		new TestFlowCompositeFill().start();
 		new TestFlowCompositeSimple().start();

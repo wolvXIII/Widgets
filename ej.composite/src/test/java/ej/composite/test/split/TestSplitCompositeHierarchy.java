@@ -38,7 +38,7 @@ public class TestSplitCompositeHierarchy extends Test {
 		testHorizontalVerticalPackedUniformSplit();
 	}
 
-	private static void testHorizontalHorizontalPackedUniformSplit() {
+	private void testHorizontalHorizontalPackedUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -74,7 +74,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				baseHeight);
 	}
 
-	private static void testVerticalHorizontalPackedUniformSplit() {
+	private void testVerticalHorizontalPackedUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -110,7 +110,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				baseHeight * 2);
 	}
 
-	private static void testVerticalVerticalPackedUniformSplit() {
+	private void testVerticalVerticalPackedUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -145,7 +145,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				bottomBottomLabel.getHeight(), baseHeight * 4);
 	}
 
-	private static void testHorizontalVerticalPackedUniformSplit() {
+	private void testHorizontalVerticalPackedUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -181,7 +181,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				baseHeight * 2);
 	}
 
-	private static void testHorizontalHorizontalFillUniformSplit() {
+	private void testHorizontalHorizontalFillUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -220,7 +220,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				displayHeight);
 	}
 
-	private static void testVerticalHorizontalFillUniformSplit() {
+	private void testVerticalHorizontalFillUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -259,7 +259,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				displayHeight - topRightLabel.getHeight());
 	}
 
-	private static void testVerticalVerticalFillUniformSplit() {
+	private void testVerticalVerticalFillUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;
@@ -299,7 +299,7 @@ public class TestSplitCompositeHierarchy extends Test {
 				displayHeight - topSplitComposite.getHeight() - bottomTopLabel.getHeight());
 	}
 
-	private static void testHorizontalVerticalFillUniformSplit() {
+	private void testHorizontalVerticalFillUniformSplit() {
 		final int baseWidth = 30;
 		final int baseHeight = 20;
 		float ratio = (float) 1 / 3;

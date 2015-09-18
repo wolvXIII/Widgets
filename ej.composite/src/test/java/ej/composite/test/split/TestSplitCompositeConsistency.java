@@ -76,10 +76,7 @@ public class TestSplitCompositeConsistency extends Test {
 		TestHelper.checkItemsCount(TestSplitCompositeConsistency.class, splitComposite, 0);
 		TestHelper.showAndWait(splitComposite, false);
 		CheckHelper.check(TestSplitCompositeConsistency.class, "composite width", splitComposite.getWidth(), 0);
-		CheckHelper.check(TestSplitCompositeConsistency.class, "composite height", splitComposite.getHeight(), 0);// TODO
-																													// Auto-generated
-																													// method
-																													// stub
+		CheckHelper.check(TestSplitCompositeConsistency.class, "composite height", splitComposite.getHeight(), 0);
 	}
 
 }
