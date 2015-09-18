@@ -6,6 +6,8 @@
  */
 package ej.composite;
 
+import java.util.Iterator;
+
 import ej.microui.display.GraphicsContext;
 import ej.mwt.Composite;
 import ej.mwt.MWT;
@@ -71,9 +73,7 @@ public class GridComposite extends Composite {
 			return;
 		}
 
-		// XXX idea: add an iterator in composites to avoid copying the array
-		Widget[] widgets = getWidgets();
-		int length = widgets.length;
+		int length = getWidgetsCount();
 		if (length == 0) {
 			// nothing to do
 			setPreferredSize(widthHint, heightHint);
@@ -102,7 +102,9 @@ public class GridComposite extends Composite {
 		int maxCellWidth = 0;
 		int maxCellHeight = 0;
 
-		for (Widget widget : widgets) {
+		Iterator<Widget> iterator = iterator();
+		while (iterator.hasNext()) {
+			Widget widget = iterator.next();
 			widget.validate(cellsWidth, cellsHeight);
 
 			// compute biggest size
@@ -127,8 +129,7 @@ public class GridComposite extends Composite {
 		super.setBounds(x, y, width, height);
 
 		// TODO try to merge with validate
-		Widget[] widgets = getWidgets();
-		int length = widgets.length;
+		int length = getWidgetsCount();
 		if (length == 0) {
 			return;
 		}
@@ -153,7 +154,9 @@ public class GridComposite extends Composite {
 		int offset = 0;
 		int currentX = 0;
 		int currentY = 0;
-		for (Widget widget : widgets) {
+		Iterator<Widget> iterator = iterator();
+		while (iterator.hasNext()) {
+			Widget widget = iterator.next();
 			widget.setBounds(currentX, currentY, cellWidth, cellHeight);
 
 			if (++offset == countLocal) {
@@ -178,6 +181,7 @@ public class GridComposite extends Composite {
 
 	@Override
 	public void render(GraphicsContext g) {
+		// TODO
 	}
 
 }
