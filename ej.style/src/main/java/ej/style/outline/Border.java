@@ -20,9 +20,8 @@ public class Border implements Outline {
 	// FIXME make this singleton stateless
 	public static final Border NO_BORDER = new Border();
 
-	private int color;
-	private int size;
-	private int radius;
+	protected int color;
+	protected int size;
 
 	/**
 	 * Sets the color.
@@ -44,16 +43,6 @@ public class Border implements Outline {
 		this.size = width;
 	}
 
-	/**
-	 * Sets the radius.
-	 *
-	 * @param radius
-	 *            the radius to set.
-	 */
-	public void setRadius(int radius) {
-		this.radius = radius;
-	}
-
 	@Override
 	public Size wrap(Size dimension) {
 		dimension.increment(this.size * 2, this.size * 2);
@@ -69,7 +58,6 @@ public class Border implements Outline {
 	@Override
 	public Size apply(GraphicsContext g, Size dimension) {
 		g.setColor(this.color);
-		// TODO apply radius
 		int size = this.size;
 		int currentWidth = dimension.getWidth() - 1;
 		int currentHeight = dimension.getHeight() - 1;

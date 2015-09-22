@@ -29,6 +29,12 @@ public class TextManagerFull implements TextManager {
 		this.lineHeight = 10;
 	}
 
+	/**
+	 * Sets the horizontal alignment of the text.
+	 * 
+	 * @param alignment
+	 *            one of the value among GraphicsContext.LEFT, GraphicsContext.HCENTER or GraphicsContext.RIGHT.
+	 */
 	public void setAlignment(int alignment) {
 		this.alignment = alignment;
 	}
@@ -41,7 +47,6 @@ public class TextManagerFull implements TextManager {
 	// TODO: handle the justify case.
 	@Override
 	public void drawText(GraphicsContext g, String text, DisplayFont font, int color, Size size) {
-		System.out.println("TextManagerFull.drawText()");
 		g.setFont(font);
 		g.setColor(color);
 		int width = size.getWidth();
@@ -51,7 +56,7 @@ public class TextManagerFull implements TextManager {
 		int y = 0;
 
 		for (int i = 0; i < lines.length; i++) {
-			g.drawString(lines[i], x, y, GraphicsContext.LEFT | GraphicsContext.TOP);
+			g.drawString(lines[i], x, y, this.alignment | GraphicsContext.TOP);
 			y += this.lineHeight;
 		}
 	}
@@ -77,12 +82,12 @@ public class TextManagerFull implements TextManager {
 		int alignment = this.alignment;
 
 		if ((alignment & GraphicsContext.HCENTER) == GraphicsContext.HCENTER) {
-			x -= (width >> 1);
+			x += (width >> 1);
 			++constraintCount;
 		}
 
 		if ((alignment & GraphicsContext.RIGHT) == GraphicsContext.RIGHT) {
-			x -= (width - 1);
+			x += (width - 1);
 			++constraintCount;
 		}
 		if ((alignment & GraphicsContext.LEFT) == GraphicsContext.LEFT) {

@@ -60,7 +60,6 @@ public abstract class StyledWidgetTest {
 		simpleStyle.setPadding(padding);
 		Border border = new Border();
 		border.setWidth(2);
-		border.setRadius(1);
 		border.setColor(Colors.MAGENTA);
 		simpleStyle.setBorder(border);
 		SimpleOutline margin = new SimpleOutline();
