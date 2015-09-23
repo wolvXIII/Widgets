@@ -12,6 +12,7 @@ import ej.microui.display.Colors;
 import ej.style.State;
 import ej.style.Style;
 import ej.style.cascading.CascadingStylesheet;
+import ej.style.util.StyleHelper;
 import ej.widget.test.env.SimpleElement;
 
 public class GeneralSelectorsTest extends StyledWidgetTest {

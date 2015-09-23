@@ -9,7 +9,6 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import ej.microui.display.GraphicsContext;
 import ej.microui.event.generator.Pointer;
 
 /**
@@ -19,7 +18,7 @@ import ej.microui.event.generator.Pointer;
  * 
  * You can also specify the position of the icon relative to the text. By default, icon is on the left of the text.
  */
-public class Button extends AllSizeComposite {
+public class Button extends FitComposite {
 
 	private boolean pressed;
 	private final List<OnClickListener> onClickListeners;
@@ -67,11 +66,5 @@ public class Button extends AllSizeComposite {
 		setPressed(false);
 		performClick();
 		return false;
-	}
-
-	@Override
-	public void render(GraphicsContext g) {
-		System.out.println("Button.render() " + this);
-		super.render(g);
 	}
 }

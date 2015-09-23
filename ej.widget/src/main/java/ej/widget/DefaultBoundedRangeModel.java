@@ -27,7 +27,7 @@ public class DefaultBoundedRangeModel implements BoundedRangeModel {
 	 * @param initialValue
 	 *            the initial value of the model.
 	 * @throws IllegalArgumentException
-	 *             if the constraint minimum <= initialValue <= maximum is not satisfied.
+	 *             if the constraint minimum &lt;= initialValue &lt;= maximum is not satisfied.
 	 */
 	public DefaultBoundedRangeModel(int minimum, int maximum, int initialValue) {
 		if (minimum > initialValue || initialValue > maximum) {

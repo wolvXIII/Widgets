@@ -11,6 +11,7 @@ import com.is2t.testsuite.support.CheckHelper;
 import ej.style.Element;
 import ej.style.Style;
 import ej.style.cascading.CascadingStylesheet;
+import ej.style.util.StyleHelper;
 import ej.widget.test.env.SimpleElement;
 
 public class InheritanceTest extends StyledWidgetTest {

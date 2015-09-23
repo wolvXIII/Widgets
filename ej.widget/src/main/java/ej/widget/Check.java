@@ -14,11 +14,9 @@ import ej.style.util.Size;
 /**
  * 
  */
-public class Check extends StyledWidget implements OnStateChangeListener {
+public class Check extends ToggleView {
 
 	private static final int SIZE = 36;
-
-	private boolean checked;
 
 	@Override
 	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
@@ -88,12 +86,6 @@ public class Check extends StyledWidget implements OnStateChangeListener {
 		Size contentSize = new Size();
 		contentSize.setSize(SIZE, SIZE);
 		return contentSize;
-	}
-
-	@Override
-	public void onStateChange(Object source, boolean before, boolean after) {
-		this.checked = after;
-		repaint();
 	}
 
 }

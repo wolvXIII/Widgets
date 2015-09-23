@@ -7,7 +7,7 @@
 package ej.widget;
 
 /**
- * Defines an object which listens for change event.
+ * Defines an object which listens for state change event.
  */
 public interface OnStateChangeListener {
 
@@ -16,6 +16,11 @@ public interface OnStateChangeListener {
 	 * 
 	 * @param source
 	 *            the target of the listener.
+	 * @param before
+	 *            the state before the change.
+	 * @param after
+	 *            the state after the change.
+	 * 
 	 */
 	void onStateChange(Object source, boolean before, boolean after);
 }

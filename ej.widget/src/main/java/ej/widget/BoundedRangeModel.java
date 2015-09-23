@@ -10,7 +10,7 @@ package ej.widget;
  * Defines the data model used by components like Sliders and ProgressBars. Defines three interrelated integer
  * properties: minimum, maximum and value. These three integers define the following range:
  * 
- * minimum <= value <= maximum
+ * minimum &lt;= value &lt;= maximum
  */
 public interface BoundedRangeModel {
 
@@ -36,8 +36,8 @@ public interface BoundedRangeModel {
 	int getValue();
 
 	/**
-	 * Sets the model's maximum. The others two properties may be changed as well to ensure that minimum <= value <=
-	 * maximum. Notifies the listener if the model changes.
+	 * Sets the model's maximum. The others two properties may be changed as well to ensure that minimum &lt;= value
+	 * &lt;= maximum. Notifies the listener if the model changes.
 	 * 
 	 * @param maximum
 	 *            the model's new maximum.
@@ -45,8 +45,8 @@ public interface BoundedRangeModel {
 	void setMaximum(int maximum);
 
 	/**
-	 * Sets the model's minimum. The others two properties may be changed as well to ensure that minimum <= value <=
-	 * maximum. Notifies the listener if the model changes.
+	 * Sets the model's minimum. The others two properties may be changed as well to ensure that minimum &lt;= value
+	 * &lt;= maximum. Notifies the listener if the model changes.
 	 * 
 	 * @param minimum
 	 *            the model's new minimum.
@@ -56,7 +56,7 @@ public interface BoundedRangeModel {
 	/**
 	 * Sets the model's current value to the given value if it satisfies the model's constraints. Those constraints are:
 	 * 
-	 * minimum <= value <= maximum
+	 * minimum &lt;= value &lt;= maximum
 	 * 
 	 * 
 	 * Otherwise, if the new value is less than minimum it's set to minimum, if its greater than maximum then it's set

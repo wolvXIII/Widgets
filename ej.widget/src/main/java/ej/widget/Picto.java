@@ -48,6 +48,7 @@ public class Picto extends StyledWidget {
 
 	@Override
 	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+		g.setFont(Styles.getFont(style));
 		g.setColor(style.getForegroundColor());
 		g.drawChar(this.picto, remainingSize.getWidth() / 2, remainingSize.getHeight() / 2, GraphicsContext.HCENTER
 				| GraphicsContext.VCENTER);

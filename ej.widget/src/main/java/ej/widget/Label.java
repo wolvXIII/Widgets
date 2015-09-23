@@ -9,33 +9,52 @@ package ej.widget;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;
+import ej.style.text.TextManager;
 import ej.style.util.Size;
 import ej.widget.util.Styles;
 
 /**
- * 
+ * A Widget used to display text. It allows to manage several lines depending of the chosen {@link TextManager}. A label
+ * does not react to the events.
  */
 public class Label extends StyledWidget {
 
 	private String text;
 
+	/**
+	 * Creates a Label with an empty text.
+	 */
 	public Label() {
-		super();
-		this.text = "";
+		this(""); //$NON-NLS-1$
 	}
 
+	/**
+	 * Creates a Label with the given text.
+	 * 
+	 * @param text
+	 *            the text to display, it cannot be null.
+	 * @throws IllegalArgumentException
+	 *             if the text is null.
+	 */
 	public Label(String text) {
 		super();
-		setText(text);
+		setTextNoRepaint(text);
 	}
 
 	/**
 	 * Sets the text to display.
 	 * 
 	 * @param text
-	 *            the text to set.
+	 *            the text to display, it cannot be null.
+	 * @throws IllegalArgumentException
+	 *             if the text is null.
 	 */
 	public void setText(String text) {
+		setTextNoRepaint(text);
+		repaint();
+	}
+
+	private void setTextNoRepaint(String text) {
 		if (text == null) {
 			throw new IllegalArgumentException();
 		}
@@ -55,16 +74,6 @@ public class Label extends StyledWidget {
 	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
 		DisplayFont font = Styles.getFont(style);
 		style.getTextManager().drawText(g, this.text, font, style.getForegroundColor(), remainingSize);
-	}
-
-	@Override
-	public void validate(int widthHint, int heightHint) {
-		super.validate(widthHint, heightHint);
-	}
-
-	@Override
-	public void render(GraphicsContext g) {
-		super.render(g);
 	}
 
 	@Override

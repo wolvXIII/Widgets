@@ -10,19 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The ButtonGroup provides a container to organize groups of toggle button widgets.
+ * The ToggleButtonGroup provides a container to organize groups of toggle button widgets.
  * 
- * ButtonGroup provides an abstract container into which button widgets can be placed. It does not provide a visual
- * representation of this container, but instead manages the states of each of the buttons in the group.
+ * ToggleButtonGroup provides an abstract container into which button widgets can be placed. It does not provide a
+ * visual representation of this container, but instead manages the states of each of the buttons in the group.
  * 
- * It switches off all toggle buttons except the one that has been clicked. The buttons in a button group are usually
- * CheckBoxes or RadioButtons. You should ensure that one of the buttons in the group is initially checked; otherwise,
- * the group will initially be in a state where no buttons are checked.
+ * It switches off all toggle buttons except the one that has been clicked.
  * 
  * A button can be added to the group with and removed with removeButton(). The currently checked button is available
- * with checkedButton(). If a button is clicked, the buttonClicked() signal is emitted; for a checkable button in an
- * exclusive group this means that the button has been checked. The list of buttons in the group is returned by
- * buttons().
+ * with getChecked().
  */
 public class ToggleButtonGroup {
 

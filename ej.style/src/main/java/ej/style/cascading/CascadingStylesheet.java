@@ -21,7 +21,7 @@ import ej.style.font.FontProfile;
 import ej.style.outline.Border;
 import ej.style.outline.EmptyOutline;
 import ej.style.text.TextManagerFull;
-import ej.widget.test.StyleHelper;
+import ej.style.util.StyleHelper;
 
 /**
  * Style sheet that manage a cascading resolution of the style.
