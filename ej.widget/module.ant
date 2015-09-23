@@ -15,7 +15,8 @@
 	<target name="widget:pathAppend" extensionOf="abstract-compile:compile-ready">
 		<!-- Add the java source dir -->
 		<ea:path pathid="src.java.path" overwrite="append">
-			<path location="C:\Users\skobak\git\Library-Widgets2\ej.style\src\main\java"/>
+			<path location="${git.workspace}/ej.style/src/main/java"/>
+			<path location="${git.workspace}/ej.composite/src/main/java"/>
 		</ea:path>
 	</target>
 	

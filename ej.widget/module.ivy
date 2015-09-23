@@ -6,7 +6,8 @@
 -->
 <ivy-module version="2.0" xmlns:ea="http://www.easyant.org" xmlns:m="http://ant.apache.org/ivy/extra"> 
 	<info organisation="ej.library.ui" module="widget" status="integration" revision="1.0.0">
-		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-javalib" revision="1.+">
+		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-javalib" revision="2.+" >
+		 <ea:property name="test.run.excludes.pattern" value="ej.widget.visual.**.class"/>
 		</ea:build>
 	</info>
 
