@@ -8,7 +8,7 @@
 	<info organisation="ej.library.ui" module="widget" status="integration" revision="1.0.0">
 		<ea:build organisation="com.is2t.easyant.buildtypes" module="build-microej-javalib" revision="2.+" >
 		</ea:build>
-		<ea:property name="test.run.excludes.pattern" value="**/*$*.class, **/nonauto/**.class, **/framework/**.class, **/TestAll.class"/>
+		<ea:property name="test.run.excludes.pattern" value="**/*$*.class, **/nonauto/**/*.class, **/framework/**/*.class, **/TestAll.class"/>
 	</info>
 
 	<configurations defaultconfmapping="default->default;provided->provided">
