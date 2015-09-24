@@ -18,6 +18,12 @@
 			<path location="${git.workspace}/ej.style/src/main/java"/>
 			<path location="${git.workspace}/ej.composite/src/main/java"/>
 		</ea:path>
+		
+		<!-- Add the java source test dir -->
+		<ea:path pathid="src.test.java.path" overwrite="append">
+			<path location="${git.workspace}/ej.style/src/test/java"/>
+			<path location="${git.workspace}/ej.composite/src/test/java"/>
+		</ea:path>
 	</target>
 	
 </project>
