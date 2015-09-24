@@ -28,7 +28,10 @@
 		<dependency org="ej.library.ui" name="motion" rev="[2.0.0-RC0,3.0.0-RC0["/>
 		<dependency transitive="false" org="com.is2t.testsuite" name="checkHelper" rev="1.1.0" conf="test->default" >
 		    <artifact name="checkHelper" m:classifier="api" ext="jar"/>
-		</dependency> -->
+		</dependency>
+		<dependency conf="test->default" org="com.is2t.CM4.examples.st" name="STM32F746GDISCO-FullWadapps-CM4_ARMCC-FreeRTOS-dev" rev="+" transitive="false">
+		    <artifact name="STM32F746GDISCO-FullWadapps-CM4_ARMCC-FreeRTOS-dev" ext="jpf"/>
+		</dependency>
 		
 	</dependencies>
 </ivy-module>
