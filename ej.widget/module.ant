@@ -8,9 +8,6 @@
 <project name="widget" xmlns:ea="antlib:org.apache.easyant">
 	
 	<ea:plugin module="abstract-compile" revision="0.9" />
-	
-	<dirname property="ant.dir.widget" file="${ant.file.widget}"/>
-	<dirname property="workspace" file="${ant.dir.widget}"/>
 
 	<target name="widget:pathAppend" extensionOf="abstract-compile:compile-ready">
 		<!-- Add the java source dir -->
