@@ -7,8 +7,8 @@
 package ej.composite.test.border;
 
 import ej.composite.BorderComposite;
-import ej.composite.test.Test;
-import ej.composite.test.TestHelper;
+import ej.composite.test.framework.Test;
+import ej.composite.test.framework.TestHelper;
 import ej.microui.MicroUI;
 import ej.microui.display.Display;
 

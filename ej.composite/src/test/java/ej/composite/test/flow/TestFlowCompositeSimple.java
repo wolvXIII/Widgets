@@ -7,9 +7,9 @@
 package ej.composite.test.flow;
 
 import ej.composite.FlowComposite;
-import ej.composite.test.Test;
-import ej.composite.test.TestHelper;
-import ej.composite.widget.Item;
+import ej.composite.test.framework.Test;
+import ej.composite.test.framework.TestHelper;
+import ej.composite.test.framework.widget.Item;
 import ej.microui.MicroUI;
 import ej.microui.display.Display;
 

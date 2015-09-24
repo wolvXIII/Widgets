@@ -9,10 +9,10 @@ package ej.composite.test.border;
 import com.is2t.testsuite.support.CheckHelper;
 
 import ej.composite.BorderComposite;
-import ej.composite.test.Test;
-import ej.composite.test.TestHelper;
+import ej.composite.test.framework.Test;
+import ej.composite.test.framework.TestHelper;
+import ej.composite.test.framework.widget.Item;
 import ej.composite.test.split.TestSplitCompositeConsistency;
-import ej.composite.widget.Item;
 import ej.microui.MicroUI;
 import ej.mwt.MWT;
 

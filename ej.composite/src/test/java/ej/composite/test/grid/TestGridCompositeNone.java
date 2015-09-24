@@ -7,8 +7,8 @@
 package ej.composite.test.grid;
 
 import ej.composite.GridComposite;
-import ej.composite.test.Test;
-import ej.composite.test.TestHelper;
+import ej.composite.test.framework.Test;
+import ej.composite.test.framework.TestHelper;
 import ej.microui.MicroUI;
 import ej.microui.display.Display;
 
