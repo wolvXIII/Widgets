@@ -20,6 +20,7 @@ public class TestAll {
 		new InheritanceTest().start();
 		new SelectorsTest().start();
 		new SimpleTest().start();
+		new WeakTest().start();
 
 		MicroUI.stop();
 	}
