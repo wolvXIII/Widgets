@@ -9,6 +9,7 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
+import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.GraphicsContext;
 import ej.microui.event.Event;
 import ej.microui.event.controller.DispatchHelper;
