@@ -9,6 +9,7 @@ package ej.style.cascading;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import ej.microui.display.Colors;
 import ej.style.Element;
@@ -37,7 +38,7 @@ public class CascadingStylesheet implements Stylesheet {
 	 */
 	public CascadingStylesheet() {
 		this.typeStyles = new HashMap<>();
-		this.styles = new HashMap<>();
+		this.styles = new WeakHashMap<>();
 		this.globalStyles = new Styles();
 		this.globalStyles.style = createDefaultStyle();
 	}
