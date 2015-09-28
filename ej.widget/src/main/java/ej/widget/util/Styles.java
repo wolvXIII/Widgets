@@ -6,6 +6,8 @@
  */
 package ej.widget.util;
 
+import ej.components.dependencyinjection.ServiceLoaderFactory;
+import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;

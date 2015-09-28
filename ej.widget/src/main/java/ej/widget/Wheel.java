@@ -7,9 +7,15 @@ package ej.widget;
 import java.util.ListIterator;
 
 import ej.bon.Timer;
+import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.microui.event.generator.Pointer;
+import ej.motion.Motion;
+import ej.motion.MotionManager;
+import ej.motion.ease.EaseMotionManager;
+import ej.motion.util.MotionAnimator;
+import ej.motion.util.MotionListener;
 import ej.style.Style;
 import ej.style.util.Rectangle;
 import ej.style.util.Size;
