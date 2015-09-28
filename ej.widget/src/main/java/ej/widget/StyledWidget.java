@@ -9,7 +9,6 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.GraphicsContext;
 import ej.microui.event.Event;
 import ej.microui.event.controller.DispatchHelper;
@@ -20,11 +19,12 @@ import ej.style.Element;
 import ej.style.State;
 import ej.style.Style;
 import ej.style.Stylesheet;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.Styles;
 
 /**
- * 
+ *
  */
 public abstract class StyledWidget extends Widget implements Controller, Element, EventGeneratorsHandler {
 
@@ -49,7 +49,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Sets the controller used by the button to handle the events.
-	 * 
+	 *
 	 * @param controller
 	 *            the new controller to use. Cannot be null.
 	 * @throws IllegalArgumentException
@@ -69,7 +69,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Gets the style of this widget.
-	 * 
+	 *
 	 * @return the style of this widget.
 	 */
 	protected Style getStyle() {
@@ -80,29 +80,29 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 	@Override
 	public void render(GraphicsContext g) {
 		Style style = getStyle();
-		Size remainingSize = new Size();
-		remainingSize.setSize(getWidth(), getHeight());
-		Styles.renderWithoutContent(g, remainingSize, style);
-		renderContent(g, style, remainingSize);
+		Rectangle remainingBounds = new Rectangle();
+		remainingBounds.setSize(getWidth(), getHeight());
+		Styles.renderWithoutContent(g, remainingBounds, style);
+		renderContent(g, style, remainingBounds);
 	}
 
 	/**
 	 * Renders the content of the widget without the border, margin padding specified in the style.
-	 * 
+	 *
 	 * @param g
 	 *            the GraphicsContext where to render the content of the widget.
 	 * @param style
 	 *            the style to use.
-	 * @param remainingSize
+	 * @param remainingBounds
 	 *            the remaining size to render the content.
 	 */
-	protected abstract void renderContent(GraphicsContext g, Style style, Size remainingSize);
+	protected abstract void renderContent(GraphicsContext g, Style style, Rectangle remainingBounds);
 
 	@Override
 	public void validate(int widthHint, int heightHint) {
 		Style style = getStyle();
 		Size contentSize = getContentSize(style);
-		Size preferredSize = Styles.computePreferredSize(widthHint, heightHint, style, contentSize);
+		Rectangle preferredSize = Styles.computePreferredSize(widthHint, heightHint, style, contentSize);
 		setPreferredSize(preferredSize.getWidth(), preferredSize.getHeight());
 
 		// setPreferredSize(widthHint, heightHint);
@@ -110,10 +110,10 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/***
 	 * Gets the content size of the widget without take account the border, margin padding specified in the style.
-	 * 
+	 *
 	 * @param style
 	 *            the style to use.
-	 * 
+	 *
 	 * @return the content size of the widget.
 	 */
 	protected abstract Size getContentSize(Style style);
@@ -130,7 +130,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Adds a class selector.
-	 * 
+	 *
 	 * @param classSelector
 	 *            the class selector to add.
 	 */
@@ -140,7 +140,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Removes a class selector.
-	 * 
+	 *
 	 * @param classSelector
 	 *            the class selector to remove.
 	 */
@@ -150,7 +150,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Adds a state.
-	 * 
+	 *
 	 * @param state
 	 *            the state to add.
 	 */
@@ -160,7 +160,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Removes a state.
-	 * 
+	 *
 	 * @param state
 	 *            the state to remove.
 	 */
@@ -170,7 +170,7 @@ public abstract class StyledWidget extends Widget implements Controller, Element
 
 	/**
 	 * Gets whether or not the widget is in the given state.
-	 * 
+	 *
 	 * @param state
 	 *            the state to check.
 	 * @return true if the widget is in the given state otherwise false.

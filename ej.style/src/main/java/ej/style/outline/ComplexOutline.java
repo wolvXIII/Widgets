@@ -7,7 +7,7 @@
 package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  * Complex outline that have a different thickness for each edge.
@@ -96,23 +96,23 @@ public class ComplexOutline implements Outline {
 	}
 
 	@Override
-	public Size wrap(Size dimension) {
-		dimension.increment(this.left + this.right, this.top + this.bottom);
-		return dimension;
+	public Rectangle wrap(Rectangle rectangle) {
+		rectangle.update(-this.left, -this.top, this.left + this.right, this.top + this.bottom);
+		return rectangle;
 	}
 
 	@Override
-	public Size unwrap(Size dimension) {
-		dimension.decrement(this.left + this.right, this.top + this.bottom);
-		return dimension;
+	public Rectangle unwrap(Rectangle rectangle) {
+		rectangle.update(this.left, this.top, -(this.left + this.right), -(this.top + this.bottom));
+		return rectangle;
 	}
 
 	@Override
-	public Size apply(GraphicsContext g, Size dimension) {
+	public Rectangle apply(GraphicsContext g, Rectangle rectangle) {
 		g.translate(this.left, this.top);
-		unwrap(dimension);
-		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());
-		return dimension;
+		unwrap(rectangle);
+		g.clipRect(0, 0, rectangle.getWidth(), rectangle.getHeight());
+		return rectangle;
 	}
 
 }

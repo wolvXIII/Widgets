@@ -8,10 +8,11 @@ package ej.widget;
 
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 /**
- * 
+ *
  */
 public class Image extends StyledWidget {
 
@@ -24,7 +25,7 @@ public class Image extends StyledWidget {
 
 	/**
 	 * Gets the source.
-	 * 
+	 *
 	 * @return the source.
 	 */
 	public ej.microui.display.Image getSource() {
@@ -33,7 +34,7 @@ public class Image extends StyledWidget {
 
 	/**
 	 * Sets the source.
-	 * 
+	 *
 	 * @param source
 	 *            the source to set.
 	 */
@@ -42,7 +43,7 @@ public class Image extends StyledWidget {
 	}
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		if (this.source != null) {
 			g.drawImage(this.source, remainingSize.getWidth() / 2, remainingSize.getHeight() / 2,
 					GraphicsContext.HCENTER | GraphicsContext.VCENTER);

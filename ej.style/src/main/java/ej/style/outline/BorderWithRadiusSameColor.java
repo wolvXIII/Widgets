@@ -8,7 +8,7 @@ package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  *
@@ -38,18 +38,18 @@ public class BorderWithRadiusSameColor extends Border {
 	}
 
 	@Override
-	public Size apply(GraphicsContext g, Size dimension) {
+	public Rectangle apply(GraphicsContext g, Rectangle rectangle) {
 		g.setColor(this.color);
-		int width = dimension.getWidth();
-		int height = dimension.getHeight();
+		int width = rectangle.getWidth();
+		int height = rectangle.getHeight();
 		int fade = this.size < 3 ? 0 : 1;
-		int evenSizeOffset = 1 - this.size & 1;
-		int thickness = this.size -  fade + evenSizeOffset;
-		int halfSize = this.size / 2 - evenSizeOffset;
-		int leftX = halfSize;
-		int topY = halfSize;
-		int rightX = leftX + width - this.size - 1 + evenSizeOffset;
-		int bottomY = topY + height - this.size - 1 + evenSizeOffset;
+		int evenRectangleOffset = 1 - this.size & 1;
+		int thickness = this.size - fade + evenRectangleOffset;
+		int halfRectangle = this.size / 2 - evenRectangleOffset;
+		int leftX = halfRectangle;
+		int topY = halfRectangle;
+		int rightX = leftX + width - this.size - 1 + evenRectangleOffset;
+		int bottomY = topY + height - this.size - 1 + evenRectangleOffset;
 
 		AntiAliasedShapes antiAliasedShapes = AntiAliasedShapes.Singleton;
 		antiAliasedShapes.setThickness(thickness);
@@ -75,9 +75,9 @@ public class BorderWithRadiusSameColor extends Border {
 				- this.bottomRightRadius);
 
 		g.translate(this.size, this.size);
-		dimension.increment(-this.size * 2, -this.size * 2);
-		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());
-		return dimension;
+		unwrap(rectangle);
+		g.clipRect(0, 0, rectangle.getWidth(), rectangle.getHeight());
+		return rectangle;
 	}
 
 }

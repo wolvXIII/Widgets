@@ -9,6 +9,7 @@ package ej.widget;
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.ColorsHelper;
 
@@ -19,7 +20,7 @@ public class Switch extends ToggleView {
 	private static final int FADE = 1;
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		AntiAliasedShapes antiAliasedShapes = AntiAliasedShapes.Singleton;
 		antiAliasedShapes.setFade(FADE);
 		antiAliasedShapes.setThickness(THICKNESS);

@@ -10,6 +10,7 @@ import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.microui.event.generator.Pointer;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.ColorsHelper;
 
@@ -30,19 +31,19 @@ public class Slider extends AbstractProgressBar {
 	// TODO: take account the internal padding for the cursor
 	protected float getPositionFactor(int pointerX) {
 		Style style = getStyle();
-		Size size = new Size();
-		style.getMargin().wrap(size);
-		style.getPadding().wrap(size);
-		style.getBorder().wrap(size);
+		Rectangle rectangle = new Rectangle();
+		style.getMargin().wrap(rectangle);
+		style.getPadding().wrap(rectangle);
+		style.getBorder().wrap(rectangle);
 		int width = getWidth();
 
-		int halfNoContentWidth = size.getWidth() / 2;
+		int halfNoContentWidth = rectangle.getWidth() / 2;
 		if (pointerX < halfNoContentWidth) {
 			return 0;
 		} else if (pointerX > width - halfNoContentWidth) {
 			return 1;
 		} else {
-			return (pointerX - halfNoContentWidth) / (float) (width - size.getWidth());
+			return (pointerX - halfNoContentWidth) / (float) (width - rectangle.getWidth());
 		}
 	}
 
@@ -61,7 +62,7 @@ public class Slider extends AbstractProgressBar {
 	}
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		int remainingWidth = remainingSize.getWidth();
 		int remainingHeight = remainingSize.getHeight();
 		int foregroundColor = style.getForegroundColor();

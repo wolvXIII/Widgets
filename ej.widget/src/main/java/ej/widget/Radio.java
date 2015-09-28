@@ -9,6 +9,7 @@ package ej.widget;
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 public class Radio extends ToggleView {
@@ -18,7 +19,7 @@ public class Radio extends ToggleView {
 	private static final int FADE = 1;
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		int remainingWidth = remainingSize.getWidth();
 		int remainingHeight = remainingSize.getHeight();
 		AntiAliasedShapes antiAliasedShapes = AntiAliasedShapes.Singleton;

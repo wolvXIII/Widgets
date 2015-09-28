@@ -9,11 +9,12 @@ package ej.widget;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.Styles;
 
 /**
- * 
+ *
  */
 public class Picto extends StyledWidget {
 
@@ -29,7 +30,7 @@ public class Picto extends StyledWidget {
 
 	/**
 	 * Gets the picto.
-	 * 
+	 *
 	 * @return the picto.
 	 */
 	public char getPicto() {
@@ -38,7 +39,7 @@ public class Picto extends StyledWidget {
 
 	/**
 	 * Sets the picto.
-	 * 
+	 *
 	 * @param picto
 	 *            the picto to set.
 	 */
@@ -47,7 +48,7 @@ public class Picto extends StyledWidget {
 	}
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		g.setFont(Styles.getFont(style));
 		g.setColor(style.getForegroundColor());
 		g.drawChar(this.picto, remainingSize.getWidth() / 2, remainingSize.getHeight() / 2, GraphicsContext.HCENTER

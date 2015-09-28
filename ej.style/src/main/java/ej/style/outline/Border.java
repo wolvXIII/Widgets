@@ -7,7 +7,7 @@
 package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  *
@@ -44,32 +44,32 @@ public class Border implements Outline {
 	}
 
 	@Override
-	public Size wrap(Size dimension) {
-		dimension.increment(this.size * 2, this.size * 2);
-		return dimension;
+	public Rectangle wrap(Rectangle rectangle) {
+		rectangle.update(-this.size, -this.size, this.size * 2, this.size * 2);
+		return rectangle;
 	}
 
 	@Override
-	public Size unwrap(Size dimension) {
-		dimension.decrement(this.size * 2, this.size * 2);
-		return dimension;
+	public Rectangle unwrap(Rectangle rectangle) {
+		rectangle.update(this.size, this.size, -this.size * 2, -this.size * 2);
+		return rectangle;
 	}
 
 	@Override
-	public Size apply(GraphicsContext g, Size dimension) {
+	public Rectangle apply(GraphicsContext g, Rectangle rectangle) {
 		g.setColor(this.color);
 		int size = this.size;
-		int currentWidth = dimension.getWidth() - 1;
-		int currentHeight = dimension.getHeight() - 1;
+		int currentWidth = rectangle.getWidth() - 1;
+		int currentHeight = rectangle.getHeight() - 1;
 		for (int i = -1; ++i < size;) {
 			g.drawRect(i, i, currentWidth, currentHeight);
 			currentWidth -= 2;
 			currentHeight -= 2;
 		}
 		g.translate(size, size);
-		dimension.increment(-this.size * 2, -this.size * 2);
-		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());
-		return dimension;
+		unwrap(rectangle);
+		g.clipRect(0, 0, rectangle.getWidth(), rectangle.getHeight());
+		return rectangle;
 	}
 
 }

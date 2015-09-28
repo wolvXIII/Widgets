@@ -7,7 +7,7 @@
 package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  * A outline that is empty.
@@ -24,18 +24,18 @@ public class EmptyOutline implements Outline {
 	}
 
 	@Override
-	public Size wrap(Size dimension) {
-		return dimension;
+	public Rectangle wrap(Rectangle rectangle) {
+		return rectangle;
 	}
 
 	@Override
-	public Size unwrap(Size dimension) {
-		return dimension;
+	public Rectangle unwrap(Rectangle rectangle) {
+		return rectangle;
 	}
 
 	@Override
-	public Size apply(GraphicsContext g, Size dimension) {
-		return dimension;
+	public Rectangle apply(GraphicsContext g, Rectangle rectangle) {
+		return rectangle;
 	}
 
 }

@@ -9,6 +9,7 @@ package ej.widget;
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.ColorsHelper;
 import ej.widget.util.Styles;
@@ -29,7 +30,7 @@ public class CircularProgressBar extends AbstractProgressBar {
 	}
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		int remainingWidth = remainingSize.getWidth();
 		int remainingHeight = remainingSize.getHeight();
 		float percentComplete = getPercentComplete();

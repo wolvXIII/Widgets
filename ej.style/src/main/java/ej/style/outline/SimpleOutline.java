@@ -7,7 +7,7 @@
 package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  * Outline that have the same thickness for all edges.
@@ -36,23 +36,25 @@ public class SimpleOutline implements Outline {
 	}
 
 	@Override
-	public Size wrap(Size dimension) {
-		dimension.increment(this.thickness * 2, this.thickness * 2);
-		return dimension;
+	public Rectangle wrap(Rectangle rectangle) {
+		int thickness = this.thickness;
+		rectangle.update(-thickness, -thickness, thickness << 1, thickness << 1);
+		return rectangle;
 	}
 
 	@Override
-	public Size unwrap(Size dimension) {
-		dimension.decrement(this.thickness * 2, this.thickness * 2);
-		return dimension;
+	public Rectangle unwrap(Rectangle rectangle) {
+		int thickness = this.thickness;
+		rectangle.update(thickness, thickness, -thickness << 1, -thickness << 1);
+		return rectangle;
 	}
 
 	@Override
-	public Size apply(GraphicsContext g, Size dimension) {
+	public Rectangle apply(GraphicsContext g, Rectangle rectangle) {
 		g.translate(this.thickness, this.thickness);
-		unwrap(dimension);
-		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());
-		return dimension;
+		unwrap(rectangle);
+		g.clipRect(0, 0, rectangle.getWidth(), rectangle.getHeight());
+		return rectangle;
 	}
 
 }

@@ -6,7 +6,6 @@
  */
 package ej.widget.util;
 
-import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;
@@ -15,6 +14,7 @@ import ej.style.dimension.Dimension;
 import ej.style.font.FontLoader;
 import ej.style.font.FontProfile;
 import ej.style.outline.Outline;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 public class Styles {
@@ -30,27 +30,30 @@ public class Styles {
 		return font;
 	}
 
-	public static Size computePreferredSize(int widthHint, int heightHint, Style style, Size contentSize) {
+	public static Rectangle computePreferredSize(int widthHint, int heightHint, Style style, Size contentSize) {
 		// Content size…
 		Dimension dimension = style.getDimension();
 		dimension.apply(contentSize, widthHint, heightHint);
 
+		Rectangle result = new Rectangle();
+		result.setSize(contentSize.getWidth(), contentSize.getHeight());
+
 		// … plus padding size…
 		Outline padding = style.getPadding();
-		padding.wrap(contentSize);
+		padding.wrap(result);
 
 		// … plus border size…
 		Outline border = style.getBorder();
-		border.wrap(contentSize);
+		border.wrap(result);
 
 		// … plus margin size…
 		Outline margin = style.getMargin();
-		margin.wrap(contentSize);
+		margin.wrap(result);
 
-		return contentSize;
+		return result;
 	}
 
-	public static void renderWithoutContent(GraphicsContext g, Size remainingSize, Style style) {
+	public static void renderWithoutContent(GraphicsContext g, Rectangle remainingSize, Style style) {
 		// Apply margin.
 		Outline margin = style.getMargin();
 		margin.apply(g, remainingSize);

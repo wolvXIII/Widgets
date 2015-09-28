@@ -9,17 +9,18 @@ package ej.widget;
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 /**
- * 
+ *
  */
 public class Check extends ToggleView {
 
 	private static final int SIZE = 36;
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		int remainingWidth = remainingSize.getWidth();
 		int remainingHeight = remainingSize.getHeight();
 

@@ -6,16 +6,16 @@
  */
 package ej.widget;
 
-
 import ej.microui.display.GraphicsContext;
 import ej.microui.display.shape.AntiAliasedShapes;
 import ej.mwt.MWT;
 import ej.style.Style;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.ColorsHelper;
 
 /**
- * 
+ *
  */
 public class ProgressBar extends AbstractProgressBar {
 
@@ -33,7 +33,7 @@ public class ProgressBar extends AbstractProgressBar {
 	}
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		int remainingWidth = remainingSize.getWidth();
 		int remainingHeight = remainingSize.getHeight();
 		int foregroundColor = style.getForegroundColor();
@@ -83,7 +83,7 @@ public class ProgressBar extends AbstractProgressBar {
 
 	/**
 	 * Gets the orientation property.
-	 * 
+	 *
 	 * @return The value of the orientation property, one of the following constants defined in MWT: HORIZONTAL,
 	 *         VERTICAL.
 	 */
@@ -93,10 +93,10 @@ public class ProgressBar extends AbstractProgressBar {
 
 	/**
 	 * Sets the orientation property.
-	 * 
+	 *
 	 * @param orientation
 	 *            one of the following constants defined in MWT: HORIZONTAL, VERTICAL.
-	 * 
+	 *
 	 * @throws IllegalArgumentException
 	 *             if the orientation is not one of the constants defined in MWT: HORIZONTAL, VERTICAL.
 	 */

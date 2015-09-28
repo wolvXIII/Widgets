@@ -8,6 +8,7 @@ package ej.style.text;
 
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 /**
@@ -20,19 +21,19 @@ public interface TextManager {
 
 	/**
 	 * Draws text on a graphics context.
-	 * 
+	 *
 	 * @param g
 	 *            the graphics context to draw the text on.
 	 * @param text
 	 *            the text to render.
 	 * @param font
 	 *            the font to use.
-	 * 
+	 *
 	 * @param color
 	 *            the color to use.
-	 * @param size
-	 *            the size of the text area.
+	 * @param area
+	 *            the text area.
 	 */
-	void drawText(GraphicsContext g, String text, DisplayFont font, int color, Size size);
+	void drawText(GraphicsContext g, String text, DisplayFont font, int color, Rectangle area);
 
 }

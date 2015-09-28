@@ -9,7 +9,6 @@ package ej.widget;
 import java.util.ArrayList;
 import java.util.List;
 
-import ej.components.dependencyinjection.ServiceLoaderFactory;
 import ej.microui.display.GraphicsContext;
 import ej.microui.event.Event;
 import ej.microui.event.controller.DispatchHelper;
@@ -19,11 +18,11 @@ import ej.style.Element;
 import ej.style.State;
 import ej.style.Style;
 import ej.style.Stylesheet;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 import ej.widget.util.Styles;
 
 /**
- * 
+ *
  */
 public abstract class StyledComposite extends Composite implements Controller, Element {
 
@@ -114,7 +113,7 @@ public abstract class StyledComposite extends Composite implements Controller, E
 
 	/**
 	 * Adds a class selector.
-	 * 
+	 *
 	 * @param classSelector
 	 *            the class selector to add.
 	 */
@@ -124,7 +123,7 @@ public abstract class StyledComposite extends Composite implements Controller, E
 
 	/**
 	 * Removes a class selector.
-	 * 
+	 *
 	 * @param classSelector
 	 *            the class selector to remove.
 	 */
@@ -134,7 +133,7 @@ public abstract class StyledComposite extends Composite implements Controller, E
 
 	/**
 	 * Adds a state.
-	 * 
+	 *
 	 * @param state
 	 *            the state to add.
 	 */
@@ -144,7 +143,7 @@ public abstract class StyledComposite extends Composite implements Controller, E
 
 	/**
 	 * Removes a state.
-	 * 
+	 *
 	 * @param state
 	 *            the state to remove.
 	 */
@@ -159,13 +158,13 @@ public abstract class StyledComposite extends Composite implements Controller, E
 	@Override
 	public void render(GraphicsContext g) {
 		Style style = getStyle();
-		Size remainingSize = new Size();
-		remainingSize.setSize(getWidth(), getHeight());
-		Styles.renderWithoutContent(g, remainingSize, style);
-		renderContent(g, style, remainingSize);
+		Rectangle remainingBounds = new Rectangle();
+		remainingBounds.setSize(getWidth(), getHeight());
+		Styles.renderWithoutContent(g, remainingBounds, style);
+		renderContent(g, style, remainingBounds);
 	}
 
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingBounds) {
 		// Nothing to do by default.
 	}
 }

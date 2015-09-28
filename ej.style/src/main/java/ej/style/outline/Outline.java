@@ -7,7 +7,7 @@
 package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  * Represents an outline that wraps a rectangle.
@@ -15,32 +15,32 @@ import ej.style.util.Size;
 public interface Outline {
 
 	/**
-	 * Adds the outline thickness to a dimension.
+	 * Adds the outline thickness to a rectangle.
 	 *
-	 * @param dimension
-	 *            the dimension to wrap.
-	 * @return the wrapped dimension.
+	 * @param rectangle
+	 *            the rectangle to wrap.
+	 * @return the wrapped rectangle.
 	 */
-	Size wrap(Size dimension);
+	Rectangle wrap(Rectangle rectangle);
 
 	/**
-	 * Removes the outline thickness to a dimension.
+	 * Removes the outline thickness to a rectangle.
 	 *
-	 * @param dimension
-	 *            the dimension to unwrap.
-	 * @return the unwrapped dimension.
+	 * @param rectangle
+	 *            the rectangle to unwrap.
+	 * @return the unwrapped rectangle.
 	 */
-	Size unwrap(Size dimension);
+	Rectangle unwrap(Rectangle rectangle);
 
 	/**
 	 * Applies the outline on a graphics context.
 	 *
 	 * @param g
 	 *            the graphics context.
-	 * @param dimension
-	 *            the dimension to unwrap.
-	 * @return the unwrapped dimension.
+	 * @param rectangle
+	 *            the rectangle to unwrap.
+	 * @return the unwrapped rectangle.
 	 */
-	Size apply(GraphicsContext g, Size dimension);
+	Rectangle apply(GraphicsContext g, Rectangle rectangle);
 
 }

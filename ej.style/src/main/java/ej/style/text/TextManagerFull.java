@@ -8,6 +8,7 @@ package ej.style.text;
 
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 /**
@@ -23,7 +24,7 @@ public class TextManagerFull implements TextManager {
 
 
 	/**
-	 * 
+	 *
 	 */
 	public TextManagerFull() {
 		this.lineHeight = 10;
@@ -31,7 +32,7 @@ public class TextManagerFull implements TextManager {
 
 	/**
 	 * Sets the horizontal alignment of the text.
-	 * 
+	 *
 	 * @param alignment
 	 *            one of the value among GraphicsContext.LEFT, GraphicsContext.HCENTER or GraphicsContext.RIGHT.
 	 */
@@ -46,10 +47,10 @@ public class TextManagerFull implements TextManager {
 	// TODO: draw ellipse if there is not enough space instead of cut text.
 	// TODO: handle the justify case.
 	@Override
-	public void drawText(GraphicsContext g, String text, DisplayFont font, int color, Size size) {
+	public void drawText(GraphicsContext g, String text, DisplayFont font, int color, Rectangle area) {
 		g.setFont(font);
 		g.setColor(color);
-		int width = size.getWidth();
+		int width = area.getWidth();
 		String[] lines = Texts.splitString(text, font, width);
 		// Can be computed once.
 		int x = computeXTopLeftCorner(width);
@@ -64,7 +65,7 @@ public class TextManagerFull implements TextManager {
 	/**
 	 * Computes the x coordinate of the left-top corner, depending of anchor value anchor can be HCENTER and other thing
 	 * (or RIGHT and other thing etc). This method check too if the anchor is valid.
-	 * 
+	 *
 	 * @param x
 	 *            the x coordinate
 	 * @param width

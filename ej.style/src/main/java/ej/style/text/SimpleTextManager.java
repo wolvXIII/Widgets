@@ -8,6 +8,7 @@ package ej.style.text;
 
 import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 
 /**
@@ -16,7 +17,7 @@ import ej.style.util.Size;
 public class SimpleTextManager implements TextManager {
 
 	@Override
-	public void drawText(GraphicsContext g, String text, DisplayFont font, int color, Size size) {
+	public void drawText(GraphicsContext g, String text, DisplayFont font, int color, Rectangle area) {
 		g.setFont(font);
 		g.setColor(color);
 		g.drawString(text, 0, 0, GraphicsContext.LEFT | GraphicsContext.TOP);

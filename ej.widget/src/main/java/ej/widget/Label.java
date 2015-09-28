@@ -10,6 +10,7 @@ import ej.microui.display.DisplayFont;
 import ej.microui.display.GraphicsContext;
 import ej.style.Style;
 import ej.style.text.TextManager;
+import ej.style.util.Rectangle;
 import ej.style.util.Size;
 import ej.widget.util.Styles;
 
@@ -30,7 +31,7 @@ public class Label extends StyledWidget {
 
 	/**
 	 * Creates a Label with the given text.
-	 * 
+	 *
 	 * @param text
 	 *            the text to display, it cannot be null.
 	 * @throws IllegalArgumentException
@@ -43,7 +44,7 @@ public class Label extends StyledWidget {
 
 	/**
 	 * Sets the text to display.
-	 * 
+	 *
 	 * @param text
 	 *            the text to display, it cannot be null.
 	 * @throws IllegalArgumentException
@@ -63,7 +64,7 @@ public class Label extends StyledWidget {
 
 	/**
 	 * Gets the displayed text.
-	 * 
+	 *
 	 * @return the text.
 	 */
 	public String getText() {
@@ -71,7 +72,7 @@ public class Label extends StyledWidget {
 	}
 
 	@Override
-	protected void renderContent(GraphicsContext g, Style style, Size remainingSize) {
+	protected void renderContent(GraphicsContext g, Style style, Rectangle remainingSize) {
 		DisplayFont font = Styles.getFont(style);
 		style.getTextManager().drawText(g, this.text, font, style.getForegroundColor(), remainingSize);
 	}

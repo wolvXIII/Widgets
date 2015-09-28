@@ -7,61 +7,63 @@
 package ej.style.outline;
 
 import ej.microui.display.GraphicsContext;
-import ej.style.util.Size;
+import ej.style.util.Rectangle;
 
 /**
  *
  */
 public class BorderNoRadiusSameColor extends Border {
 
-	protected int topSize;
-	protected int leftSize;
-	protected int bottomSize;
-	protected int rightSize;
+	protected int topRectangle;
+	protected int leftRectangle;
+	protected int bottomRectangle;
+	protected int rightRectangle;
 
 
-	public void setTopSize(int topSize) {
-		this.topSize = topSize;
+	public void setTopRectangle(int topRectangle) {
+		this.topRectangle = topRectangle;
 	}
 
-	public void setLeftSize(int leftSize) {
-		this.leftSize = leftSize;
+	public void setLeftRectangle(int leftRectangle) {
+		this.leftRectangle = leftRectangle;
 	}
 
-	public void setBottomSize(int bottomSize) {
-		this.bottomSize = bottomSize;
+	public void setBottomRectangle(int bottomRectangle) {
+		this.bottomRectangle = bottomRectangle;
 	}
 
-	public void setRightSize(int rightSize) {
-		this.rightSize = rightSize;
+	public void setRightRectangle(int rightRectangle) {
+		this.rightRectangle = rightRectangle;
 	}
 	@Override
-	public Size wrap(Size dimension) {
-		dimension.increment(this.leftSize + this.rightSize, this.topSize + this.bottomSize);
-		return dimension;
-	}
-
-	@Override
-	public Size unwrap(Size dimension) {
-		dimension.decrement(this.leftSize + this.rightSize, this.topSize + this.bottomSize);
-		return dimension;
+	public Rectangle wrap(Rectangle rectangle) {
+		rectangle.update(-this.leftRectangle, -this.topRectangle, this.leftRectangle + this.rightRectangle,
+				this.topRectangle + this.bottomRectangle);
+		return rectangle;
 	}
 
 	@Override
-	public Size apply(GraphicsContext g, Size dimension) {
+	public Rectangle unwrap(Rectangle rectangle) {
+		rectangle.update(this.leftRectangle, this.topRectangle, -(this.leftRectangle + this.rightRectangle),
+				-(this.topRectangle + this.bottomRectangle));
+		return rectangle;
+	}
+
+	@Override
+	public Rectangle apply(GraphicsContext g, Rectangle rectangle) {
 		g.setColor(this.color);
-		int width = dimension.getWidth();
-		int height = dimension.getHeight();
+		int width = rectangle.getWidth();
+		int height = rectangle.getHeight();
 
-		g.fillRect(0, 0, width, this.topSize);
-		g.fillRect(0, 0, this.leftSize, height);
-		g.fillRect(0, height - this.bottomSize, width, this.bottomSize);
-		g.fillRect(width - this.rightSize, 0, this.rightSize, height);
+		g.fillRect(0, 0, width, this.topRectangle);
+		g.fillRect(0, 0, this.leftRectangle, height);
+		g.fillRect(0, height - this.bottomRectangle, width, this.bottomRectangle);
+		g.fillRect(width - this.rightRectangle, 0, this.rightRectangle, height);
 
-		g.translate(this.leftSize, this.topSize);
-		dimension.decrement(this.leftSize + this.rightSize, this.topSize + this.bottomSize);
-		g.clipRect(0, 0, dimension.getWidth(), dimension.getHeight());
-		return dimension;
+		g.translate(this.leftRectangle, this.topRectangle);
+		unwrap(rectangle);
+		g.clipRect(0, 0, rectangle.getWidth(), rectangle.getHeight());
+		return rectangle;
 	}
 
 }
